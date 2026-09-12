@@ -1,1206 +1,2751 @@
-<title>Lohitha's Edits | Video Editor Portfolio</title>
+<!DOCTYPE html>
+<html lang="en">
 
-<style>
+<head>
+    <meta charset="UTF-8">
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    html {
-        scroll-behavior: smooth;
-    }
+    <meta name="description"
+        content="Lohitha's Edits - Professional Video Editor Portfolio">
 
-    body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background:
-            radial-gradient(circle at 10% 20%, rgba(0, 210, 255, 0.08), transparent 30%),
-            radial-gradient(circle at 90% 80%, rgba(130, 70, 255, 0.08), transparent 30%),
-            #080808;
-        color: #ffffff;
-        line-height: 1.6;
-    }
-
-    a {
-        text-decoration: none;
-    }
+    <title>Lohitha's Editz... | Video Editor Portfolio</title>
 
 
-    /* ==============================
-       HERO SECTION
-    ============================== */
+    <style>
 
-    header {
-        position: relative;
-        text-align: center;
-        padding: 100px 20px 85px;
-        overflow: hidden;
+        /* =========================================================
+           RESET
+        ========================================================= */
 
-        background:
-            linear-gradient(
-                135deg,
-                #080808,
-                #151515,
-                #090909
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(0, 210, 255, 0.08),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 30%,
+                    rgba(125, 70, 255, 0.08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 50% 100%,
+                    rgba(0, 210, 255, 0.05),
+                    transparent 30%
+                ),
+                #070707;
+
+            color: #ffffff;
+
+            line-height: 1.6;
+
+            overflow-x: hidden;
+        }
+
+
+        a {
+            text-decoration: none;
+        }
+
+
+        img,
+        video {
+            max-width: 100%;
+        }
+
+
+
+        /* =========================================================
+           ANIMATED BACKGROUND
+        ========================================================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            inset: 0;
+
+            pointer-events: none;
+
+            background-image:
+                linear-gradient(
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(255, 255, 255, 0.018) 1px,
+                    transparent 1px
+                );
+
+            background-size: 70px 70px;
+
+            mask-image: linear-gradient(
+                to bottom,
+                black,
+                transparent 80%
             );
 
-        border-bottom: 1px solid rgba(0, 210, 255, 0.25);
-    }
+            z-index: -5;
+        }
 
-    header::before {
-        content: "";
-        position: absolute;
 
-        width: 400px;
-        height: 400px;
+        body::after {
+            content: "";
 
-        background: rgba(0, 210, 255, 0.12);
+            position: fixed;
 
-        filter: blur(110px);
+            width: 450px;
+            height: 450px;
 
-        border-radius: 50%;
+            border-radius: 50%;
 
-        top: -180px;
-        left: -120px;
-    }
+            background: rgba(0, 210, 255, 0.07);
 
-    header::after {
-        content: "";
-        position: absolute;
+            filter: blur(120px);
 
-        width: 400px;
-        height: 400px;
+            top: 30%;
+            left: -220px;
 
-        background: rgba(130, 70, 255, 0.10);
+            pointer-events: none;
 
-        filter: blur(110px);
+            animation: backgroundFloat 12s ease-in-out infinite;
 
-        border-radius: 50%;
+            z-index: -4;
+        }
 
-        bottom: -200px;
-        right: -120px;
-    }
 
-    .hero-content {
-        position: relative;
-        z-index: 2;
-    }
+        @keyframes backgroundFloat {
 
-    .small-title {
-        color: #00d2ff;
+            0% {
+                transform: translateY(0);
+            }
 
-        font-size: 0.9rem;
+            50% {
+                transform: translateY(80px);
+            }
 
-        letter-spacing: 4px;
+            100% {
+                transform: translateY(0);
+            }
 
-        text-transform: uppercase;
+        }
 
-        margin-bottom: 15px;
 
-        font-weight: 600;
-    }
 
-    h1 {
-        font-size: clamp(2.7rem, 7vw, 5.2rem);
+        /* =========================================================
+           FLOATING DECORATIVE ORBS
+        ========================================================= */
 
-        font-weight: 800;
+        .orb {
+            position: fixed;
 
-        letter-spacing: 2px;
+            border-radius: 50%;
 
-        margin-bottom: 15px;
+            pointer-events: none;
 
-        background:
-            linear-gradient(
-                90deg,
-                #ffffff,
-                #00d2ff
-            );
+            filter: blur(1px);
 
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+            opacity: 0.5;
 
-    .hero-subtitle {
-        color: #bdbdbd;
+            z-index: -2;
+        }
 
-        font-size: 1.15rem;
 
-        max-width: 720px;
+        .orb-one {
+            width: 9px;
+            height: 9px;
 
-        margin: 0 auto 30px;
-    }
+            background: #00d2ff;
 
-    .hero-tag {
-        display: inline-block;
+            top: 18%;
+            left: 12%;
 
-        padding: 9px 20px;
+            box-shadow:
+                0 0 25px #00d2ff;
 
-        border: 1px solid rgba(0, 210, 255, 0.35);
+            animation: floatOne 8s ease-in-out infinite;
+        }
 
-        border-radius: 30px;
 
-        color: #00d2ff;
+        .orb-two {
+            width: 6px;
+            height: 6px;
 
-        background: rgba(0, 210, 255, 0.06);
+            background: #9b6cff;
 
-        font-size: 0.9rem;
-    }
+            top: 32%;
+            right: 15%;
 
+            box-shadow:
+                0 0 20px #9b6cff;
 
-    /* ==============================
-       ABOUT SECTION
-    ============================== */
+            animation: floatTwo 10s ease-in-out infinite;
+        }
 
-    .about-section {
-        max-width: 950px;
 
-        margin: -25px auto 65px;
+        .orb-three {
+            width: 8px;
+            height: 8px;
 
-        position: relative;
+            background: #00d2ff;
 
-        z-index: 5;
+            bottom: 22%;
+            left: 20%;
 
-        background: rgba(24, 24, 24, 0.96);
+            box-shadow:
+                0 0 22px #00d2ff;
 
-        backdrop-filter: blur(15px);
+            animation: floatThree 9s ease-in-out infinite;
+        }
 
-        padding: 42px;
 
-        border-radius: 20px;
+        @keyframes floatOne {
 
-        border: 1px solid #292929;
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
 
-        box-shadow:
-            0 20px 60px rgba(0, 0, 0, 0.55),
-            0 0 30px rgba(0, 210, 255, 0.03);
-    }
+            50% {
+                transform: translate(40px, -50px);
+            }
 
-    .about-section h2 {
-        font-size: 1.9rem;
+        }
 
-        margin-bottom: 12px;
-    }
 
-    .about-section h2 span {
-        color: #00d2ff;
-    }
+        @keyframes floatTwo {
 
-    .about-section > p {
-        color: #aaaaaa;
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
 
-        margin-bottom: 20px;
+            50% {
+                transform: translate(-50px, 40px);
+            }
 
-        font-size: 1.02rem;
-    }
+        }
 
-    .what-i-do {
-        margin-top: 30px;
-    }
 
-    .what-i-do h3 {
-        margin-bottom: 16px;
+        @keyframes floatThree {
 
-        font-size: 1.2rem;
-    }
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
 
-    .skills-list {
-        display: grid;
+            50% {
+                transform: translate(60px, -30px);
+            }
 
-        grid-template-columns:
-            repeat(auto-fit, minmax(220px, 1fr));
+        }
 
-        gap: 12px;
 
-        list-style: none;
-    }
 
-    .skills-list li {
-        background: #111111;
-
-        border: 1px solid #292929;
-
-        padding: 13px 15px;
-
-        border-radius: 10px;
-
-        color: #cccccc;
-
-        transition: 0.3s ease;
-    }
-
-    .skills-list li:hover {
-        border-color: #00d2ff;
-
-        transform: translateY(-3px);
-
-        color: #ffffff;
-
-        background: #151515;
-    }
-
-
-    /* ==============================
-       SOCIAL BUTTONS
-    ============================== */
-
-    .social-buttons {
-        display: flex;
-
-        justify-content: center;
-
-        gap: 14px;
-
-        margin-top: 35px;
-
-        flex-wrap: wrap;
-    }
-
-    .btn {
-        display: inline-flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 8px;
-
-        padding: 13px 25px;
-
-        border-radius: 10px;
-
-        color: #ffffff;
-
-        font-weight: 600;
-
-        font-size: 0.95rem;
-
-        transition:
-            transform 0.25s ease,
-            box-shadow 0.25s ease,
-            filter 0.25s ease;
-    }
-
-    .btn:hover {
-        transform: translateY(-4px);
-
-        filter: brightness(1.1);
-    }
-
-
-    .btn-linkedin {
-        background: #0077b5;
-
-        box-shadow:
-            0 6px 20px rgba(0, 119, 181, 0.25);
-    }
-
-    .btn-linkedin:hover {
-        box-shadow:
-            0 10px 30px rgba(0, 119, 181, 0.45);
-    }
-
-
-    .btn-instagram {
-        background:
-            linear-gradient(
-                45deg,
-                #f09433,
-                #e6683c,
-                #dc2743,
-                #cc2366,
-                #bc1888
-            );
-
-        box-shadow:
-            0 6px 20px rgba(220, 39, 67, 0.25);
-    }
-
-    .btn-instagram:hover {
-        box-shadow:
-            0 10px 30px rgba(220, 39, 67, 0.45);
-    }
-
-
-    .btn-youtube {
-        background: #ff0000;
-
-        box-shadow:
-            0 6px 20px rgba(255, 0, 0, 0.25);
-    }
-
-    .btn-youtube:hover {
-        box-shadow:
-            0 10px 30px rgba(255, 0, 0, 0.45);
-    }
-
-
-    /* ==============================
-       PORTFOLIO SECTION
-    ============================== */
-
-    .container {
-        max-width: 1250px;
-
-        margin: 0 auto;
-
-        padding: 0 25px 70px;
-    }
-
-    .section-heading {
-        text-align: center;
-
-        margin-bottom: 42px;
-    }
-
-    .section-heading h2 {
-        font-size: 2.4rem;
-
-        margin-bottom: 8px;
-    }
-
-    .section-heading h2 span {
-        color: #00d2ff;
-    }
-
-    .section-heading p {
-        color: #777777;
-    }
-
-
-    /* ==============================
-       VIDEO GRID
-    ============================== */
-
-    .video-grid {
-        display: grid;
-
-        grid-template-columns:
-            repeat(auto-fit, minmax(320px, 1fr));
-
-        gap: 28px;
-    }
-
-
-    /* ==============================
-       VIDEO CARD
-    ============================== */
-
-    .video-card {
-        background: #151515;
-
-        border: 1px solid #292929;
-
-        border-radius: 16px;
-
-        overflow: hidden;
-
-        box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.45);
-
-        transition:
-            transform 0.3s ease,
-            border-color 0.3s ease,
-            box-shadow 0.3s ease;
-    }
-
-    .video-card:hover {
-        transform: translateY(-8px);
-
-        border-color:
-            rgba(0, 210, 255, 0.55);
-
-        box-shadow:
-            0 20px 40px rgba(0, 0, 0, 0.55),
-            0 0 25px rgba(0, 210, 255, 0.08);
-    }
-
-    video {
-        width: 100%;
-
-        height: auto;
-
-        display: block;
-
-        background: #000;
-
-        border-bottom: 1px solid #292929;
-    }
-
-    .video-info {
-        padding: 22px;
-    }
-
-    .category {
-        display: inline-block;
-
-        color: #00d2ff;
-
-        background:
-            rgba(0, 210, 255, 0.08);
-
-        border:
-            1px solid rgba(0, 210, 255, 0.18);
-
-        padding: 4px 11px;
-
-        border-radius: 20px;
-
-        font-size: 0.75rem;
-
-        margin-bottom: 10px;
-    }
-
-    .video-info h3 {
-        margin-bottom: 7px;
-
-        font-size: 1.25rem;
-
-        color: #ffffff;
-    }
-
-    .video-info p {
-        color: #8e8e8e;
-
-        font-size: 0.92rem;
-    }
-
-
-    /* ==============================
-       CONTACT SECTION
-    ============================== */
-
-    .contact-section {
-        max-width: 1050px;
-
-        margin: 10px auto 70px;
-
-        padding: 50px 30px;
-
-        text-align: center;
-
-        border-radius: 20px;
-
-        background:
-            linear-gradient(
-                135deg,
-                rgba(0, 210, 255, 0.07),
-                rgba(100, 60, 200, 0.07)
-            );
-
-        border:
-            1px solid rgba(0, 210, 255, 0.2);
-    }
-
-    .contact-section h2 {
-        font-size: 2.3rem;
-
-        margin-bottom: 10px;
-    }
-
-    .contact-section h2 span {
-        color: #00d2ff;
-    }
-
-    .contact-section > p {
-        color: #999999;
-
-        max-width: 650px;
-
-        margin: 0 auto 35px;
-    }
-
-    .contact-grid {
-        display: grid;
-
-        grid-template-columns:
-            repeat(2, minmax(230px, 1fr));
-
-        gap: 15px;
-
-        max-width: 600px;
-
-        margin: 0 auto;
-    }
-
-    .contact-card {
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        gap: 14px;
-
-        text-align: left;
-
-        padding: 18px;
-
-        background: #111111;
-
-        border: 1px solid #292929;
-
-        border-radius: 12px;
-
-        color: #ffffff;
-
-        transition: 0.3s ease;
-    }
-
-    .contact-card:hover {
-        transform: translateY(-4px);
-
-        border-color: #00d2ff;
-
-        background: #151515;
-    }
-
-    .contact-icon {
-        width: 45px;
-
-        height: 45px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        border-radius: 10px;
-
-        background:
-            rgba(0, 210, 255, 0.1);
-
-        font-size: 1.3rem;
-
-        flex-shrink: 0;
-    }
-
-    .contact-card small {
-        display: block;
-
-        color: #777777;
-
-        font-size: 0.75rem;
-
-        margin-bottom: 2px;
-    }
-
-    .contact-card strong {
-        font-size: 0.92rem;
-    }
-
-
-    /* ==============================
-       FINAL CTA
-    ============================== */
-
-    .cta {
-        max-width: 950px;
-
-        margin: 0 auto 70px;
-
-        text-align: center;
-
-        padding: 45px 25px;
-
-        border-radius: 20px;
-
-        background: #101010;
-
-        border: 1px solid #252525;
-    }
-
-    .cta h2 {
-        font-size: 1.9rem;
-
-        margin-bottom: 10px;
-    }
-
-    .cta h2 span {
-        color: #00d2ff;
-    }
-
-    .cta p {
-        color: #888888;
-
-        max-width: 600px;
-
-        margin: 0 auto 25px;
-    }
-
-    .contact-btn {
-        display: inline-block;
-
-        padding: 13px 28px;
-
-        border-radius: 10px;
-
-        background: #00d2ff;
-
-        color: #000000;
-
-        font-weight: 700;
-
-        transition: 0.3s ease;
-    }
-
-    .contact-btn:hover {
-        transform: translateY(-3px);
-
-        box-shadow:
-            0 10px 25px rgba(0, 210, 255, 0.3);
-    }
-
-
-    /* ==============================
-       FOOTER
-    ============================== */
-
-    footer {
-        text-align: center;
-
-        padding: 35px 20px;
-
-        color: #555555;
-
-        border-top: 1px solid #1d1d1d;
-
-        font-size: 0.9rem;
-    }
-
-    footer span {
-        color: #00d2ff;
-    }
-
-
-    /* ==============================\n       CINEMATIC GRAPHICS\n    ============================== */\n\n    header {\n        isolation: isolate;\n    }\n\n    .hero-grid {\n        position: absolute;\n        inset: 0;\n        z-index: 0;\n        opacity: 0.28;\n        background-image:\n            linear-gradient(rgba(0, 210, 255, 0.055) 1px, transparent 1px),\n            linear-gradient(90deg, rgba(0, 210, 255, 0.055) 1px, transparent 1px);\n        background-size: 55px 55px;\n        mask-image: linear-gradient(to bottom, black, transparent 90%);\n        animation: gridMove 18s linear infinite;\n    }\n\n    .glow-orb {\n        position: absolute;\n        width: 170px;\n        height: 170px;\n        border-radius: 50%;\n        filter: blur(8px);\n        opacity: 0.42;\n        z-index: 0;\n        pointer-events: none;\n    }\n\n    .orb-one {\n        top: 18%;\n        left: 8%;\n        background: radial-gradient(circle, rgba(0,210,255,.28), transparent 68%);\n        animation: floatOrb 7s ease-in-out infinite;\n    }\n\n    .orb-two {\n        right: 8%;\n        top: 28%;\n        background: radial-gradient(circle, rgba(145,75,255,.28), transparent 68%);\n        animation: floatOrb 9s ease-in-out infinite reverse;\n    }\n\n    .light-streak {\n        position: absolute;\n        width: 260px;\n        height: 2px;\n        background: linear-gradient(90deg, transparent, rgba(0,210,255,.8), transparent);\n        filter: blur(.5px);\n        opacity: .45;\n        z-index: 1;\n        transform: rotate(-25deg);\n        pointer-events: none;\n    }\n\n    .streak-one {\n        top: 28%;\n        left: -80px;\n        animation: streakMove 8s linear infinite;\n    }\n\n    .streak-two {\n        top: 58%;\n        right: -100px;\n        background: linear-gradient(90deg, transparent, rgba(150,90,255,.8), transparent);\n        animation: streakMoveReverse 10s linear infinite;\n    }\n\n    .floating-play {\n        position: absolute;\n        z-index: 1;\n        width: 64px;\n        height: 64px;\n        display: grid;\n        place-items: center;\n        border: 1px solid rgba(0,210,255,.25);\n        border-radius: 18px;\n        color: rgba(0,210,255,.65);\n        background: rgba(0,210,255,.035);\n        box-shadow: 0 0 35px rgba(0,210,255,.08), inset 0 0 25px rgba(0,210,255,.03);\n        backdrop-filter: blur(8px);\n        pointer-events: none;\n    }\n\n    .play-one {\n        left: 8%;\n        bottom: 18%;\n        animation: floatCard 6s ease-in-out infinite;\n    }\n\n    .play-two {\n        right: 9%;\n        top: 16%;\n        color: rgba(165,100,255,.65);\n        border-color: rgba(165,100,255,.25);\n        animation: floatCard 7s ease-in-out infinite reverse;\n    }\n\n    .film-strip {\n        position: absolute;\n        left: 50%;\n        bottom: 9px;\n        transform: translateX(-50%) rotate(-2deg);\n        width: min(620px, 82%);\n        height: 30px;\n        display: flex;\n        justify-content: space-around;\n        align-items: center;\n        padding: 5px 14px;\n        border: 1px solid rgba(255,255,255,.08);\n        border-radius: 8px;\n        background: rgba(255,255,255,.025);\n        opacity: .55;\n        z-index: 1;\n        pointer-events: none;\n    }\n\n    .film-strip span {\n        width: 35px;\n        height: 13px;\n        border: 1px solid rgba(0,210,255,.18);\n        border-radius: 3px;\n        background: rgba(0,210,255,.025);\n    }\n\n    .scroll-indicator {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        gap: 6px;\n        margin-top: 35px;\n        color: rgba(255,255,255,.35);\n        font-size: .6rem;\n        letter-spacing: 2px;\n    }\n\n    .scroll-indicator span {\n        width: 1px;\n        height: 30px;\n        background: linear-gradient(to bottom, #00d2ff, transparent);\n        animation: scrollPulse 1.7s ease-in-out infinite;\n    }\n\n    .about-section, .video-card, .contact-section, .cta {\n        position: relative;\n        overflow: hidden;\n    }\n\n    .about-section::before,\n    .video-card::before,\n    .contact-section::before,\n    .cta::before {\n        content: "";\n        position: absolute;\n        width: 180px;\n        height: 180px;\n        right: -90px;\n        top: -90px;\n        border-radius: 50%;\n        background: radial-gradient(circle, rgba(0,210,255,.12), transparent 70%);\n        pointer-events: none;\n    }\n\n    .video-card::after {\n        content: "";\n        position: absolute;\n        top: 0;\n        left: -120%;\n        width: 70%;\n        height: 100%;\n        transform: skewX(-20deg);\n        background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent);\n        pointer-events: none;\n        transition: left .7s ease;\n    }\n\n    .video-card:hover::after {\n        left: 140%;\n    }\n\n    .video-card:hover {\n        box-shadow:\n            0 20px 40px rgba(0,0,0,.55),\n            0 0 30px rgba(0,210,255,.10),\n            inset 0 1px 0 rgba(255,255,255,.05);\n    }\n\n    .skills-list li {\n        position: relative;\n        overflow: hidden;\n    }\n\n    .skills-list li::after {\n        content: "";\n        position: absolute;\n        left: 0;\n        bottom: 0;\n        width: 0;\n        height: 1px;\n        background: linear-gradient(90deg, #00d2ff, #8b5cf6);\n        transition: width .35s ease;\n    }\n\n    .skills-list li:hover::after {\n        width: 100%;\n    }\n\n    .btn, .contact-btn {\n        position: relative;\n        overflow: hidden;\n    }\n\n    .btn::after, .contact-btn::after {\n        content: "";\n        position: absolute;\n        top: 0;\n        left: -100%;\n        width: 55%;\n        height: 100%;\n        transform: skewX(-20deg);\n        background: rgba(255,255,255,.2);\n        transition: left .5s ease;\n    }\n\n    .btn:hover::after, .contact-btn:hover::after {\n        left: 130%;\n    }\n\n    @keyframes gridMove {\n        from { background-position: 0 0, 0 0; }\n        to { background-position: 55px 55px, 55px 55px; }\n    }\n\n    @keyframes floatOrb {\n        0%, 100% { transform: translate3d(0,0,0) scale(1); }\n        50% { transform: translate3d(25px,-20px,0) scale(1.12); }\n    }\n\n    @keyframes floatCard {\n        0%, 100% { transform: translateY(0) rotate(0deg); }\n        50% { transform: translateY(-18px) rotate(4deg); }\n    }\n\n    @keyframes streakMove {\n        0% { transform: translateX(0) rotate(-25deg); opacity: 0; }\n        20% { opacity: .45; }\n        80% { opacity: .45; }\n        100% { transform: translateX(900px) rotate(-25deg); opacity: 0; }\n    }\n\n    @keyframes streakMoveReverse {\n        0% { transform: translateX(0) rotate(-25deg); opacity: 0; }\n        20% { opacity: .4; }\n        80% { opacity: .4; }\n        100% { transform: translateX(-900px) rotate(-25deg); opacity: 0; }\n    }\n\n    @keyframes scrollPulse {\n        0%, 100% { opacity: .35; transform: scaleY(.7); }\n        50% { opacity: 1; transform: scaleY(1); }\n    }\n\n    @media (prefers-reduced-motion: reduce) {\n        html { scroll-behavior: auto; }\n        *, *::before, *::after {\n            animation-duration: .01ms !important;\n            animation-iteration-count: 1 !important;\n            transition-duration: .01ms !important;\n        }\n    }\n\n    /* ==============================
-       MOBILE
-    ============================== */
-
-    @media (max-width: 600px) {
+        /* =========================================================
+           HERO SECTION
+        ========================================================= */
 
         header {
-            padding: 75px 18px 65px;
+            position: relative;
+
+            min-height: 620px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            padding: 100px 20px 90px;
+
+            overflow: hidden;
+
+            background:
+                radial-gradient(
+                    circle at 20% 30%,
+                    rgba(0, 210, 255, 0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 80% 70%,
+                    rgba(120, 70, 255, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #080808,
+                    #101010,
+                    #080808
+                );
+
+            border-bottom:
+                1px solid rgba(0, 210, 255, 0.15);
         }
+
+
+        header::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0, 210, 255, 0.13),
+                    transparent 68%
+                );
+
+            top: -260px;
+            left: -150px;
+
+            animation:
+                heroGlow 9s ease-in-out infinite;
+        }
+
+
+        header::after {
+            content: "";
+
+            position: absolute;
+
+            width: 550px;
+            height: 550px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(130, 70, 255, 0.11),
+                    transparent 68%
+                );
+
+            bottom: -300px;
+            right: -180px;
+
+            animation:
+                heroGlow 11s ease-in-out infinite reverse;
+        }
+
+
+        @keyframes heroGlow {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+
+        }
+
+
+        /* =========================================================
+           DECORATIVE LIGHT STREAK
+        ========================================================= */
+
+        .light-streak {
+            position: absolute;
+
+            width: 420px;
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(0, 210, 255, 0.6),
+                    transparent
+                );
+
+            opacity: 0.35;
+
+            transform: rotate(-25deg);
+
+            animation:
+                streakMove 7s linear infinite;
+        }
+
+
+        .streak-one {
+            top: 25%;
+            left: -300px;
+        }
+
+
+        .streak-two {
+            bottom: 25%;
+            right: -300px;
+
+            animation-delay: 3s;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(150, 100, 255, 0.55),
+                    transparent
+                );
+        }
+
+
+        @keyframes streakMove {
+
+            0% {
+                transform:
+                    translateX(0)
+                    rotate(-25deg);
+            }
+
+            100% {
+                transform:
+                    translateX(1200px)
+                    rotate(-25deg);
+            }
+
+        }
+
+
+
+        /* =========================================================
+           HERO CONTENT
+        ========================================================= */
+
+        .hero-content {
+            position: relative;
+
+            z-index: 3;
+
+            max-width: 900px;
+
+            animation:
+                heroAppear 1s ease forwards;
+        }
+
+
+        @keyframes heroAppear {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+        }
+
 
         .small-title {
-            font-size: 0.72rem;
+            display: inline-block;
+
+            color: #00d2ff;
+
+            font-size: 0.9rem;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 20px;
+
+            font-weight: 600;
+        }
+
+
+        h1 {
+            font-size:
+                clamp(
+                    3rem,
+                    8vw,
+                    6rem
+                );
+
+            font-weight: 850;
 
             letter-spacing: 2px;
+
+            line-height: 1.05;
+
+            margin-bottom: 22px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #00d2ff,
+                    #9c72ff
+                );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            background-size: 200% auto;
+
+            animation:
+                gradientText 5s linear infinite;
         }
 
-        .about-section {
-            margin: -20px 15px 45px;
 
-            padding: 28px 22px;
+        @keyframes gradientText {
+
+            0% {
+                background-position: 0% center;
+            }
+
+            100% {
+                background-position: 200% center;
+            }
+
         }
 
-        .social-buttons {
-            flex-direction: column;
-        }
 
-        .btn {
-            width: 100%;
-        }
+        .hero-subtitle {
+            color: #aaaaaa;
 
-        .video-grid {
-            grid-template-columns: 1fr;
-        }
+            font-size: 1.15rem;
 
-        .container {
-            padding:
-                0 15px 45px;
-        }
+            max-width: 720px;
 
-        .section-heading h2 {
-            font-size: 1.9rem;
-        }
-
-        .contact-section {
             margin:
-                10px 15px 50px;
+                0 auto 32px;
+        }
+
+
+        .hero-tag {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
 
             padding:
-                40px 20px;
+                10px 20px;
+
+            border:
+                1px solid rgba(
+                    0,
+                    210,
+                    255,
+                    0.3
+                );
+
+            border-radius: 50px;
+
+            color: #00d2ff;
+
+            background:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.06
+                );
+
+            font-size: 0.9rem;
+
+            box-shadow:
+                0 0 25px
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.05
+                );
+
+            backdrop-filter: blur(10px);
         }
 
-        .contact-section h2 {
-            font-size: 1.9rem;
-        }
 
-        .contact-grid {
-            grid-template-columns: 1fr;
-        }
 
-        .cta {
-            margin:
-                10px 15px 50px;
-        }
+        /* =========================================================
+           HERO DECORATIVE PLAY BUTTON
+        ========================================================= */
 
         .floating-play {
-            width: 45px;
-            height: 45px;
-            border-radius: 13px;
-            font-size: .8rem;
+            position: absolute;
+
+            width: 75px;
+            height: 75px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            border:
+                1px solid
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.25
+                );
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.025
+                );
+
+            color: #00d2ff;
+
+            font-size: 1.4rem;
+
+            box-shadow:
+                0 0 40px
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.08
+                );
+
+            backdrop-filter: blur(8px);
+
+            z-index: 2;
+
+            animation:
+                playFloat 5s ease-in-out infinite;
         }
 
-        .play-one { left: 3%; bottom: 12%; }
-        .play-two { right: 3%; top: 12%; }
 
-        .film-strip {
-            width: 90%;
-            height: 24px;
+        .play-one {
+            left: 9%;
+            top: 25%;
         }
 
-        .film-strip span {
-            width: 22px;
-            height: 9px;
+
+        .play-two {
+            right: 9%;
+            bottom: 23%;
+
+            width: 55px;
+            height: 55px;
+
+            font-size: 1rem;
+
+            color: #9c72ff;
+
+            border-color:
+                rgba(
+                    156,
+                    114,
+                    255,
+                    0.25
+                );
+
+            animation-delay: 1.5s;
         }
+
+
+        @keyframes playFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-18px)
+                    rotate(8deg);
+            }
+
+        }
+
+
+
+        /* =========================================================
+           SCROLL INDICATOR
+        ========================================================= */
 
         .scroll-indicator {
-            margin-top: 28px;
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 50%;
+
+            transform:
+                translateX(-50%);
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #666666;
+
+            font-size: 0.7rem;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
         }
-    }
-
-</style>
 
 
-<!-- ==========================================
-     HERO
-=========================================== -->
+        .scroll-line {
+            width: 1px;
 
-<header>
+            height: 32px;
 
-    <!-- Decorative cinematic graphics -->
-    <div class="hero-grid" aria-hidden="true"></div>
-    <div class="glow-orb orb-one" aria-hidden="true"></div>
-    <div class="glow-orb orb-two" aria-hidden="true"></div>
-    <div class="light-streak streak-one" aria-hidden="true"></div>
-    <div class="light-streak streak-two" aria-hidden="true"></div>
-    <div class="floating-play play-one" aria-hidden="true">▶</div>
-    <div class="floating-play play-two" aria-hidden="true">▶</div>
-    <div class="film-strip" aria-hidden="true">
-        <span></span><span></span><span></span><span></span><span></span><span></span>
-    </div>
+            background:
+                linear-gradient(
+                    to bottom,
+                    #00d2ff,
+                    transparent
+                );
 
-    <div class="hero-content">
+            animation:
+                scrollMove 1.5s ease-in-out infinite;
+        }
 
-        <div class="small-title">
-            Video Editor • Creative • Visual Storyteller
+
+        @keyframes scrollMove {
+
+            0%,
+            100% {
+                opacity: 0.3;
+
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+
+                transform:
+                    translateY(7px);
+            }
+
+        }
+
+
+
+        /* =========================================================
+           ABOUT SECTION
+        ========================================================= */
+
+        .about-section {
+            max-width: 950px;
+
+            margin:
+                -35px auto 75px;
+
+            position: relative;
+
+            z-index: 5;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(28, 28, 28, 0.96),
+                    rgba(17, 17, 17, 0.96)
+                );
+
+            backdrop-filter: blur(18px);
+
+            padding: 45px;
+
+            border-radius: 22px;
+
+            border:
+                1px solid #292929;
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.55);
+
+            overflow: hidden;
+        }
+
+
+        .about-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.07
+                );
+
+            filter: blur(70px);
+
+            top: -80px;
+            right: -50px;
+        }
+
+
+        .about-section::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 100%;
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #00d2ff,
+                    #9c72ff,
+                    transparent
+                );
+
+            opacity: 0.7;
+        }
+
+
+        .about-section h2 {
+            font-size: 2rem;
+
+            margin-bottom: 12px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .about-section h2 span {
+            color: #00d2ff;
+        }
+
+
+        .about-section > p {
+            color: #aaaaaa;
+
+            margin-bottom: 20px;
+
+            font-size: 1.02rem;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .what-i-do {
+            margin-top: 30px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .what-i-do h3 {
+            margin-bottom: 16px;
+
+            font-size: 1.2rem;
+        }
+
+
+        .skills-list {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(220px, 1fr)
+                );
+
+            gap: 12px;
+
+            list-style: none;
+        }
+
+
+        .skills-list li {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #111111,
+                    #171717
+                );
+
+            border:
+                1px solid #292929;
+
+            padding:
+                14px 15px;
+
+            border-radius: 11px;
+
+            color: #cccccc;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                background 0.3s ease;
+
+            overflow: hidden;
+        }
+
+
+        .skills-list li::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 3px;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #00d2ff,
+                    #8b62ff
+                );
+
+            transform:
+                scaleY(0);
+
+            transform-origin:
+                bottom;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        .skills-list li:hover {
+            border-color:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.5
+                );
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 10px 30px
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.06
+                );
+
+            background:
+                #171717;
+
+            color: #ffffff;
+        }
+
+
+        .skills-list li:hover::before {
+            transform:
+                scaleY(1);
+        }
+
+
+
+        /* =========================================================
+           SOCIAL BUTTONS
+        ========================================================= */
+
+        .social-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            margin-top: 35px;
+
+            flex-wrap: wrap;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .btn {
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            padding:
+                13px 25px;
+
+            border-radius: 11px;
+
+            color: #ffffff;
+
+            font-weight: 600;
+
+            font-size: 0.95rem;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .btn::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -120%;
+
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.22
+                    ),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                left 0.6s ease;
+        }
+
+
+        .btn:hover::after {
+            left: 150%;
+        }
+
+
+        .btn:hover {
+            transform:
+                translateY(-4px);
+        }
+
+
+        .btn-linkedin {
+            background: #0077b5;
+
+            box-shadow:
+                0 6px 20px
+                rgba(
+                    0,
+                    119,
+                    181,
+                    0.25
+                );
+        }
+
+
+        .btn-linkedin:hover {
+            box-shadow:
+                0 12px 32px
+                rgba(
+                    0,
+                    119,
+                    181,
+                    0.45
+                );
+        }
+
+
+        .btn-instagram {
+            background:
+                linear-gradient(
+                    45deg,
+                    #f09433,
+                    #e6683c,
+                    #dc2743,
+                    #cc2366,
+                    #bc1888
+                );
+
+            box-shadow:
+                0 6px 20px
+                rgba(
+                    220,
+                    39,
+                    67,
+                    0.25
+                );
+        }
+
+
+        .btn-instagram:hover {
+            box-shadow:
+                0 12px 32px
+                rgba(
+                    220,
+                    39,
+                    67,
+                    0.45
+                );
+        }
+
+
+        .btn-youtube {
+            background: #ff0000;
+
+            box-shadow:
+                0 6px 20px
+                rgba(
+                    255,
+                    0,
+                    0,
+                    0.22
+                );
+        }
+
+
+        .btn-youtube:hover {
+            box-shadow:
+                0 12px 32px
+                rgba(
+                    255,
+                    0,
+                    0,
+                    0.42
+                );
+        }
+
+
+
+        /* =========================================================
+           PORTFOLIO SECTION
+        ========================================================= */
+
+        .container {
+            max-width: 1250px;
+
+            margin: 0 auto;
+
+            padding:
+                0 25px 80px;
+        }
+
+
+        .section-heading {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .section-heading h2 {
+            font-size: 2.5rem;
+
+            margin-bottom: 8px;
+        }
+
+
+        .section-heading h2 span {
+            color: #00d2ff;
+        }
+
+
+        .section-heading p {
+            color: #777777;
+        }
+
+
+
+        /* =========================================================
+           VIDEO GRID
+        ========================================================= */
+
+        .video-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(320px, 1fr)
+                );
+
+            gap: 28px;
+        }
+
+
+
+        /* =========================================================
+           VIDEO CARD
+        ========================================================= */
+
+        .video-card {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #181818,
+                    #101010
+                );
+
+            border:
+                1px solid #292929;
+
+            border-radius: 18px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 12px 35px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+
+        .video-card::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 30%,
+                    rgba(
+                        255,
+                        255,
+                        255,
+                        0.06
+                    ),
+                    transparent 70%
+                );
+
+            transform:
+                translateX(-120%);
+
+            transition:
+                transform 0.7s ease;
+
+            pointer-events: none;
+
+            z-index: 4;
+        }
+
+
+        .video-card:hover::before {
+            transform:
+                translateX(120%);
+        }
+
+
+        .video-card:hover {
+            transform:
+                translateY(-9px);
+
+            border-color:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.55
+                );
+
+            box-shadow:
+                0 25px 55px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.58
+                ),
+                0 0 30px
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.08
+                );
+        }
+
+
+        .video-wrapper {
+            position: relative;
+
+            background: #000;
+
+            overflow: hidden;
+        }
+
+
+        .video-wrapper::after {
+            content: "▶";
+
+            position: absolute;
+
+            width: 52px;
+            height: 52px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.3
+                );
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+            color: #ffffff;
+
+            font-size: 0.9rem;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.3s ease,
+                transform 0.3s ease;
+
+            pointer-events: none;
+
+            backdrop-filter: blur(5px);
+        }
+
+
+        .video-card:hover
+        .video-wrapper::after {
+            opacity: 1;
+
+            transform:
+                translate(
+                    -50%,
+                    -50%
+                )
+                scale(1.08);
+        }
+
+
+        video {
+            width: 100%;
+
+            height: auto;
+
+            display: block;
+
+            background: #000;
+
+            transition:
+                transform 0.5s ease;
+        }
+
+
+        .video-card:hover video {
+            transform:
+                scale(1.025);
+        }
+
+
+        .video-info {
+            padding: 22px;
+
+            position: relative;
+
+            z-index: 5;
+        }
+
+
+        .category {
+            display: inline-block;
+
+            color: #00d2ff;
+
+            background:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.18
+                );
+
+            padding:
+                5px 11px;
+
+            border-radius: 20px;
+
+            font-size: 0.75rem;
+
+            margin-bottom: 11px;
+        }
+
+
+        .video-info h3 {
+            margin-bottom: 7px;
+
+            font-size: 1.25rem;
+
+            color: #ffffff;
+        }
+
+
+        .video-info p {
+            color: #8e8e8e;
+
+            font-size: 0.92rem;
+        }
+
+
+
+        /* =========================================================
+           SECTION DIVIDER
+        ========================================================= */
+
+        .section-divider {
+            width: 100%;
+
+            max-width: 900px;
+
+            height: 1px;
+
+            margin:
+                5px auto 70px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(
+                        0,
+                        210,
+                        255,
+                        0.3
+                    ),
+                    rgba(
+                        150,
+                        100,
+                        255,
+                        0.3
+                    ),
+                    transparent
+                );
+        }
+
+
+
+        /* =========================================================
+           CONTACT SECTION
+        ========================================================= */
+
+        .contact-section {
+            max-width: 1050px;
+
+            margin:
+                10px auto 70px;
+
+            padding:
+                55px 30px;
+
+            text-align: center;
+
+            border-radius: 22px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(
+                        0,
+                        210,
+                        255,
+                        0.065
+                    ),
+                    rgba(
+                        100,
+                        60,
+                        200,
+                        0.065
+                    )
+                );
+
+            border:
+                1px solid
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.2
+                );
+        }
+
+
+        .contact-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.08
+                );
+
+            filter: blur(90px);
+
+            top: -170px;
+            left: -100px;
+        }
+
+
+        .contact-section::after {
+            content: "";
+
+            position: absolute;
+
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    130,
+                    70,
+                    255,
+                    0.08
+                );
+
+            filter: blur(90px);
+
+            bottom: -170px;
+            right: -100px;
+        }
+
+
+        .contact-section h2 {
+            font-size: 2.4rem;
+
+            margin-bottom: 10px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .contact-section h2 span {
+            color: #00d2ff;
+        }
+
+
+        .contact-section > p {
+            color: #999999;
+
+            max-width: 650px;
+
+            margin:
+                0 auto 35px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .contact-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    2,
+                    minmax(230px, 1fr)
+                );
+
+            gap: 15px;
+
+            max-width: 600px;
+
+            margin: 0 auto;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .contact-card {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 14px;
+
+            text-align: left;
+
+            padding: 18px;
+
+            background:
+                rgba(
+                    15,
+                    15,
+                    15,
+                    0.85
+                );
+
+            border:
+                1px solid #292929;
+
+            border-radius: 13px;
+
+            color: #ffffff;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+
+        .contact-card:hover {
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.55
+                );
+
+            box-shadow:
+                0 15px 35px
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.08
+                );
+        }
+
+
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.1
+                );
+
+            font-size: 1.3rem;
+
+            flex-shrink: 0;
+        }
+
+
+        .contact-card small {
+            display: block;
+
+            color: #777777;
+
+            font-size: 0.75rem;
+
+            margin-bottom: 2px;
+        }
+
+
+        .contact-card strong {
+            font-size: 0.92rem;
+        }
+
+
+
+        /* =========================================================
+           FINAL CTA
+        ========================================================= */
+
+        .cta {
+            max-width: 950px;
+
+            margin:
+                0 auto 75px;
+
+            text-align: center;
+
+            padding:
+                55px 25px;
+
+            border-radius: 22px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #111111,
+                    #090909
+                );
+
+            border:
+                1px solid #252525;
+
+            box-shadow:
+                0 20px 60px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.4
+                );
+        }
+
+
+        .cta::before {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.08
+                );
+
+            filter: blur(80px);
+
+            top: -140px;
+            left: 10%;
+        }
+
+
+        .cta::after {
+            content: "";
+
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(
+                    130,
+                    70,
+                    255,
+                    0.08
+                );
+
+            filter: blur(80px);
+
+            bottom: -140px;
+            right: 10%;
+        }
+
+
+        .cta h2 {
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .cta h2 span {
+            color: #00d2ff;
+        }
+
+
+        .cta p {
+            color: #888888;
+
+            max-width: 600px;
+
+            margin:
+                0 auto 28px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .contact-btn {
+            position: relative;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding:
+                14px 30px;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00d2ff,
+                    #55e5ff
+                );
+
+            color: #000000;
+
+            font-weight: 750;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+            z-index: 3;
+
+            overflow: hidden;
+        }
+
+
+        .contact-btn::after {
+            content: "";
+
+            position: absolute;
+
+            width: 80px;
+            height: 100%;
+
+            left: -100px;
+
+            top: 0;
+
+            transform:
+                skewX(-20deg);
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.4
+                );
+
+            transition:
+                left 0.6s ease;
+        }
+
+
+        .contact-btn:hover::after {
+            left: 150%;
+        }
+
+
+        .contact-btn:hover {
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 12px 35px
+                rgba(
+                    0,
+                    210,
+                    255,
+                    0.35
+                );
+        }
+
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            text-align: center;
+
+            padding:
+                35px 20px;
+
+            color: #555555;
+
+            border-top:
+                1px solid #1d1d1d;
+
+            font-size: 0.9rem;
+
+            background:
+                rgba(
+                    5,
+                    5,
+                    5,
+                    0.7
+                );
+        }
+
+
+        footer span {
+            color: #00d2ff;
+        }
+
+
+
+        /* =========================================================
+           MOBILE RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 800px) {
+
+            .floating-play {
+                display: none;
+            }
+
+
+            header {
+                min-height: 560px;
+
+                padding:
+                    80px 18px 70px;
+            }
+
+
+            .about-section {
+                margin:
+                    -20px 15px 50px;
+            }
+
+
+            .contact-section {
+                margin:
+                    10px 15px 55px;
+            }
+
+
+            .cta {
+                margin:
+                    0 15px 55px;
+            }
+
+        }
+
+
+
+        @media (max-width: 600px) {
+
+            .small-title {
+                font-size: 0.7rem;
+
+                letter-spacing: 2px;
+            }
+
+
+            h1 {
+                font-size:
+                    clamp(
+                        2.6rem,
+                        13vw,
+                        4rem
+                    );
+            }
+
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+
+            .hero-tag {
+                font-size: 0.78rem;
+
+                padding:
+                    9px 15px;
+            }
+
+
+            .about-section {
+                padding:
+                    30px 22px;
+            }
+
+
+            .about-section h2 {
+                font-size: 1.65rem;
+            }
+
+
+            .social-buttons {
+                flex-direction: column;
+            }
+
+
+            .btn {
+                width: 100%;
+            }
+
+
+            .container {
+                padding:
+                    0 15px 55px;
+            }
+
+
+            .section-heading h2 {
+                font-size: 2rem;
+            }
+
+
+            .video-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .contact-section {
+                padding:
+                    40px 20px;
+            }
+
+
+            .contact-section h2 {
+                font-size: 1.9rem;
+            }
+
+
+            .contact-grid {
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .cta {
+                padding:
+                    42px 20px;
+            }
+
+
+            .cta h2 {
+                font-size: 1.7rem;
+            }
+
+
+            .scroll-indicator {
+                display: none;
+            }
+
+        }
+
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                scroll-behavior: auto !important;
+
+                transition-duration: 0.01ms !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+    <!-- =========================================================
+         DECORATIVE BACKGROUND ELEMENTS
+    ========================================================= -->
+
+    <div class="orb orb-one"></div>
+
+    <div class="orb orb-two"></div>
+
+    <div class="orb orb-three"></div>
+
+
+
+    <!-- =========================================================
+         HERO SECTION
+    ========================================================= -->
+
+    <header>
+
+        <div class="light-streak streak-one"></div>
+
+        <div class="light-streak streak-two"></div>
+
+
+        <!-- Decorative play graphics -->
+
+        <div
+            class="floating-play play-one"
+            aria-hidden="true">
+            ▶
         </div>
 
-        <h1>
-            Lohitha's Editz...
-        </h1>
 
-        <p class="hero-subtitle">
-            Creating engaging, cinematic and visually powerful
-            videos that turn ideas into compelling stories.
-        </p>
-
-        <div class="hero-tag">
-            🎬 Available for Freelance Projects
+        <div
+            class="floating-play play-two"
+            aria-hidden="true">
+            ▶
         </div>
 
-        <div class="scroll-indicator" aria-hidden="true">
-            <span></span>
-            <small>SCROLL TO EXPLORE</small>
+
+
+        <div class="hero-content">
+
+            <div class="small-title">
+                Video Editor • Creative • Visual Storyteller
+            </div>
+
+
+            <h1>
+                Lohitha's Editz...
+            </h1>
+
+
+            <p class="hero-subtitle">
+                Creating engaging, cinematic and visually powerful
+                videos that turn ideas into compelling stories.
+            </p>
+
+
+            <div class="hero-tag">
+                🎬 Available for Freelance Projects
+            </div>
+
         </div>
 
-    </div>
-
-</header>
 
 
+        <!-- Scroll indicator -->
 
-<!-- ==========================================
-     ABOUT
-=========================================== -->
+        <div class="scroll-indicator">
 
-<section class="about-section">
+            <span>
+                Explore
+            </span>
 
-    <h2>
-        Creative Editing.
-        <span>Powerful Visuals.</span>
-    </h2>
+            <div class="scroll-line"></div>
 
-    <p>
-        I'm a passionate video editor focused on creating
-        engaging, professional and visually appealing content
-        for social media, YouTube, personal projects and
-        creative brands.
-    </p>
+        </div>
 
-
-    <div class="what-i-do">
-
-        <h3>
-            ✨ What I Can Edit
-        </h3>
-
-        <ul class="skills-list">
-
-            <li>
-                🎬 Instagram Reels & Shorts
-            </li>
-
-            <li>
-                ▶️ YouTube Videos
-            </li>
-
-            <li>
-                🎞️ Cinematic Edits
-            </li>
-
-            <li>
-                📱 Social Media Content
-            </li>
-
-            <li>
-                🎮 Gaming & Entertainment Edits
-            </li>
-
-            <li>
-                ⚡ Beat-Synced Edits
-            </li>
-
-            <li>
-                ✨ Motion Effects & Transitions
-            </li>
-
-            <li>
-                📝 Text Animations & Visual Effects
-            </li>
-
-        </ul>
-
-    </div>
-
-
-    <p style="margin-top:25px;">
-
-        🎯 My focus is on clean editing, smooth transitions,
-        creative effects, beat synchronization and strong
-        visual storytelling.
-
-    </p>
-
-    <p>
-
-        📩 Open for freelance projects, collaborations and
-        creative editing work.
-
-    </p>
-
-
-    <!-- SOCIAL LINKS -->
-
-    <div class="social-buttons">
-
-        <a
-            href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339"
-            target="_blank"
-            class="btn btn-linkedin"
-        >
-            💼 LinkedIn
-        </a>
-
-
-        <a
-            href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
-            target="_blank"
-            class="btn btn-instagram"
-        >
-            📸 Instagram
-        </a>
-
-
-        <a
-            href="https://youtube.com/@lohiverse229?si=Ni3h_JPSjBiILKMHE"
-            target="_blank"
-            class="btn btn-youtube"
-        >
-            ▶️ YouTube
-        </a>
-
-    </div>
-
-</section>
+    </header>
 
 
 
-<!-- ==========================================
-     FEATURED WORK
-=========================================== -->
+    <!-- =========================================================
+         ABOUT SECTION
+    ========================================================= -->
 
-<main class="container">
-
-    <div class="section-heading">
+    <section class="about-section">
 
         <h2>
-            Featured <span>Work</span>
+            Creative Editing.
+            <span>Powerful Visuals.</span>
         </h2>
 
+
         <p>
-            A selection of my recent video editing projects.
+            I'm a passionate video editor focused on creating
+            engaging, professional and visually appealing content
+            for social media, YouTube, personal projects and
+            creative brands.
         </p>
 
-    </div>
 
 
-    <div class="video-grid">
+        <div class="what-i-do">
+
+            <h3>
+                ✨ What I Can Edit
+            </h3>
 
 
-        <!-- VIDEO 1 -->
+            <ul class="skills-list">
 
-        <div class="video-card">
-
-            <video
-                controls
-                preload="metadata"
-            >
-
-                <source
-                    src="Anime_world.mp4"
-                    type="video/mp4"
-                >
-
-                Your browser does not support the video tag.
-
-            </video>
+                <li>
+                    🎬 Instagram Reels & Shorts
+                </li>
 
 
-            <div class="video-info">
-
-                <span class="category">
-                    Cinematic Edit
-                </span>
-
-                <h3>
-                    Anime World
-                </h3>
-
-                <p>
-                    A cinematic introduction combining
-                    powerful visuals, music, transitions
-                    and creative storytelling.
-                </p>
-
-            </div>
-
-        </div>
+                <li>
+                    ▶️ YouTube Videos
+                </li>
 
 
-
-        <!-- VIDEO 2 -->
-
-        <div class="video-card">
-
-            <video
-                controls
-                preload="metadata"
-            >
-
-                <source
-                    src="Anime_Char_intro_part1.mp4"
-                    type="video/mp4"
-                >
-
-                Your browser does not support the video tag.
-
-            </video>
+                <li>
+                    🎞️ Cinematic Edits
+                </li>
 
 
-            <div class="video-info">
+                <li>
+                    📱 Social Media Content
+                </li>
 
-                <span class="category">
-                    Character Edit
-                </span>
 
-                <h3>
-                    Character Introduction — Part 1
-                </h3>
+                <li>
+                    🎮 Gaming & Entertainment Edits
+                </li>
 
-                <p>
-                    A dynamic character introduction featuring
-                    beat synchronization, cinematic transitions
-                    and visual effects.
-                </p>
 
-            </div>
+                <li>
+                    ⚡ Beat-Synced Edits
+                </li>
+
+
+                <li>
+                    ✨ Motion Effects & Transitions
+                </li>
+
+
+                <li>
+                    📝 Text Animations & Visual Effects
+                </li>
+
+            </ul>
 
         </div>
 
 
 
-        <!-- VIDEO 3 -->
+        <p style="margin-top:25px;">
 
-        <div class="video-card">
+            🎯 My focus is on clean editing, smooth transitions,
+            creative effects, beat synchronization and strong
+            visual storytelling.
 
-            <video
-                controls
-                preload="metadata"
+        </p>
+
+
+        <p>
+
+            📩 Open for freelance projects, collaborations and
+            creative editing work.
+
+        </p>
+
+
+
+        <!-- SOCIAL LINKS -->
+
+        <div class="social-buttons">
+
+
+            <a
+                href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-linkedin"
             >
-
-                <source
-                    src="Anime_Char_intro_part2.mp4"
-                    type="video/mp4"
-                >
-
-                Your browser does not support the video tag.
-
-            </video>
+                💼 LinkedIn
+            </a>
 
 
-            <div class="video-info">
+            <a
+                href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-instagram"
+            >
+                📸 Instagram
+            </a>
 
-                <span class="category">
-                    Creative Edit
-                </span>
 
-                <h3>
-                    Character Introduction — Part 2
-                </h3>
+            <a
+                href="https://youtube.com/@lohiverse229?si=Ni3h_JPSjBiILKMHE"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-youtube"
+            >
+                ▶️ YouTube
+            </a>
 
-                <p>
-                    A continuation featuring creative pacing,
-                    music synchronization, transitions and
-                    cinematic visual effects.
-                </p>
+        </div>
 
-            </div>
+    </section>
+
+
+
+    <!-- =========================================================
+         FEATURED WORK
+    ========================================================= -->
+
+    <main class="container">
+
+
+        <div class="section-heading">
+
+            <h2>
+                Featured <span>Work</span>
+            </h2>
+
+
+            <p>
+                A selection of my recent video editing projects.
+            </p>
 
         </div>
 
 
-    </div>
 
-</main>
-
+        <div class="video-grid">
 
 
-<!-- ==========================================
-     LET'S CONNECT
-=========================================== -->
+            <!-- =================================================
+                 VIDEO 1
+            ================================================= -->
 
-<section class="contact-section">
+            <div class="video-card">
 
-    <h2>
-        Let's <span>Connect</span>
-    </h2>
+                <div class="video-wrapper">
 
-    <p>
-        Have a video project, collaboration or editing requirement?
-        Feel free to reach out through my social platforms.
-    </p>
+                    <video
+                        controls
+                        preload="metadata"
+                    >
+
+                        <source
+                            src="Anime_world.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support
+                        the video tag.
+
+                    </video>
+
+                </div>
 
 
-    <div class="contact-grid">
+                <div class="video-info">
+
+                    <span class="category">
+                        Cinematic Edit
+                    </span>
 
 
-        <!-- INSTAGRAM -->
+                    <h3>
+                        Anime World
+                    </h3>
+
+
+                    <p>
+                        A cinematic introduction combining
+                        powerful visuals, music, transitions
+                        and creative storytelling.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 VIDEO 2
+            ================================================= -->
+
+            <div class="video-card">
+
+                <div class="video-wrapper">
+
+                    <video
+                        controls
+                        preload="metadata"
+                    >
+
+                        <source
+                            src="Anime_Char_intro_part1.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support
+                        the video tag.
+
+                    </video>
+
+                </div>
+
+
+                <div class="video-info">
+
+                    <span class="category">
+                        Character Edit
+                    </span>
+
+
+                    <h3>
+                        Character Introduction — Part 1
+                    </h3>
+
+
+                    <p>
+                        A dynamic character introduction featuring
+                        beat synchronization, cinematic transitions
+                        and visual effects.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 VIDEO 3
+            ================================================= -->
+
+            <div class="video-card">
+
+                <div class="video-wrapper">
+
+                    <video
+                        controls
+                        preload="metadata"
+                    >
+
+                        <source
+                            src="Anime_Char_intro_part2.mp4"
+                            type="video/mp4"
+                        >
+
+                        Your browser does not support
+                        the video tag.
+
+                    </video>
+
+                </div>
+
+
+                <div class="video-info">
+
+                    <span class="category">
+                        Creative Edit
+                    </span>
+
+
+                    <h3>
+                        Character Introduction — Part 2
+                    </h3>
+
+
+                    <p>
+                        A continuation featuring creative pacing,
+                        music synchronization, transitions and
+                        cinematic visual effects.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+    <div class="section-divider"></div>
+
+
+
+    <section class="contact-section">
+
+        <h2>
+            Let's <span>Connect</span>
+        </h2>
+
+
+        <p>
+            Have a video project, collaboration or editing
+            requirement? Feel free to reach out through my
+            social platforms.
+        </p>
+
+
+
+        <div class="contact-grid">
+
+
+            <!-- INSTAGRAM -->
+
+            <a
+                href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-card"
+            >
+
+                <div class="contact-icon">
+                    📸
+                </div>
+
+
+                <div>
+
+                    <small>
+                        Instagram
+                    </small>
+
+
+                    <strong>
+                        @the_magic_of_frames
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+
+            <!-- LINKEDIN -->
+
+            <a
+                href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="contact-card"
+            >
+
+                <div class="contact-icon">
+                    💼
+                </div>
+
+
+                <div>
+
+                    <small>
+                        LinkedIn
+                    </small>
+
+
+                    <strong>
+                        Connect with me
+                    </strong>
+
+                </div>
+
+            </a>
+
+
+        </div>
+
+    </section>
+
+
+
+    <section class="cta">
+
+        <h2>
+            Have a project in <span>mind?</span>
+        </h2>
+
+
+        <p>
+            Let's turn your footage or idea into an engaging
+            video that stands out on social media and YouTube.
+        </p>
+
 
         <a
             href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
             target="_blank"
-            class="contact-card"
+            rel="noopener noreferrer"
+            class="contact-btn"
         >
-
-            <div class="contact-icon">
-                📸
-            </div>
-
-            <div>
-
-                <small>
-                    Instagram
-                </small>
-
-                <strong>
-                    @the_magic_of_frames
-                </strong>
-
-            </div>
-
+            📩 Start a Project
         </a>
 
-
-
-        <!-- LINKEDIN -->
-
-        <a
-            href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339"
-            target="_blank"
-            class="contact-card"
-        >
-
-            <div class="contact-icon">
-                💼
-            </div>
-
-            <div>
-
-                <small>
-                    LinkedIn
-                </small>
-
-                <strong>
-                    Connect with me
-                </strong>
-
-            </div>
-
-        </a>
-
-
-    </div>
-
-</section>
+    </section>
 
 
 
-<!-- ==========================================
-     FINAL CTA
-=========================================== -->
+    <footer>
 
-<section class="cta">
+        <p>
 
-    <h2>
-        Have a project in <span>mind?</span>
-    </h2>
+            © 2026
 
-    <p>
-        Let's turn your footage or idea into an engaging
-        video that stands out on social media and YouTube.
-    </p>
+            <span>
+                Lohitha's Edits
+            </span>
 
-    <a
-        href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
-        target="_blank"
-        class="contact-btn"
-    >
-        📩 Start a Project
-    </a>
+            · Video Editor & Creative Visual Storyteller
 
-</section>
+        </p>
 
 
+        <p style="margin-top:8px;">
 
-<!-- ==========================================
-     FOOTER
-=========================================== -->
+            Crafted with ❤️ 
 
-<footer>
+        </p>
 
-    <p>
-        © 2026
-        <span>Lohitha's Edits</span>
-        · Video Editor & Creative Visual Storyteller
-    </p>
+    </footer>
 
-    <p style="margin-top:8px;">
-        Crafted with ❤️ 
-    </p>
 
-</footer>
+</body>
+
+</html>
