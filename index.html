@@ -1,257 +1,769 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Edits - Video Portfolio</title>
-    <style>
-        /* General Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f0f0f;
-            color: #ffffff;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
 
-        /* Header Section */
+```
+<title>Lohitha Sai | Video Editor Portfolio</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background:
+            radial-gradient(circle at 10% 20%, rgba(0, 210, 255, 0.08), transparent 30%),
+            radial-gradient(circle at 90% 80%, rgba(130, 70, 255, 0.08), transparent 30%),
+            #080808;
+        color: #ffffff;
+        line-height: 1.6;
+    }
+
+
+    header {
+        position: relative;
+        text-align: center;
+        padding: 90px 20px 75px;
+        overflow: hidden;
+        background:
+            linear-gradient(135deg, #0b0b0b, #151515, #0b0b0b);
+        border-bottom: 1px solid rgba(0, 210, 255, 0.25);
+    }
+
+    header::before {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: rgba(0, 210, 255, 0.12);
+        filter: blur(100px);
+        border-radius: 50%;
+        top: -150px;
+        left: -100px;
+    }
+
+    header::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: rgba(140, 70, 255, 0.10);
+        filter: blur(100px);
+        border-radius: 50%;
+        bottom: -180px;
+        right: -100px;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+
+    .small-title {
+        color: #00d2ff;
+        font-size: 0.95rem;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+
+    h1 {
+        font-size: clamp(2.5rem, 7vw, 5rem);
+        font-weight: 800;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+        background: linear-gradient(90deg, #ffffff, #00d2ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+        color: #bdbdbd;
+        font-size: 1.15rem;
+        max-width: 700px;
+        margin: 0 auto 30px;
+    }
+
+    .hero-tag {
+        display: inline-block;
+        padding: 8px 18px;
+        border: 1px solid rgba(0, 210, 255, 0.35);
+        border-radius: 30px;
+        color: #00d2ff;
+        background: rgba(0, 210, 255, 0.06);
+        font-size: 0.9rem;
+    }
+
+
+    .about-section {
+        max-width: 950px;
+        margin: -25px auto 60px;
+        position: relative;
+        z-index: 5;
+
+        background: rgba(25, 25, 25, 0.95);
+        backdrop-filter: blur(15px);
+
+        padding: 40px;
+        border-radius: 20px;
+
+        border: 1px solid #292929;
+
+        box-shadow:
+            0 20px 60px rgba(0, 0, 0, 0.5),
+            0 0 30px rgba(0, 210, 255, 0.03);
+    }
+
+    .about-section h2 {
+        color: #ffffff;
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+
+    .about-section h2 span {
+        color: #00d2ff;
+    }
+
+    .about-section > p {
+        color: #aaaaaa;
+        margin-bottom: 25px;
+        font-size: 1.02rem;
+    }
+
+    .what-i-do {
+        margin-top: 25px;
+    }
+
+    .what-i-do h3 {
+        color: #ffffff;
+        margin-bottom: 15px;
+    }
+
+    .skills-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+        list-style: none;
+    }
+
+    .skills-list li {
+        background: #111111;
+        border: 1px solid #292929;
+        padding: 13px 15px;
+        border-radius: 10px;
+        color: #cccccc;
+        transition: 0.3s ease;
+    }
+
+    .skills-list li:hover {
+        border-color: #00d2ff;
+        transform: translateY(-3px);
+        color: #ffffff;
+    }
+
+
+    .social-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 35px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        padding: 13px 24px;
+
+        border-radius: 10px;
+
+        color: #ffffff;
+        text-decoration: none;
+
+        font-weight: 600;
+        font-size: 0.95rem;
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-4px);
+        filter: brightness(1.1);
+    }
+
+    /* LinkedIn */
+
+    .btn-linkedin {
+        background: #0077b5;
+        box-shadow: 0 6px 20px rgba(0, 119, 181, 0.25);
+    }
+
+    .btn-linkedin:hover {
+        box-shadow: 0 10px 30px rgba(0, 119, 181, 0.45);
+    }
+
+    /* Instagram */
+
+    .btn-instagram {
+        background: linear-gradient(
+            45deg,
+            #f09433,
+            #e6683c,
+            #dc2743,
+            #cc2366,
+            #bc1888
+        );
+
+        box-shadow: 0 6px 20px rgba(220, 39, 67, 0.25);
+    }
+
+    .btn-instagram:hover {
+        box-shadow: 0 10px 30px rgba(220, 39, 67, 0.45);
+    }
+
+    /* YouTube */
+
+    .btn-youtube {
+        background: #ff0000;
+        box-shadow: 0 6px 20px rgba(255, 0, 0, 0.25);
+    }
+
+    .btn-youtube:hover {
+        box-shadow: 0 10px 30px rgba(255, 0, 0, 0.45);
+    }
+
+
+    .container {
+        max-width: 1250px;
+        margin: 0 auto;
+        padding: 0 25px 60px;
+    }
+
+    .section-heading {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .section-heading h2 {
+        font-size: 2.3rem;
+        margin-bottom: 8px;
+    }
+
+    .section-heading h2 span {
+        color: #00d2ff;
+    }
+
+    .section-heading p {
+        color: #777777;
+    }
+
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 28px;
+    }
+
+
+    .video-card {
+        background: #151515;
+        border: 1px solid #292929;
+
+        border-radius: 16px;
+        overflow: hidden;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+
+        transition:
+            transform 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+    .video-card:hover {
+        transform: translateY(-8px);
+
+        border-color: rgba(0, 210, 255, 0.55);
+
+        box-shadow:
+            0 20px 40px rgba(0, 0, 0, 0.55),
+            0 0 25px rgba(0, 210, 255, 0.08);
+    }
+
+    video {
+        width: 100%;
+        height: auto;
+        display: block;
+
+        background: #000;
+
+        border-bottom: 1px solid #292929;
+    }
+
+    .video-info {
+        padding: 22px;
+    }
+
+    .category {
+        display: inline-block;
+
+        color: #00d2ff;
+
+        background: rgba(0, 210, 255, 0.08);
+
+        border: 1px solid rgba(0, 210, 255, 0.18);
+
+        padding: 4px 10px;
+
+        border-radius: 20px;
+
+        font-size: 0.75rem;
+
+        margin-bottom: 10px;
+    }
+
+    .video-info h3 {
+        margin-bottom: 7px;
+
+        font-size: 1.25rem;
+
+        color: #ffffff;
+    }
+
+    .video-info p {
+        color: #8e8e8e;
+        font-size: 0.92rem;
+    }
+
+
+    .cta {
+        max-width: 1000px;
+
+        margin: 20px auto 70px;
+
+        text-align: center;
+
+        padding: 55px 25px;
+
+        border-radius: 20px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(0, 210, 255, 0.08),
+                rgba(90, 50, 180, 0.08)
+            );
+
+        border: 1px solid rgba(0, 210, 255, 0.2);
+    }
+
+    .cta h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .cta h2 span {
+        color: #00d2ff;
+    }
+
+    .cta p {
+        color: #999999;
+        max-width: 650px;
+        margin: 0 auto 25px;
+    }
+
+    .contact-btn {
+        display: inline-block;
+
+        padding: 13px 28px;
+
+        border-radius: 10px;
+
+        background: #00d2ff;
+
+        color: #000;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        transition: 0.3s ease;
+    }
+
+    .contact-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 25px rgba(0, 210, 255, 0.3);
+    }
+
+
+    footer {
+        text-align: center;
+
+        padding: 35px 20px;
+
+        color: #555555;
+
+        border-top: 1px solid #1d1d1d;
+
+        font-size: 0.9rem;
+    }
+
+    footer span {
+        color: #00d2ff;
+    }
+
+
+    @media (max-width: 600px) {
+
         header {
-            text-align: center;
-            padding: 50px 20px 30px;
-            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
-            border-bottom: 2px solid #00d2ff;
-        }
-        h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #00d2ff;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            padding: 70px 18px 65px;
         }
 
-        /* About Section (Description) */
         .about-section {
-            max-width: 800px;
-            margin: -2px auto 30px;
-            background: #1a1a1a;
-            padding: 30px 20px;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid #333;
-            border-top: none;
-        }
-        .about-section h3 {
-            color: #00d2ff;
-            margin-top: 0;
-        }
-        .about-section h4 {
-            color: #f1f1f1;
-            margin-bottom: 10px;
-        }
-        .about-section ul {
-            list-style-type: none;
-            padding-left: 0;
-            color: #cccccc;
-        }
-        .about-section ul li {
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-        .about-section ul li::before {
-            content: "•";
-            color: #00d2ff;
-            font-size: 1.2em;
-            position: absolute;
-            left: 0;
-            top: -2px;
-        }
-        .about-section p {
-            color: #bbbbbb;
-            font-size: 1.05em;
+            margin: -20px 15px 45px;
+            padding: 28px 22px;
         }
 
-        /* Social Buttons */
         .social-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
-            flex-wrap: wrap;
+            flex-direction: column;
         }
+
         .btn {
-            display: inline-block;
-            padding: 12px 25px;
-            border-radius: 8px;
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1em;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-        .btn-linkedin {
-            background-color: #0077b5;
-            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
-        }
-        .btn-insta {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
-        }
-
-        /* Grid Layout for Videos */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        /* Video Card Design */
-        .video-card {
-            background: #1e1e1e;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .video-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 25px rgba(0, 210, 255, 0.2);
-        }
-        
-        video {
             width: 100%;
-            height: auto;
-            display: block;
-            background: #000;
-            border-bottom: 2px solid #333;
-        }
-        
-        .video-info {
-            padding: 20px;
-        }
-        .video-info h3 {
-            margin: 0 0 8px 0;
-            font-size: 1.3em;
-            color: #f1f1f1;
-        }
-        .video-info p {
-            margin: 0;
-            color: #999999;
-            font-size: 0.95em;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: #555;
-            margin-top: 40px;
-            font-size: 0.9em;
-            border-top: 1px solid #222;
+        .video-grid {
+            grid-template-columns: 1fr;
         }
-    </style>
+
+        .container {
+            padding: 0 15px 40px;
+        }
+
+        .section-heading h2 {
+            font-size: 1.9rem;
+        }
+
+        .cta {
+            margin: 10px 15px 50px;
+        }
+    }
+
+</style>
+```
+
 </head>
+
 <body>
 
-    <header>
-        <h1>Kalyan's Edits</h1>
-    </header>
+```
 
-    <!-- Description & Social Links Section -->
-    <div class="about-section">
-        <h3>🎬 Video Editor | Creative & Professional Edits</h3>
-        <p>I create engaging and visually appealing videos designed to capture attention and tell a story.</p>
-        
-        <h4>✨ What I Can Edit:</h4>
-        <ul>
-            <li>Instagram Reels & YouTube Shorts</li>
-            <li>YouTube videos</li>
-            <li>Cinematic</li>
-            <li>Social media content</li>
-            <li>Anime & gaming edits</li>
-            <li>Beat-synced edits & transitions</li>
-            <li>Motion effects, text animations & visual effects</li>
+
+<header>
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            Video Editor • Creative • Visual Storyteller
+        </div>
+
+        <h1>Lohitha's Edits</h1>
+
+        <p class="hero-subtitle">
+            Creating engaging, cinematic and visually powerful edits
+            that turn ideas into compelling stories.
+        </p>
+
+        <div class="hero-tag">
+            🎬 Available for Freelance Projects
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<section class="about-section">
+
+    <h2>
+        Creative Editing. <span>Powerful Visuals.</span>
+    </h2>
+
+    <p>
+        I'm a passionate video editor focused on creating engaging,
+        professional and visually appealing content for social media,
+        YouTube and personal projects.
+    </p>
+
+
+    <div class="what-i-do">
+
+        <h3>✨ What I Can Edit</h3>
+
+        <ul class="skills-list">
+
+            <li>🎬 Instagram Reels & Shorts</li>
+
+            <li>▶️ YouTube Videos</li>
+
+            <li>🎞️ Cinematic Edits</li>
+
+            <li>📱 Social Media Content</li>
+
+            <li>🎮 Gaming & Entertainment Edits</li>
+
+            <li>⚡ Beat-Synced Edits</li>
+
+            <li>✨ Motion Effects & Transitions</li>
+
+            <li>📝 Text Animations & Visual Effects</li>
+
         </ul>
-        
-        <p>🎯 My focus is on clean editing, smooth transitions, strong visuals, and engaging storytelling.</p>
-        <p>📩 Available for freelance projects & collaborations.</p>
 
-        <!-- Clickable Social Buttons -->
-        <div class="social-buttons">
-            <!-- Replace YOUR_LINKEDIN_LINK_HERE with your actual LinkedIn link -->
-            <a href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339" target="_blank" class="btn btn-linkedin">🔗 LinkedIn</a>
-            
-            <!-- Replace YOUR_INSTAGRAM_LINK_HERE with your actual Instagram link -->
-            <a href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6" target="_blank" class="btn btn-insta">📸 Instagram</a>
-
-            <a href="https://youtube.com/@lohiverse229?si=Ni3h_JPSjBiILKMHE" target="_blank" class="btn btn-Youtube">📸 Youtube</a>
-        </div>
     </div>
 
-    <div class="container">
-        <div class="video-grid">
-            
-            <!-- Video 1 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="Anime_Char_intro_part1.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <div class="video-info">
-                    <h3>SRH Match Status</h3>
-                    <p>High-energy edit for the Sunrisers Hyderabad match with sync beats.</p>
-                </div>
-            </div>
 
-            <!-- Video 2 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="Anime_Char_intro_part2.mp4" type="video/mp4">
-                </video>
-                <div class="video-info">
-                    <h3>Commercial Lighting Promo</h3>
-                    <p>Cinematic showcase of new decorative brass lights and setups.</p>
-                </div>
-            </div>
+    <p style="margin-top:25px;">
+        🎯 My focus is on clean editing, smooth transitions,
+        creative effects, beat synchronization and strong visual
+        storytelling.
+    </p>
 
-            <!-- Video 3 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="Anime_world.mp4" type="video/mp4">
-                </video>
-                <div class="video-info">
-                    <h3>3 Years Together</h3>
-                    <p>A special personalized video edit created for Lohitha.</p>
-                </div>
-            </div>
+    <p>
+        📩 Open for freelance projects, collaborations and creative
+        editing work.
+    </p>
 
-            <!-- Video 4 -->
-            <div class="video-card">
-                <video controls preload="metadata">
-                    <source src="videos/smart-tools-demo.mp4" type="video/mp4">
-                </video>
-                <div class="video-info">
-                    <h3>Smart Tools Hub</h3>
-                    <p>Screen recording and visual presentation of the utility website project.</p>
-                </div>
+
+
+    <div class="social-buttons">
+
+        <a
+            href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339"
+            target="_blank"
+            class="btn btn-linkedin"
+        >
+            💼 LinkedIn
+        </a>
+
+
+        <a
+            href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
+            target="_blank"
+            class="btn btn-instagram"
+        >
+            📸 Instagram
+        </a>
+
+
+        <a
+            href="https://youtube.com/@lohiverse229?si=Ni3h_JPSjBiILKMHE"
+            target="_blank"
+            class="btn btn-youtube"
+        >
+            ▶️ YouTube
+        </a>
+
+    </div>
+
+</section>
+
+
+
+
+<main class="container">
+
+    <div class="section-heading">
+
+        <h2>
+            Featured <span>Work</span>
+        </h2>
+
+        <p>
+            A selection of my recent video editing projects.
+        </p>
+
+    </div>
+
+
+    <div class="video-grid">
+
+
+        <!-- VIDEO 1 -->
+
+        <div class="video-card">
+
+            <video controls preload="metadata">
+
+                <source
+                    src="Anime_Char_intro_part1.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support the video tag.
+
+            </video>
+
+
+            <div class="video-info">
+
+                <span class="category">
+                    Character Edit
+                </span>
+
+                <h3>
+                    Character Introduction
+                </h3>
+
+                <p>
+                    A cinematic character introduction featuring
+                    dynamic visuals, transitions and beat-synced editing.
+                </p>
+
             </div>
 
         </div>
+
+
+
+        <!-- VIDEO 2 -->
+
+        <div class="video-card">
+
+            <video controls preload="metadata">
+
+                <source
+                    src="Anime_Char_intro_part2.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support the video tag.
+
+            </video>
+
+
+            <div class="video-info">
+
+                <span class="category">
+                    Creative Edit
+                </span>
+
+                <h3>
+                    Character Showcase
+                </h3>
+
+                <p>
+                    A visually engaging edit combining music,
+                    transitions, effects and cinematic presentation.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- VIDEO 3 -->
+
+        <div class="video-card">
+
+            <video controls preload="metadata">
+
+                <source
+                    src="Anime_world.mp4"
+                    type="video/mp4"
+                >
+
+                Your browser does not support the video tag.
+
+            </video>
+
+
+            <div class="video-info">
+
+                <span class="category">
+                    Cinematic
+                </span>
+
+                <h3>
+                    Anime World
+                </h3>
+
+                <p>
+                    A creative cinematic edit designed to introduce
+                    characters through powerful visuals and music.
+                </p>
+
+            </div>
+
+        </div>
+
+
     </div>
 
-    <footer>
-        <p>&copy; 2026 Lohitha's Portfolio. Crafted with ❤️</p>
-    </footer>
+</main>
+
+
+
+<section class="cta">
+
+    <h2>
+        Have a project in <span>mind?</span>
+    </h2>
+
+    <p>
+        Let's turn your footage or idea into an engaging video
+        that stands out on social media and YouTube.
+    </p>
+
+    <a
+        href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
+        target="_blank"
+        class="contact-btn"
+    >
+        📩 Let's Work Together
+    </a>
+
+</section>
+
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <p>
+        © 2026 <span>Lohitha's Edits</span> ·
+        Video Editor & Creative Visual Storyteller
+    </p>
+
+    <p style="margin-top:8px;">
+        Crafted with ❤️ & creativity
+    </p>
+
+</footer>
+```
 
 </body>
 </html>
