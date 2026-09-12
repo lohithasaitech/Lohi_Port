@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Edits - Video Portfolio</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f0f;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header Section */
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-bottom: 2px solid #00d2ff;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #00d2ff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            color: #aaaaaa;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        /* Grid Layout for Videos (Mobile Friendly) */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Video Card Design */
+        .video-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 210, 255, 0.2);
+        }
+        
+        /* Video Player Styling */
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #000;
+            border-bottom: 2px solid #333;
+        }
+        
+        /* Video Information */
+        .video-info {
+            padding: 20px;
+        }
+        .video-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.3em;
+            color: #f1f1f1;
+        }
+        .video-info p {
+            margin: 0;
+            color: #999999;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            margin-top: 40px;
+            font-size: 0.9em;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>My Edits</h1>
+        <p class="subtitle">A collection of my best video projects</p>
+    </header>
+
+    <div class="container">
+        <div class="video-grid">
+            
+            <!-- Video 1 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/srh-status-edit.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-info">
+                    <h3>SRH Match Status</h3>
+                    <p>High-energy edit for the Sunrisers Hyderabad match with sync beats.</p>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/lighting-decor-promo.mp4" type="video/mp4">
+                </video>
+                <div class="video-info">
+                    <h3>Commercial Lighting Promo</h3>
+                    <p>Cinematic showcase of new decorative brass lights and setups.</p>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/anniversary-special.mp4" type="video/mp4">
+                </video>
+                <div class="video-info">
+                    <h3>3 Years Together</h3>
+                    <p>A special personalized video edit created for Lohitha.</p>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/smart-tools-demo.mp4" type="video/mp4">
+                </video>
+                <div class="video-info">
+                    <h3>Smart Tools Hub</h3>
+                    <p>Screen recording and visual presentation of the utility website project.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Lohitha's Portfolio. Crafted with ❤️</p>
+    </footer>
+
+</body>
+</html>
