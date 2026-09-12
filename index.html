@@ -12,12 +12,13 @@
             color: #ffffff;
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         /* Header Section */
         header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 50px 20px 30px;
             background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
             border-bottom: 2px solid #00d2ff;
         }
@@ -28,13 +29,81 @@
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-        p.subtitle {
-            color: #aaaaaa;
-            font-size: 1.1em;
-            margin-top: 10px;
+
+        /* About Section (Description) */
+        .about-section {
+            max-width: 800px;
+            margin: -2px auto 30px;
+            background: #1a1a1a;
+            padding: 30px 20px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+            border-top: none;
+        }
+        .about-section h3 {
+            color: #00d2ff;
+            margin-top: 0;
+        }
+        .about-section h4 {
+            color: #f1f1f1;
+            margin-bottom: 10px;
+        }
+        .about-section ul {
+            list-style-type: none;
+            padding-left: 0;
+            color: #cccccc;
+        }
+        .about-section ul li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .about-section ul li::before {
+            content: "•";
+            color: #00d2ff;
+            font-size: 1.2em;
+            position: absolute;
+            left: 0;
+            top: -2px;
+        }
+        .about-section p {
+            color: #bbbbbb;
+            font-size: 1.05em;
         }
 
-        /* Grid Layout for Videos (Mobile Friendly) */
+        /* Social Buttons */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+        .btn-linkedin {
+            background-color: #0077b5;
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.4);
+        }
+        .btn-insta {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 4px 15px rgba(220, 39, 67, 0.4);
+        }
+
+        /* Grid Layout for Videos */
         .container {
             max-width: 1200px;
             margin: 40px auto;
@@ -59,7 +128,6 @@
             box-shadow: 0 12px 25px rgba(0, 210, 255, 0.2);
         }
         
-        /* Video Player Styling */
         video {
             width: 100%;
             height: auto;
@@ -68,7 +136,6 @@
             border-bottom: 2px solid #333;
         }
         
-        /* Video Information */
         .video-info {
             padding: 20px;
         }
@@ -81,7 +148,6 @@
             margin: 0;
             color: #999999;
             font-size: 0.95em;
-            line-height: 1.5;
         }
 
         /* Footer */
@@ -98,9 +164,39 @@
 <body>
 
     <header>
-        <h1>My Edits</h1>
-        <p class="subtitle">A collection of my best video projects</p>
+        <h1>Kalyan's Edits</h1>
     </header>
+
+    <!-- Description & Social Links Section -->
+    <div class="about-section">
+        <h3>🎬 Video Editor | Creative & Professional Edits</h3>
+        <p>I create engaging and visually appealing videos designed to capture attention and tell a story.</p>
+        
+        <h4>✨ What I Can Edit:</h4>
+        <ul>
+            <li>Instagram Reels & YouTube Shorts</li>
+            <li>YouTube videos</li>
+            <li>Cinematic</li>
+            <li>Social media content</li>
+            <li>Anime & gaming edits</li>
+            <li>Beat-synced edits & transitions</li>
+            <li>Motion effects, text animations & visual effects</li>
+        </ul>
+        
+        <p>🎯 My focus is on clean editing, smooth transitions, strong visuals, and engaging storytelling.</p>
+        <p>📩 Available for freelance projects & collaborations.</p>
+
+        <!-- Clickable Social Buttons -->
+        <div class="social-buttons">
+            <!-- Replace YOUR_LINKEDIN_LINK_HERE with your actual LinkedIn link -->
+            <a href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339" target="_blank" class="btn btn-linkedin">🔗 LinkedIn</a>
+            
+            <!-- Replace YOUR_INSTAGRAM_LINK_HERE with your actual Instagram link -->
+            <a href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6" target="_blank" class="btn btn-insta">📸 Instagram</a>
+
+            <a href="https://youtube.com/@lohiverse229?si=Ni3h_JPSjBiILKMHE" target="_blank" class="btn btn-Youtube">📸 Youtube</a>
+        </div>
+    </div>
 
     <div class="container">
         <div class="video-grid">
@@ -108,7 +204,7 @@
             <!-- Video 1 -->
             <div class="video-card">
                 <video controls preload="metadata">
-                    <source src="Anime_world.mp4" type="video/mp4">
+                    <source src="Anime_Char_intro_part1.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <div class="video-info">
@@ -120,7 +216,7 @@
             <!-- Video 2 -->
             <div class="video-card">
                 <video controls preload="metadata">
-                    <source src="Anime_Char_intro_part1.mp4" type="video/mp4">
+                    <source src="Anime_Char_intro_part2.mp4" type="video/mp4">
                 </video>
                 <div class="video-info">
                     <h3>Commercial Lighting Promo</h3>
@@ -131,7 +227,7 @@
             <!-- Video 3 -->
             <div class="video-card">
                 <video controls preload="metadata">
-                    <source src="Anime_Char_intro_part2.mp4" type="video/mp4">
+                    <source src="Anime_world.mp4" type="video/mp4">
                 </video>
                 <div class="video-info">
                     <h3>3 Years Together</h3>
@@ -139,6 +235,19 @@
                 </div>
             </div>
 
+            <!-- Video 4 -->
+            <div class="video-card">
+                <video controls preload="metadata">
+                    <source src="videos/smart-tools-demo.mp4" type="video/mp4">
+                </video>
+                <div class="video-info">
+                    <h3>Smart Tools Hub</h3>
+                    <p>Screen recording and visual presentation of the utility website project.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2026 Lohitha's Portfolio. Crafted with ❤️</p>
