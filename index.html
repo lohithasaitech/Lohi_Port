@@ -1,19 +1,6 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-```
 <title>Lohitha's Edits | Video Editor Portfolio</title>
 
 <style>
-
-    /* ==============================
-       RESET
-    ============================== */
 
     * {
         margin: 0;
@@ -301,8 +288,6 @@
     }
 
 
-    /* LinkedIn */
-
     .btn-linkedin {
         background: #0077b5;
 
@@ -315,8 +300,6 @@
             0 10px 30px rgba(0, 119, 181, 0.45);
     }
 
-
-    /* Instagram */
 
     .btn-instagram {
         background:
@@ -339,8 +322,6 @@
     }
 
 
-    /* YouTube */
-
     .btn-youtube {
         background: #ff0000;
 
@@ -355,7 +336,7 @@
 
 
     /* ==============================
-       PORTFOLIO
+       PORTFOLIO SECTION
     ============================== */
 
     .container {
@@ -533,11 +514,11 @@
         display: grid;
 
         grid-template-columns:
-            repeat(auto-fit, minmax(230px, 1fr));
+            repeat(2, minmax(230px, 1fr));
 
         gap: 15px;
 
-        max-width: 850px;
+        max-width: 600px;
 
         margin: 0 auto;
     }
@@ -546,6 +527,8 @@
         display: flex;
 
         align-items: center;
+
+        justify-content: center;
 
         gap: 14px;
 
@@ -605,13 +588,11 @@
 
     .contact-card strong {
         font-size: 0.92rem;
-
-        word-break: break-word;
     }
 
 
     /* ==============================
-       CTA
+       FINAL CTA
     ============================== */
 
     .cta {
@@ -693,7 +674,7 @@
     }
 
 
-    /* ==============================
+    /* ==============================\n       CINEMATIC GRAPHICS\n    ============================== */\n\n    header {\n        isolation: isolate;\n    }\n\n    .hero-grid {\n        position: absolute;\n        inset: 0;\n        z-index: 0;\n        opacity: 0.28;\n        background-image:\n            linear-gradient(rgba(0, 210, 255, 0.055) 1px, transparent 1px),\n            linear-gradient(90deg, rgba(0, 210, 255, 0.055) 1px, transparent 1px);\n        background-size: 55px 55px;\n        mask-image: linear-gradient(to bottom, black, transparent 90%);\n        animation: gridMove 18s linear infinite;\n    }\n\n    .glow-orb {\n        position: absolute;\n        width: 170px;\n        height: 170px;\n        border-radius: 50%;\n        filter: blur(8px);\n        opacity: 0.42;\n        z-index: 0;\n        pointer-events: none;\n    }\n\n    .orb-one {\n        top: 18%;\n        left: 8%;\n        background: radial-gradient(circle, rgba(0,210,255,.28), transparent 68%);\n        animation: floatOrb 7s ease-in-out infinite;\n    }\n\n    .orb-two {\n        right: 8%;\n        top: 28%;\n        background: radial-gradient(circle, rgba(145,75,255,.28), transparent 68%);\n        animation: floatOrb 9s ease-in-out infinite reverse;\n    }\n\n    .light-streak {\n        position: absolute;\n        width: 260px;\n        height: 2px;\n        background: linear-gradient(90deg, transparent, rgba(0,210,255,.8), transparent);\n        filter: blur(.5px);\n        opacity: .45;\n        z-index: 1;\n        transform: rotate(-25deg);\n        pointer-events: none;\n    }\n\n    .streak-one {\n        top: 28%;\n        left: -80px;\n        animation: streakMove 8s linear infinite;\n    }\n\n    .streak-two {\n        top: 58%;\n        right: -100px;\n        background: linear-gradient(90deg, transparent, rgba(150,90,255,.8), transparent);\n        animation: streakMoveReverse 10s linear infinite;\n    }\n\n    .floating-play {\n        position: absolute;\n        z-index: 1;\n        width: 64px;\n        height: 64px;\n        display: grid;\n        place-items: center;\n        border: 1px solid rgba(0,210,255,.25);\n        border-radius: 18px;\n        color: rgba(0,210,255,.65);\n        background: rgba(0,210,255,.035);\n        box-shadow: 0 0 35px rgba(0,210,255,.08), inset 0 0 25px rgba(0,210,255,.03);\n        backdrop-filter: blur(8px);\n        pointer-events: none;\n    }\n\n    .play-one {\n        left: 8%;\n        bottom: 18%;\n        animation: floatCard 6s ease-in-out infinite;\n    }\n\n    .play-two {\n        right: 9%;\n        top: 16%;\n        color: rgba(165,100,255,.65);\n        border-color: rgba(165,100,255,.25);\n        animation: floatCard 7s ease-in-out infinite reverse;\n    }\n\n    .film-strip {\n        position: absolute;\n        left: 50%;\n        bottom: 9px;\n        transform: translateX(-50%) rotate(-2deg);\n        width: min(620px, 82%);\n        height: 30px;\n        display: flex;\n        justify-content: space-around;\n        align-items: center;\n        padding: 5px 14px;\n        border: 1px solid rgba(255,255,255,.08);\n        border-radius: 8px;\n        background: rgba(255,255,255,.025);\n        opacity: .55;\n        z-index: 1;\n        pointer-events: none;\n    }\n\n    .film-strip span {\n        width: 35px;\n        height: 13px;\n        border: 1px solid rgba(0,210,255,.18);\n        border-radius: 3px;\n        background: rgba(0,210,255,.025);\n    }\n\n    .scroll-indicator {\n        display: flex;\n        flex-direction: column;\n        align-items: center;\n        gap: 6px;\n        margin-top: 35px;\n        color: rgba(255,255,255,.35);\n        font-size: .6rem;\n        letter-spacing: 2px;\n    }\n\n    .scroll-indicator span {\n        width: 1px;\n        height: 30px;\n        background: linear-gradient(to bottom, #00d2ff, transparent);\n        animation: scrollPulse 1.7s ease-in-out infinite;\n    }\n\n    .about-section, .video-card, .contact-section, .cta {\n        position: relative;\n        overflow: hidden;\n    }\n\n    .about-section::before,\n    .video-card::before,\n    .contact-section::before,\n    .cta::before {\n        content: "";\n        position: absolute;\n        width: 180px;\n        height: 180px;\n        right: -90px;\n        top: -90px;\n        border-radius: 50%;\n        background: radial-gradient(circle, rgba(0,210,255,.12), transparent 70%);\n        pointer-events: none;\n    }\n\n    .video-card::after {\n        content: "";\n        position: absolute;\n        top: 0;\n        left: -120%;\n        width: 70%;\n        height: 100%;\n        transform: skewX(-20deg);\n        background: linear-gradient(90deg, transparent, rgba(255,255,255,.07), transparent);\n        pointer-events: none;\n        transition: left .7s ease;\n    }\n\n    .video-card:hover::after {\n        left: 140%;\n    }\n\n    .video-card:hover {\n        box-shadow:\n            0 20px 40px rgba(0,0,0,.55),\n            0 0 30px rgba(0,210,255,.10),\n            inset 0 1px 0 rgba(255,255,255,.05);\n    }\n\n    .skills-list li {\n        position: relative;\n        overflow: hidden;\n    }\n\n    .skills-list li::after {\n        content: "";\n        position: absolute;\n        left: 0;\n        bottom: 0;\n        width: 0;\n        height: 1px;\n        background: linear-gradient(90deg, #00d2ff, #8b5cf6);\n        transition: width .35s ease;\n    }\n\n    .skills-list li:hover::after {\n        width: 100%;\n    }\n\n    .btn, .contact-btn {\n        position: relative;\n        overflow: hidden;\n    }\n\n    .btn::after, .contact-btn::after {\n        content: "";\n        position: absolute;\n        top: 0;\n        left: -100%;\n        width: 55%;\n        height: 100%;\n        transform: skewX(-20deg);\n        background: rgba(255,255,255,.2);\n        transition: left .5s ease;\n    }\n\n    .btn:hover::after, .contact-btn:hover::after {\n        left: 130%;\n    }\n\n    @keyframes gridMove {\n        from { background-position: 0 0, 0 0; }\n        to { background-position: 55px 55px, 55px 55px; }\n    }\n\n    @keyframes floatOrb {\n        0%, 100% { transform: translate3d(0,0,0) scale(1); }\n        50% { transform: translate3d(25px,-20px,0) scale(1.12); }\n    }\n\n    @keyframes floatCard {\n        0%, 100% { transform: translateY(0) rotate(0deg); }\n        50% { transform: translateY(-18px) rotate(4deg); }\n    }\n\n    @keyframes streakMove {\n        0% { transform: translateX(0) rotate(-25deg); opacity: 0; }\n        20% { opacity: .45; }\n        80% { opacity: .45; }\n        100% { transform: translateX(900px) rotate(-25deg); opacity: 0; }\n    }\n\n    @keyframes streakMoveReverse {\n        0% { transform: translateX(0) rotate(-25deg); opacity: 0; }\n        20% { opacity: .4; }\n        80% { opacity: .4; }\n        100% { transform: translateX(-900px) rotate(-25deg); opacity: 0; }\n    }\n\n    @keyframes scrollPulse {\n        0%, 100% { opacity: .35; transform: scaleY(.7); }\n        50% { opacity: 1; transform: scaleY(1); }\n    }\n\n    @media (prefers-reduced-motion: reduce) {\n        html { scroll-behavior: auto; }\n        *, *::before, *::after {\n            animation-duration: .01ms !important;\n            animation-iteration-count: 1 !important;\n            transition-duration: .01ms !important;\n        }\n    }\n\n    /* ==============================
        MOBILE
     ============================== */
 
@@ -748,25 +729,60 @@
             font-size: 1.9rem;
         }
 
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+
         .cta {
             margin:
                 10px 15px 50px;
         }
+
+        .floating-play {
+            width: 45px;
+            height: 45px;
+            border-radius: 13px;
+            font-size: .8rem;
+        }
+
+        .play-one { left: 3%; bottom: 12%; }
+        .play-two { right: 3%; top: 12%; }
+
+        .film-strip {
+            width: 90%;
+            height: 24px;
+        }
+
+        .film-strip span {
+            width: 22px;
+            height: 9px;
+        }
+
+        .scroll-indicator {
+            margin-top: 28px;
+        }
     }
 
 </style>
-```
 
-</head>
 
-<body>
-
-```
 <!-- ==========================================
-     HERO SECTION
+     HERO
 =========================================== -->
 
 <header>
+
+    <!-- Decorative cinematic graphics -->
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="glow-orb orb-one" aria-hidden="true"></div>
+    <div class="glow-orb orb-two" aria-hidden="true"></div>
+    <div class="light-streak streak-one" aria-hidden="true"></div>
+    <div class="light-streak streak-two" aria-hidden="true"></div>
+    <div class="floating-play play-one" aria-hidden="true">▶</div>
+    <div class="floating-play play-two" aria-hidden="true">▶</div>
+    <div class="film-strip" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
 
     <div class="hero-content">
 
@@ -787,6 +803,11 @@
             🎬 Available for Freelance Projects
         </div>
 
+        <div class="scroll-indicator" aria-hidden="true">
+            <span></span>
+            <small>SCROLL TO EXPLORE</small>
+        </div>
+
     </div>
 
 </header>
@@ -794,7 +815,7 @@
 
 
 <!-- ==========================================
-     ABOUT SECTION
+     ABOUT
 =========================================== -->
 
 <section class="about-section">
@@ -873,7 +894,6 @@
     </p>
 
 
-
     <!-- SOCIAL LINKS -->
 
     <div class="social-buttons">
@@ -911,7 +931,7 @@
 
 
 <!-- ==========================================
-     PORTFOLIO SECTION
+     FEATURED WORK
 =========================================== -->
 
 <main class="container">
@@ -932,9 +952,7 @@
     <div class="video-grid">
 
 
-        <!-- ==================================
-             VIDEO 1 - ANIME WORLD
-        =================================== -->
+        <!-- VIDEO 1 -->
 
         <div class="video-card">
 
@@ -975,9 +993,7 @@
 
 
 
-        <!-- ==================================
-             VIDEO 2 - PART 1
-        =================================== -->
+        <!-- VIDEO 2 -->
 
         <div class="video-card">
 
@@ -1018,9 +1034,7 @@
 
 
 
-        <!-- ==================================
-             VIDEO 3 - PART 2
-        =================================== -->
+        <!-- VIDEO 3 -->
 
         <div class="video-card">
 
@@ -1066,6 +1080,9 @@
 
 
 
+<!-- ==========================================
+     LET'S CONNECT
+=========================================== -->
 
 <section class="contact-section">
 
@@ -1075,66 +1092,14 @@
 
     <p>
         Have a video project, collaboration or editing requirement?
-        Feel free to reach out. I'm open to creative projects
-        and freelance opportunities.
+        Feel free to reach out through my social platforms.
     </p>
 
 
     <div class="contact-grid">
 
 
-
-        <a
-            href="mailto:lohithasai229@gmail.com"
-            class="contact-card"
-        >
-
-            <div class="contact-icon">
-                📧
-            </div>
-
-            <div>
-
-                <small>
-                    Email
-                </small>
-
-                <strong>
-                    lohithasai229@gmail.com
-                </strong>
-
-            </div>
-
-        </a>
-
-
-
-
-        <a
-            href="tel:+9391192049"
-            class="contact-card"
-        >
-
-            <div class="contact-icon">
-                📱
-            </div>
-
-            <div>
-
-                <small>
-                    Phone
-                </small>
-
-                <strong>
-                    +91 9391192049
-                </strong>
-
-            </div>
-
-        </a>
-
-
-
+        <!-- INSTAGRAM -->
 
         <a
             href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
@@ -1162,6 +1127,8 @@
 
 
 
+        <!-- LINKEDIN -->
+
         <a
             href="https://www.linkedin.com/in/lohitha-sai-jayavarapu-413595339"
             target="_blank"
@@ -1186,11 +1153,16 @@
 
         </a>
 
+
     </div>
 
 </section>
 
 
+
+<!-- ==========================================
+     FINAL CTA
+=========================================== -->
 
 <section class="cta">
 
@@ -1204,7 +1176,8 @@
     </p>
 
     <a
-        href="mailto:lohithasai229@gmail.com?subject=Video Editing Project"
+        href="https://www.instagram.com/the_magic_of_frames?stkn=NnFpeGphMmxxNWx6"
+        target="_blank"
         class="contact-btn"
     >
         📩 Start a Project
@@ -1212,6 +1185,11 @@
 
 </section>
 
+
+
+<!-- ==========================================
+     FOOTER
+=========================================== -->
 
 <footer>
 
@@ -1222,12 +1200,7 @@
     </p>
 
     <p style="margin-top:8px;">
-        Crafted with ❤️ & creativity
+        Crafted with ❤️ 
     </p>
 
 </footer>
-
-
-</body>
-
-</html>
