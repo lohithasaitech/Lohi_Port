@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <meta
     name="description"
-    content="Lohitha Sai — Video Editor. Anime edits, K-pop edits, cinematic edits and short-form visual storytelling."
-  />
+    content="Lohitha — Video Editor. Visual stories, cinematic edits, anime edits, K-pop edits and short-form content."
+  >
 
-  <meta name="theme-color" content="#050507" />
+  <meta name="theme-color" content="#050507">
 
-  <title>LS — Lohitha Sai | Video Editor</title>
+  <title>LS — Visual Stories | Video Editor</title>
 
   <style>
+
     /* =========================================================
        RESET
     ========================================================= */
@@ -29,10 +30,22 @@
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
       background: #050507;
-      color: #f5f3f8;
+      color: #f4f2f7;
       overflow-x: hidden;
+    }
+
+    body::selection {
+      background: rgba(155, 114, 255, 0.4);
+      color: white;
     }
 
     button {
@@ -45,30 +58,27 @@
       text-decoration: none;
     }
 
-    ::selection {
-      background: rgba(151, 105, 255, 0.4);
-      color: white;
-    }
-
     /* =========================================================
        VARIABLES
     ========================================================= */
 
     :root {
       --bg: #050507;
-      --bg2: #08070c;
-      --card: rgba(255, 255, 255, 0.035);
-      --border: rgba(255, 255, 255, 0.11);
-      --border-light: rgba(255, 255, 255, 0.2);
+      --bg-soft: #08070c;
 
-      --white: #f6f4f9;
-      --muted: #99949f;
-      --muted2: #6f6a77;
+      --white: #f5f3f8;
+      --text: #d9d5df;
+
+      --muted: #918b98;
+      --muted-dark: #69636f;
 
       --purple: #9b72ff;
-      --purple2: #6c49b8;
+      --purple-dark: #65449e;
 
-      --max-width: 1240px;
+      --border: rgba(255, 255, 255, 0.10);
+      --border-light: rgba(255, 255, 255, 0.18);
+
+      --max-width: 1180px;
     }
 
     /* =========================================================
@@ -77,20 +87,22 @@
 
     body::before {
       content: "";
+
       position: fixed;
       inset: 0;
+
       pointer-events: none;
       z-index: -5;
 
       background:
         radial-gradient(
-          circle at 70% 5%,
-          rgba(124, 78, 215, 0.12),
+          circle at 75% 5%,
+          rgba(130, 80, 215, 0.11),
           transparent 30%
         ),
         radial-gradient(
-          circle at 10% 60%,
-          rgba(47, 65, 130, 0.07),
+          circle at 5% 75%,
+          rgba(65, 80, 150, 0.06),
           transparent 30%
         ),
         #050507;
@@ -99,9 +111,11 @@
     .noise {
       position: fixed;
       inset: 0;
+
       pointer-events: none;
       z-index: 1000;
-      opacity: 0.025;
+
+      opacity: 0.018;
 
       background-image:
         url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.35'/%3E%3C/svg%3E");
@@ -109,47 +123,64 @@
 
     .ambient {
       position: fixed;
-      width: 500px;
-      height: 500px;
+
+      width: 480px;
+      height: 480px;
+
       border-radius: 50%;
-      filter: blur(110px);
-      opacity: 0.07;
+
+      filter: blur(120px);
+
+      opacity: 0.06;
+
       pointer-events: none;
+
       z-index: -2;
     }
 
-    .ambient.one {
-      top: 10%;
+    .ambient-one {
+      top: 0;
       right: -250px;
-      background: #8b5ce6;
+
+      background: #8d5ce5;
     }
 
-    .ambient.two {
-      bottom: -200px;
-      left: -250px;
-      background: #4359ad;
+    .ambient-two {
+      bottom: -220px;
+      left: -260px;
+
+      background: #4054a0;
     }
 
     /* =========================================================
-       STAR FIELD
+       STARS
     ========================================================= */
 
     .stars {
       position: fixed;
       inset: 0;
-      z-index: -1;
-      pointer-events: none;
+
       overflow: hidden;
+
+      pointer-events: none;
+
+      z-index: -1;
     }
 
     .star {
       position: absolute;
+
       width: 1px;
       height: 1px;
-      background: white;
+
       border-radius: 50%;
-      opacity: 0.25;
-      animation: twinkle 4s infinite ease-in-out;
+
+      background: white;
+
+      opacity: 0.2;
+
+      animation:
+        twinkle 4s ease-in-out infinite;
     }
 
     .star.big {
@@ -160,12 +191,12 @@
     @keyframes twinkle {
       0%,
       100% {
-        opacity: 0.12;
+        opacity: 0.1;
         transform: scale(1);
       }
 
       50% {
-        opacity: 0.65;
+        opacity: 0.6;
         transform: scale(1.8);
       }
     }
@@ -176,12 +207,18 @@
 
     .navbar {
       position: fixed;
+
       top: 0;
       left: 50%;
+
       transform: translateX(-50%);
 
-      width: min(calc(100% - 50px), var(--max-width));
-      height: 78px;
+      width: min(
+        calc(100% - 50px),
+        var(--max-width)
+      );
+
+      height: 76px;
 
       display: flex;
       align-items: center;
@@ -189,103 +226,104 @@
 
       z-index: 100;
 
-      transition: 0.35s ease;
+      transition: 0.3s ease;
     }
 
     .navbar.scrolled {
-      top: 14px;
-      height: 64px;
+      top: 12px;
 
-      padding: 0 16px;
+      height: 62px;
 
-      background: rgba(8, 8, 11, 0.72);
+      padding: 0 15px;
+
+      background: rgba(8, 8, 11, 0.74);
+
       backdrop-filter: blur(22px);
 
       border: 1px solid var(--border);
-      border-radius: 18px;
 
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+      border-radius: 17px;
+
+      box-shadow:
+        0 20px 70px rgba(0, 0, 0, 0.3);
     }
 
-    /* LS LOGO */
+    /* =========================================================
+       LOGO
+    ========================================================= */
 
     .logo {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
+
+      position: relative;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      position: relative;
-
       border: none;
+
       background: transparent;
 
       color: white;
 
-      font-size: 17px;
-      font-weight: 900;
+      font-size: 15px;
 
-      letter-spacing: -7px;
-      padding-right: 7px;
+      font-weight: 800;
+
+      letter-spacing: -5px;
+
+      padding-right: 5px;
     }
 
     .logo::before {
       content: "";
 
       position: absolute;
+
       inset: 4px;
 
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.22);
 
-      border-radius: 12px;
+      border-radius: 11px;
 
       transform: rotate(45deg);
 
-      transition: 0.35s ease;
-    }
-
-    .logo::after {
-      content: "";
-
-      position: absolute;
-
-      right: 4px;
-      bottom: 6px;
-
-      width: 10px;
-      height: 10px;
-
-      border-right: 1px solid var(--purple);
-      border-bottom: 1px solid var(--purple);
+      transition: 0.3s ease;
     }
 
     .logo:hover::before {
-      border-color: rgba(170, 130, 255, 0.8);
+      border-color: rgba(155, 114, 255, 0.8);
 
       box-shadow:
-        0 0 20px rgba(151, 105, 255, 0.35);
+        0 0 20px rgba(155, 114, 255, 0.2);
     }
 
-    /* NAV LINKS */
+    /* =========================================================
+       NAV LINKS
+    ========================================================= */
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 34px;
+
+      gap: 32px;
     }
 
     .nav-links button {
       border: none;
+
       background: transparent;
 
-      color: #aaa5b1;
+      color: #9e98a5;
 
-      font-size: 11px;
+      font-size: 10px;
+
       font-weight: 600;
 
-      letter-spacing: 0.14em;
+      letter-spacing: 0.13em;
+
       text-transform: uppercase;
 
       transition: 0.25s ease;
@@ -300,11 +338,12 @@
     .menu {
       display: none;
 
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
 
       border: 1px solid var(--border);
-      border-radius: 12px;
+
+      border-radius: 11px;
 
       background: rgba(255, 255, 255, 0.03);
     }
@@ -312,14 +351,12 @@
     .menu span {
       display: block;
 
-      width: 19px;
+      width: 18px;
       height: 1px;
 
+      margin: 4px auto;
+
       background: white;
-
-      margin: 5px auto;
-
-      transition: 0.3s;
     }
 
     /* =========================================================
@@ -327,61 +364,71 @@
     ========================================================= */
 
     .container {
-      width: min(calc(100% - 50px), var(--max-width));
+      width: min(
+        calc(100% - 50px),
+        var(--max-width)
+      );
+
       margin: auto;
     }
 
     .section {
-      padding: 140px 0;
+      padding: 125px 0;
     }
 
     .section-title {
       display: grid;
-      grid-template-columns: 50px 1fr;
 
-      gap: 15px;
+      grid-template-columns: 40px 1fr;
 
-      margin-bottom: 55px;
+      gap: 14px;
+
+      margin-bottom: 52px;
     }
 
     .section-number {
-      padding-top: 6px;
+      padding-top: 5px;
 
-      color: #8c68c9;
+      color: #8f6bd0;
 
-      font-size: 10px;
-      letter-spacing: 0.18em;
+      font-size: 9px;
+
       font-weight: 700;
+
+      letter-spacing: 0.18em;
     }
 
     .eyebrow {
-      margin-bottom: 14px;
+      margin-bottom: 13px;
 
-      color: #9a95a2;
+      color: #817b88;
 
-      font-size: 10px;
+      font-size: 9px;
+
       font-weight: 700;
 
-      letter-spacing: 0.27em;
+      letter-spacing: 0.24em;
     }
 
     .section-title h2 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+
       line-height: 0.95;
 
-      letter-spacing: -0.06em;
+      font-weight: 700;
 
-      font-weight: 800;
+      letter-spacing: -0.055em;
     }
 
     .section-description {
-      max-width: 600px;
+      max-width: 580px;
 
-      margin-top: 18px;
+      margin-top: 17px;
 
       color: var(--muted);
 
-      font-size: 14px;
+      font-size: 13px;
+
       line-height: 1.8;
     }
 
@@ -395,6 +442,7 @@
       position: relative;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -406,98 +454,104 @@
     .hero-glow {
       position: absolute;
 
-      width: 650px;
-      height: 650px;
+      width: 620px;
+      height: 620px;
 
       border-radius: 50%;
 
       background:
         radial-gradient(
           circle,
-          rgba(141, 88, 226, 0.14),
+          rgba(142, 88, 226, 0.12),
           transparent 67%
         );
-
-      pointer-events: none;
     }
 
     .hero-content {
       position: relative;
+
       z-index: 2;
 
-      padding-top: 50px;
+      padding-top: 35px;
     }
 
     .hero-logo {
-      width: 62px;
-      height: 62px;
+      width: 56px;
+      height: 56px;
 
-      margin: 0 auto 35px;
+      margin: 0 auto 30px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      border: 1px solid rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.2);
 
-      border-radius: 16px;
+      border-radius: 15px;
 
       transform: rotate(45deg);
-
-      animation: heroLogo 1s ease forwards;
     }
 
     .hero-logo span {
       transform: rotate(-45deg);
 
-      font-size: 19px;
-      font-weight: 900;
+      font-size: 17px;
 
-      letter-spacing: -7px;
-      padding-right: 7px;
-    }
+      font-weight: 800;
 
-    @keyframes heroLogo {
-      from {
-        opacity: 0;
-        transform: rotate(45deg) scale(0.65);
-      }
+      letter-spacing: -6px;
 
-      to {
-        opacity: 1;
-        transform: rotate(45deg) scale(1);
-      }
+      padding-right: 6px;
     }
 
     .hero h1 {
-      font-size: clamp(4rem, 10vw, 9rem);
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
 
-      line-height: 0.85;
+      font-size: clamp(3.5rem, 8vw, 7.2rem);
 
-      letter-spacing: -0.085em;
+      line-height: 0.9;
 
-      font-weight: 900;
+      letter-spacing: -0.075em;
 
-      animation: heroText 1s 0.15s both;
+      font-weight: 750;
+
+      animation:
+        heroText 0.9s 0.1s both;
     }
 
     .hero h1 .outline {
       display: block;
 
+      margin-top: 10px;
+
       color: transparent;
 
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.58);
+      -webkit-text-stroke:
+        1px rgba(255, 255, 255, 0.46);
+
+      font-size: 0.58em;
+
+      letter-spacing: -0.045em;
     }
 
     @keyframes heroText {
       from {
         opacity: 0;
-        transform: translateY(25px);
+
+        transform:
+          translateY(20px);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0);
+
+        transform:
+          translateY(0);
       }
     }
 
@@ -506,18 +560,20 @@
 
       width: fit-content;
 
-      margin: 34px auto 0;
+      margin: 25px auto 0;
 
-      padding-bottom: 14px;
+      padding-bottom: 11px;
 
-      color: #e5e1ea;
+      color: #d8d3df;
 
-      font-size: 13px;
+      font-size: 10px;
+
       font-weight: 600;
 
-      letter-spacing: 0.46em;
+      letter-spacing: 0.34em;
 
-      animation: heroText 1s 0.35s both;
+      animation:
+        heroText 0.9s 0.25s both;
     }
 
     .hero-role::after {
@@ -527,6 +583,7 @@
 
       left: 0;
       right: 0;
+
       bottom: 0;
 
       height: 1px;
@@ -538,112 +595,110 @@
           var(--purple),
           transparent
         );
-
-      animation: lineReveal 1.2s 0.8s both;
-
-      transform-origin: left;
-    }
-
-    @keyframes lineReveal {
-      from {
-        transform: scaleX(0);
-      }
-
-      to {
-        transform: scaleX(1);
-      }
     }
 
     .hero-text {
-      max-width: 520px;
+      max-width: 490px;
 
-      margin: 28px auto 0;
+      margin: 24px auto 0;
 
       color: var(--muted);
 
-      font-size: 15px;
+      font-size: 14px;
+
       line-height: 1.8;
 
-      animation: heroText 1s 0.55s both;
+      animation:
+        heroText 0.9s 0.4s both;
     }
 
     .hero-buttons {
       display: flex;
+
       justify-content: center;
-      gap: 12px;
 
-      margin-top: 34px;
+      gap: 10px;
 
-      animation: heroText 1s 0.7s both;
+      margin-top: 30px;
+
+      animation:
+        heroText 0.9s 0.55s both;
     }
 
     .btn {
-      min-height: 50px;
+      min-height: 47px;
 
-      padding: 0 22px;
+      padding: 0 21px;
 
       border-radius: 999px;
 
       border: 1px solid var(--border);
 
-      font-size: 10px;
-      font-weight: 800;
+      font-size: 9px;
 
-      letter-spacing: 0.13em;
+      font-weight: 700;
+
+      letter-spacing: 0.12em;
 
       transition: 0.3s ease;
     }
 
     .btn-primary {
-      background: #f5f2f8;
+      background: #f4f1f7;
+
       color: #08070a;
 
-      border-color: #f5f2f8;
+      border-color: #f4f1f7;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
 
       box-shadow:
-        0 15px 35px rgba(255, 255, 255, 0.13);
+        0 15px 35px rgba(255, 255, 255, 0.1);
     }
 
     .btn-secondary {
       background: rgba(255, 255, 255, 0.025);
+
       color: white;
     }
 
     .btn-secondary:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
 
-      border-color: rgba(155, 114, 255, 0.7);
+      border-color:
+        rgba(155, 114, 255, 0.6);
 
-      background: rgba(155, 114, 255, 0.08);
+      background:
+        rgba(155, 114, 255, 0.07);
     }
 
     .btn span {
-      margin-left: 12px;
+      margin-left: 9px;
     }
 
     .hero-categories {
       position: absolute;
 
-      bottom: 28px;
       left: 0;
+      bottom: 25px;
 
       display: flex;
-      gap: 17px;
 
-      color: #696471;
+      gap: 14px;
 
-      font-size: 8px;
-      letter-spacing: 0.2em;
+      color: #625d68;
+
+      font-size: 7px;
+
+      letter-spacing: 0.19em;
     }
 
     .hero-categories span:not(:last-child)::after {
       content: "•";
 
-      margin-left: 17px;
+      margin-left: 14px;
 
       color: var(--purple);
     }
@@ -652,18 +707,19 @@
       position: absolute;
 
       right: 0;
-      bottom: 28px;
+      bottom: 25px;
 
-      color: #696471;
+      color: #625d68;
 
-      font-size: 8px;
-      letter-spacing: 0.2em;
+      font-size: 7px;
+
+      letter-spacing: 0.18em;
     }
 
     .scroll span {
-      color: #b796f5;
+      color: #9a76d7;
 
-      margin-left: 8px;
+      margin-left: 7px;
     }
 
     /* =========================================================
@@ -673,7 +729,9 @@
     .about-grid {
       display: grid;
 
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns:
+        1.15fr
+        0.85fr;
 
       align-items: center;
 
@@ -681,23 +739,25 @@
     }
 
     .about-text {
-      color: #ddd9e3;
+      color: #d2ced8;
 
-      font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+      font-size:
+        clamp(1.25rem, 2.25vw, 1.9rem);
 
-      line-height: 1.5;
+      line-height: 1.55;
 
-      letter-spacing: -0.035em;
+      letter-spacing: -0.03em;
     }
 
     .about-visual {
-      width: min(100%, 420px);
+      width: min(100%, 390px);
 
       aspect-ratio: 1;
 
       position: relative;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -707,7 +767,8 @@
     .circle {
       position: absolute;
 
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid
+        rgba(255, 255, 255, 0.09);
 
       border-radius: 50%;
     }
@@ -716,42 +777,50 @@
       width: 82%;
       height: 82%;
 
-      border-left-color: var(--purple);
+      border-left-color:
+        var(--purple);
 
-      animation: rotate 22s linear infinite;
+      animation:
+        rotate 22s linear infinite;
     }
 
     .circle.two {
       width: 58%;
       height: 58%;
 
-      border-right-color: #5369b0;
+      border-right-color:
+        #5369b0;
 
-      animation: rotate 15s linear infinite reverse;
+      animation:
+        rotate 15s linear infinite reverse;
     }
 
     .circle.three {
       width: 35%;
       height: 35%;
 
-      background:
-        radial-gradient(
-          circle,
-          rgba(151, 105, 255, 0.28),
-          rgba(10, 9, 14, 0.95) 70%
-        );
-
-      border-color: rgba(255, 255, 255, 0.18);
-
       display: flex;
+
       align-items: center;
       justify-content: center;
 
-      font-size: 28px;
-      font-weight: 900;
+      background:
+        radial-gradient(
+          circle,
+          rgba(151, 105, 255, 0.23),
+          rgba(10, 9, 14, 0.95) 70%
+        );
 
-      letter-spacing: -7px;
-      padding-right: 7px;
+      border-color:
+        rgba(255, 255, 255, 0.15);
+
+      font-size: 25px;
+
+      font-weight: 800;
+
+      letter-spacing: -6px;
+
+      padding-right: 6px;
     }
 
     @keyframes rotate {
@@ -767,25 +836,22 @@
 
       color: #716b78;
 
-      font-size: 8px;
+      font-size: 7px;
 
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
     }
 
     /* =========================================================
        PORTFOLIO
     ========================================================= */
 
-    .portfolio {
-      padding-top: 100px;
-    }
-
     .portfolio-grid {
       display: grid;
 
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:
+        repeat(2, 1fr);
 
-      gap: 85px 28px;
+      gap: 75px 26px;
     }
 
     .project {
@@ -801,9 +867,10 @@
 
       overflow: hidden;
 
-      background: #0a090d;
+      background: #09080d;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       cursor: pointer;
     }
@@ -816,17 +883,15 @@
 
       object-fit: cover;
 
-      transform: scale(1.01);
-
       transition:
-        transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
-        filter 0.8s;
+        transform 0.7s ease,
+        filter 0.7s ease;
     }
 
     .video-container:hover video {
-      transform: scale(1.055);
+      transform: scale(1.045);
 
-      filter: brightness(0.7);
+      filter: brightness(0.68);
     }
 
     .video-overlay {
@@ -837,9 +902,9 @@
       background:
         linear-gradient(
           180deg,
-          rgba(0, 0, 0, 0.25),
+          rgba(0, 0, 0, 0.2),
           transparent 45%,
-          rgba(0, 0, 0, 0.75)
+          rgba(0, 0, 0, 0.7)
         );
 
       pointer-events: none;
@@ -848,13 +913,14 @@
     .project-number {
       position: absolute;
 
-      top: 18px;
-      left: 18px;
+      top: 16px;
+      left: 16px;
 
-      font-size: 10px;
+      font-size: 9px;
+
       font-weight: 700;
 
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
     }
 
     .play {
@@ -863,12 +929,11 @@
       top: 50%;
       left: 50%;
 
-      transform: translate(-50%, -50%);
-
-      width: 64px;
-      height: 64px;
+      width: 58px;
+      height: 58px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -876,92 +941,101 @@
 
       border-radius: 50%;
 
-      border: 1px solid rgba(255, 255, 255, 0.5);
+      border:
+        1px solid rgba(255, 255, 255, 0.42);
 
-      background: rgba(5, 5, 8, 0.32);
+      background:
+        rgba(5, 5, 8, 0.3);
 
       backdrop-filter: blur(8px);
 
-      font-size: 14px;
+      transform:
+        translate(-50%, -50%);
 
-      transition: 0.35s ease;
+      font-size: 12px;
+
+      transition: 0.3s ease;
     }
 
     .video-container:hover .play {
       background: white;
+
       color: black;
 
       transform:
         translate(-50%, -50%)
-        scale(1.1);
+        scale(1.08);
     }
 
     .view {
       position: absolute;
 
-      right: 18px;
-      bottom: 17px;
+      right: 16px;
+      bottom: 15px;
 
-      font-size: 9px;
+      font-size: 8px;
 
-      letter-spacing: 0.16em;
+      letter-spacing: 0.14em;
     }
 
     .project-info {
-      padding-top: 21px;
+      padding-top: 19px;
     }
 
     .project-category {
-      margin-bottom: 8px;
+      margin-bottom: 7px;
 
-      color: #9675cc;
+      color: #9270c9;
 
-      font-size: 9px;
+      font-size: 8px;
+
       font-weight: 700;
 
-      letter-spacing: 0.17em;
+      letter-spacing: 0.16em;
+
       text-transform: uppercase;
     }
 
     .project-title {
-      font-size: clamp(1.2rem, 2vw, 1.65rem);
+      font-size: 20px;
 
-      font-weight: 700;
+      font-weight: 650;
 
       letter-spacing: -0.04em;
     }
 
     .project-description {
-      max-width: 700px;
+      max-width: 680px;
 
-      margin-top: 13px;
+      margin-top: 11px;
 
-      color: #8f8996;
+      color: #85808c;
 
-      font-size: 12px;
+      font-size: 11px;
 
       line-height: 1.75;
     }
 
     .open-project {
-      margin-top: 15px;
+      margin-top: 13px;
 
       border: none;
 
       background: transparent;
 
-      color: #ddd8e5;
+      color: #d5d0dc;
 
-      font-size: 9px;
+      font-size: 8px;
+
       font-weight: 700;
 
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
     }
 
     .open-project span {
       color: var(--purple);
 
-      margin-left: 7px;
+      margin-left: 6px;
     }
 
     /* =========================================================
@@ -971,33 +1045,39 @@
     .services-grid {
       display: grid;
 
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns:
+        repeat(5, 1fr);
 
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
+
+      border-bottom:
+        1px solid var(--border);
     }
 
     .service {
-      min-height: 320px;
+      min-height: 295px;
 
-      padding: 22px 20px;
+      padding: 20px;
 
       position: relative;
 
-      border-right: 1px solid var(--border);
+      border-right:
+        1px solid var(--border);
 
-      transition: 0.35s ease;
+      transition: 0.3s ease;
     }
 
     .service:first-child {
-      border-left: 1px solid var(--border);
+      border-left:
+        1px solid var(--border);
     }
 
     .service:hover {
       background:
         linear-gradient(
           180deg,
-          rgba(155, 114, 255, 0.08),
+          rgba(155, 114, 255, 0.06),
           transparent
         );
     }
@@ -1005,42 +1085,42 @@
     .service-number {
       color: #716b78;
 
-      font-size: 9px;
+      font-size: 8px;
 
-      letter-spacing: 0.2em;
+      letter-spacing: 0.18em;
     }
 
     .service-arrow {
       position: absolute;
 
-      top: 20px;
-      right: 20px;
+      top: 19px;
+      right: 19px;
 
-      color: #9471cd;
+      color: #8d6bc7;
     }
 
     .service h3 {
-      margin-top: 100px;
+      margin-top: 92px;
 
-      font-size: 17px;
+      font-size: 15px;
 
-      font-weight: 700;
+      font-weight: 650;
 
-      letter-spacing: -0.025em;
+      letter-spacing: -0.02em;
     }
 
     .service p {
-      margin-top: 15px;
+      margin-top: 13px;
 
-      color: #898491;
+      color: #85808c;
 
-      font-size: 11px;
+      font-size: 10px;
 
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
     /* =========================================================
-       EDITING STYLE
+       STYLE
     ========================================================= */
 
     .style-tags {
@@ -1048,41 +1128,43 @@
 
       flex-wrap: wrap;
 
-      gap: 12px;
+      gap: 10px;
     }
 
     .tag {
-      padding: 17px 21px;
+      padding: 15px 18px;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       border-radius: 999px;
 
-      background: rgba(255, 255, 255, 0.018);
+      background:
+        rgba(255, 255, 255, 0.015);
 
-      color: #d8d4de;
+      color: #d3ced9;
 
-      font-size: 13px;
+      font-size: 11px;
 
       transition: 0.3s ease;
     }
 
     .tag span {
-      color: #8c6bc9;
+      color: #8d6bc8;
 
-      margin-right: 14px;
+      margin-right: 11px;
 
-      font-size: 8px;
-
-      letter-spacing: 0.15em;
+      font-size: 7px;
     }
 
     .tag:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
 
-      border-color: rgba(155, 114, 255, 0.6);
+      border-color:
+        rgba(155, 114, 255, 0.5);
 
-      background: rgba(155, 114, 255, 0.07);
+      background:
+        rgba(155, 114, 255, 0.05);
     }
 
     /* =========================================================
@@ -1092,63 +1174,68 @@
     .workflow {
       display: grid;
 
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns:
+        repeat(4, 1fr);
     }
 
     .step {
-      padding-right: 28px;
+      padding-right: 25px;
     }
 
     .step-top {
       display: flex;
+
       align-items: center;
 
-      gap: 15px;
+      gap: 13px;
     }
 
     .step-number {
-      width: 44px;
-      height: 44px;
+      width: 42px;
+      height: 42px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       border-radius: 50%;
 
-      color: #a984e9;
+      color: #9c78d9;
 
-      font-size: 9px;
+      font-size: 8px;
     }
 
     .step-line {
-      height: 1px;
-
       flex: 1;
 
-      background: var(--border);
+      height: 1px;
+
+      background:
+        var(--border);
     }
 
     .step h3 {
-      margin-top: 25px;
+      margin-top: 22px;
 
-      font-size: 12px;
+      font-size: 10px;
 
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
     }
 
     .step p {
-      max-width: 230px;
+      max-width: 220px;
 
-      margin-top: 10px;
+      margin-top: 9px;
 
-      color: #898491;
+      color: #85808c;
 
-      font-size: 11px;
+      font-size: 10px;
 
-      line-height: 1.8;
+      line-height: 1.75;
     }
 
     /* =========================================================
@@ -1156,11 +1243,14 @@
     ========================================================= */
 
     .cta {
-      width: min(calc(100% - 50px), 1400px);
+      width: min(
+        calc(100% - 50px),
+        1380px
+      );
 
-      min-height: 620px;
+      min-height: 560px;
 
-      margin: 30px auto 120px;
+      margin: 25px auto 110px;
 
       position: relative;
 
@@ -1175,12 +1265,13 @@
 
       overflow: hidden;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       background:
         radial-gradient(
           circle at 50% 45%,
-          rgba(130, 80, 215, 0.17),
+          rgba(130, 80, 215, 0.14),
           transparent 33%
         ),
         #08070c;
@@ -1197,41 +1288,42 @@
         repeating-radial-gradient(
           circle at 50% 50%,
           transparent 0 110px,
-          rgba(255, 255, 255, 0.025) 111px 112px
+          rgba(255, 255, 255, 0.018) 111px 112px
         );
-
-      opacity: 0.45;
     }
 
     .cta > * {
       position: relative;
+
       z-index: 2;
     }
 
     .cta h2 {
-      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-size:
+        clamp(3.2rem, 7vw, 7rem);
 
-      line-height: 0.84;
+      line-height: 0.85;
 
-      letter-spacing: -0.08em;
+      letter-spacing: -0.075em;
 
-      font-weight: 900;
+      font-weight: 750;
     }
 
     .cta h2 .outline {
       color: transparent;
 
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.55);
+      -webkit-text-stroke:
+        1px rgba(255, 255, 255, 0.48);
     }
 
     .cta-description {
-      max-width: 620px;
+      max-width: 570px;
 
-      margin-top: 30px;
+      margin-top: 25px;
 
-      color: #99939f;
+      color: #918b97;
 
-      font-size: 13px;
+      font-size: 12px;
 
       line-height: 1.8;
     }
@@ -1243,48 +1335,54 @@
     .contact-box {
       display: grid;
 
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns:
+        1fr 1fr;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
-      background: rgba(255, 255, 255, 0.018);
+      background:
+        rgba(255, 255, 255, 0.015);
     }
 
     .contact-left,
     .contact-right {
-      padding: 48px;
+      padding: 42px;
     }
 
     .contact-right {
-      border-left: 1px solid var(--border);
+      border-left:
+        1px solid var(--border);
     }
 
     .contact-label {
       color: #9270cc;
 
-      font-size: 9px;
+      font-size: 8px;
 
       font-weight: 700;
 
-      letter-spacing: 0.2em;
+      letter-spacing: 0.19em;
     }
 
     .contact-left h3 {
-      margin-top: 45px;
+      margin-top: 40px;
 
-      font-size: 32px;
+      font-size: 28px;
 
-      letter-spacing: -0.04em;
+      font-weight: 650;
+
+      letter-spacing: -0.045em;
     }
 
     .contact-note {
-      max-width: 400px;
+      max-width: 390px;
 
-      margin-top: 13px;
+      margin-top: 11px;
 
-      color: #898491;
+      color: #85808c;
 
-      font-size: 12px;
+      font-size: 11px;
 
       line-height: 1.8;
     }
@@ -1292,31 +1390,50 @@
     .contact-details {
       display: grid;
 
-      gap: 28px;
+      gap: 4px;
 
       align-content: center;
 
       height: 100%;
     }
 
+    .contact-detail {
+      padding: 15px 0;
+
+      border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .contact-detail:last-child {
+      border-bottom: none;
+    }
+
     .contact-detail span {
       display: block;
 
-      margin-bottom: 8px;
+      margin-bottom: 7px;
 
       color: #77717f;
 
-      font-size: 8px;
+      font-size: 7px;
 
-      letter-spacing: 0.2em;
+      font-weight: 600;
+
+      letter-spacing: 0.18em;
     }
 
     .contact-detail strong {
-      color: #d8d4df;
+      color: #ddd9e5;
 
-      font-size: 14px;
+      font-size: 13px;
 
-      font-weight: 500;
+      font-weight: 450;
+
+      letter-spacing: 0.01em;
+    }
+
+    .contact-detail strong:hover {
+      color: #a783e7;
     }
 
     /* =========================================================
@@ -1324,20 +1441,24 @@
     ========================================================= */
 
     footer {
-      width: min(calc(100% - 50px), var(--max-width));
+      width: min(
+        calc(100% - 50px),
+        var(--max-width)
+      );
 
       margin: auto;
 
-      padding: 38px 0 48px;
+      padding: 35px 0 45px;
 
-      border-top: 1px solid var(--border);
+      border-top:
+        1px solid var(--border);
 
       display: flex;
 
       align-items: center;
       justify-content: space-between;
 
-      gap: 30px;
+      gap: 25px;
     }
 
     .footer-brand {
@@ -1345,34 +1466,40 @@
 
       align-items: center;
 
-      gap: 14px;
+      gap: 13px;
     }
 
     .footer-logo {
-      width: 40px;
-      height: 40px;
+      width: 38px;
+      height: 38px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
-      border-radius: 11px;
+      border-radius: 10px;
 
-      font-size: 13px;
-      font-weight: 900;
+      font-size: 12px;
+
+      font-weight: 800;
 
       letter-spacing: -5px;
+
       padding-right: 5px;
     }
 
     .footer-name strong {
       display: block;
 
-      font-size: 11px;
+      font-size: 10px;
 
-      letter-spacing: 0.08em;
+      font-weight: 650;
+
+      letter-spacing: 0.07em;
     }
 
     .footer-name span {
@@ -1380,21 +1507,21 @@
 
       margin-top: 4px;
 
-      color: #77717d;
+      color: #716b78;
 
-      font-size: 8px;
+      font-size: 7px;
 
-      letter-spacing: 0.2em;
+      letter-spacing: 0.17em;
     }
 
     .copyright {
-      color: #68626e;
+      color: #625d68;
 
-      font-size: 9px;
+      font-size: 8px;
     }
 
     /* =========================================================
-       VIDEO MODAL
+       MODAL
     ========================================================= */
 
     .modal {
@@ -1409,13 +1536,15 @@
       align-items: center;
       justify-content: center;
 
-      padding: 20px;
+      padding: 18px;
 
-      background: rgba(2, 2, 4, 0.86);
+      background:
+        rgba(2, 2, 4, 0.88);
 
-      backdrop-filter: blur(18px);
+      backdrop-filter: blur(17px);
 
       opacity: 0;
+
       visibility: hidden;
 
       transition: 0.3s ease;
@@ -1423,13 +1552,18 @@
 
     .modal.active {
       opacity: 1;
+
       visibility: visible;
     }
 
     .modal-content {
-      width: min(1050px, 100%);
+      width: min(
+        1000px,
+        100%
+      );
 
-      max-height: calc(100vh - 40px);
+      max-height:
+        calc(100vh - 36px);
 
       overflow-y: auto;
 
@@ -1437,7 +1571,8 @@
 
       background: #09080d;
 
-      border: 1px solid var(--border);
+      border:
+        1px solid var(--border);
 
       box-shadow:
         0 40px 120px rgba(0, 0, 0, 0.7);
@@ -1456,49 +1591,54 @@
     .close-modal {
       position: absolute;
 
-      top: 12px;
-      right: 12px;
+      top: 11px;
+      right: 11px;
 
       z-index: 5;
 
-      width: 42px;
-      height: 42px;
+      width: 40px;
+      height: 40px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
       border-radius: 50%;
 
-      border: 1px solid rgba(255, 255, 255, 0.25);
+      border:
+        1px solid rgba(255, 255, 255, 0.22);
 
-      background: rgba(0, 0, 0, 0.55);
+      background:
+        rgba(0, 0, 0, 0.55);
 
       color: white;
 
-      font-size: 24px;
+      font-size: 22px;
     }
 
     .modal-info {
-      padding: 28px 32px 35px;
+      padding: 25px 30px 30px;
     }
 
     .modal-info h2 {
       margin-top: 3px;
 
-      font-size: 30px;
+      font-size: 27px;
+
+      font-weight: 650;
 
       letter-spacing: -0.04em;
     }
 
     .modal-info p:last-child {
-      max-width: 800px;
+      max-width: 780px;
 
-      margin-top: 12px;
+      margin-top: 11px;
 
-      color: #96919d;
+      color: #918b97;
 
-      font-size: 12px;
+      font-size: 11px;
 
       line-height: 1.8;
     }
@@ -1510,17 +1650,19 @@
     .reveal {
       opacity: 0;
 
-      transform: translateY(30px);
+      transform:
+        translateY(25px);
 
       transition:
-        opacity 0.9s ease,
-        transform 0.9s ease;
+        opacity 0.8s ease,
+        transform 0.8s ease;
     }
 
     .reveal.visible {
       opacity: 1;
 
-      transform: translateY(0);
+      transform:
+        translateY(0);
     }
 
     /* =========================================================
@@ -1528,32 +1670,41 @@
     ========================================================= */
 
     @media (max-width: 1050px) {
+
       .services-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
       }
 
       .service {
-        border-bottom: 1px solid var(--border);
+        border-bottom:
+          1px solid var(--border);
       }
 
       .service:nth-child(odd) {
-        border-left: 1px solid var(--border);
+        border-left:
+          1px solid var(--border);
       }
 
       .workflow {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns:
+          repeat(2, 1fr);
 
-        gap: 50px 0;
+        gap: 45px 0;
       }
+
     }
 
     @media (max-width: 760px) {
+
       .container {
-        width: calc(100% - 30px);
+        width:
+          calc(100% - 30px);
       }
 
       .navbar {
-        width: calc(100% - 30px);
+        width:
+          calc(100% - 30px);
       }
 
       .navbar.scrolled {
@@ -1566,19 +1717,22 @@
         left: 0;
         right: 0;
 
-        top: calc(100% + 8px);
+        top:
+          calc(100% + 8px);
 
-        padding: 10px;
+        padding: 8px;
 
         display: grid;
 
-        gap: 3px;
+        gap: 2px;
 
-        background: rgba(8, 8, 11, 0.95);
+        background:
+          rgba(8, 8, 11, 0.96);
 
-        border: 1px solid var(--border);
+        border:
+          1px solid var(--border);
 
-        border-radius: 18px;
+        border-radius: 16px;
 
         backdrop-filter: blur(20px);
 
@@ -1586,7 +1740,8 @@
 
         pointer-events: none;
 
-        transform: translateY(-10px);
+        transform:
+          translateY(-8px);
 
         transition: 0.25s ease;
       }
@@ -1596,21 +1751,23 @@
 
         pointer-events: auto;
 
-        transform: translateY(0);
+        transform:
+          translateY(0);
       }
 
       .nav-links button {
         width: 100%;
 
-        padding: 15px;
+        padding: 14px;
 
         text-align: left;
 
-        border-radius: 10px;
+        border-radius: 9px;
       }
 
       .nav-links button:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background:
+          rgba(255, 255, 255, 0.04);
       }
 
       .menu {
@@ -1618,25 +1775,31 @@
       }
 
       .hero h1 {
-        font-size: clamp(3.5rem, 17vw, 6rem);
+        font-size:
+          clamp(3.3rem, 16vw, 5.5rem);
+      }
+
+      .hero h1 .outline {
+        font-size: 0.5em;
       }
 
       .hero-role {
-        font-size: 10px;
+        font-size: 9px;
 
-        letter-spacing: 0.28em;
+        letter-spacing: 0.27em;
       }
 
       .hero-text {
-        max-width: 330px;
+        max-width: 320px;
 
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .hero-buttons {
         flex-direction: column;
 
-        width: min(330px, 100%);
+        width:
+          min(320px, 100%);
 
         margin-inline: auto;
       }
@@ -1651,26 +1814,27 @@
 
       .scroll {
         right: 0;
-
-        bottom: 20px;
+        bottom: 18px;
       }
 
       .section {
-        padding: 95px 0;
+        padding: 90px 0;
       }
 
       .section-title {
-        grid-template-columns: 35px 1fr;
+        grid-template-columns:
+          32px 1fr;
       }
 
       .about-grid {
         grid-template-columns: 1fr;
 
-        gap: 55px;
+        gap: 50px;
       }
 
       .about-visual {
-        width: min(300px, 100%);
+        width:
+          min(290px, 100%);
 
         margin: auto;
       }
@@ -1678,7 +1842,7 @@
       .portfolio-grid {
         grid-template-columns: 1fr;
 
-        gap: 60px;
+        gap: 58px;
       }
 
       .services-grid {
@@ -1688,14 +1852,17 @@
       .service,
       .service:first-child,
       .service:nth-child(odd) {
-        border-left: 1px solid var(--border);
-        border-right: 1px solid var(--border);
+        border-left:
+          1px solid var(--border);
+
+        border-right:
+          1px solid var(--border);
       }
 
       .workflow {
         grid-template-columns: 1fr;
 
-        gap: 40px;
+        gap: 38px;
       }
 
       .step {
@@ -1707,17 +1874,19 @@
       }
 
       .cta {
-        width: calc(100% - 30px);
+        width:
+          calc(100% - 30px);
 
-        min-height: 560px;
+        min-height: 500px;
 
-        margin-bottom: 90px;
+        margin-bottom: 80px;
 
-        padding: 30px;
+        padding: 25px;
       }
 
       .cta h2 {
-        font-size: clamp(3.2rem, 16vw, 5.5rem);
+        font-size:
+          clamp(3rem, 15vw, 5rem);
       }
 
       .contact-box {
@@ -1726,17 +1895,19 @@
 
       .contact-left,
       .contact-right {
-        padding: 30px 24px;
+        padding: 28px 22px;
       }
 
       .contact-right {
         border-left: none;
 
-        border-top: 1px solid var(--border);
+        border-top:
+          1px solid var(--border);
       }
 
       footer {
-        width: calc(100% - 30px);
+        width:
+          calc(100% - 30px);
 
         flex-direction: column;
 
@@ -1744,50 +1915,58 @@
       }
 
       .copyright {
-        margin-left: 54px;
+        margin-left: 51px;
       }
 
       .modal {
-        padding: 10px;
+        padding: 8px;
       }
 
       .modal-info {
-        padding: 22px;
+        padding: 20px;
       }
 
       .modal-info h2 {
-        font-size: 23px;
+        font-size: 22px;
       }
+
     }
 
     @media (prefers-reduced-motion: reduce) {
+
       *,
       *::before,
       *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        animation-duration:
+          0.01ms !important;
+
+        animation-iteration-count:
+          1 !important;
+
+        transition-duration:
+          0.01ms !important;
+
+        scroll-behavior:
+          auto !important;
       }
+
     }
+
   </style>
 </head>
 
 <body>
 
-  <!-- =========================================================
-       BACKGROUND
-  ========================================================== -->
-
   <div class="noise"></div>
 
-  <div class="ambient one"></div>
-  <div class="ambient two"></div>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
   <div class="stars" id="stars"></div>
 
+
   <!-- =========================================================
-       NAVBAR
+       NAVIGATION
   ========================================================== -->
 
   <header class="navbar" id="navbar">
@@ -1795,9 +1974,9 @@
     <button
       class="logo"
       onclick="scrollToSection('home')"
-      aria-label="Go to homepage"
+      aria-label="Home"
     >
-      <span>L</span><span>S</span>
+      <span>LS</span>
     </button>
 
     <nav class="nav-links" id="navLinks">
@@ -1826,9 +2005,8 @@
 
     <button
       class="menu"
-      id="menuButton"
       onclick="toggleMenu()"
-      aria-label="Open navigation"
+      aria-label="Open menu"
     >
       <span></span>
       <span></span>
@@ -1858,11 +2036,14 @@
 
       <h1>
         LOHITHA
-        <span class="outline">SAI</span>
+
+        <span class="outline">
+          VISUAL STORIES
+        </span>
       </h1>
 
       <div class="hero-role">
-        V I D E O E D I T O R
+        VIDEO EDITOR
       </div>
 
       <p class="hero-text">
@@ -1911,7 +2092,10 @@
        ABOUT
   ========================================================== -->
 
-  <section class="section reveal" id="about">
+  <section
+    class="section reveal"
+    id="about"
+  >
 
     <div class="container">
 
@@ -1939,12 +2123,14 @@
       <div class="about-grid">
 
         <p class="about-text">
-          I'm a creative video editor focused on transforming raw footage
-          into engaging visual stories. I work across anime edits, K-pop
-          edits, cinematic short-form content, and other social-media-focused
-          videos. My editing style combines smooth transitions, beat
-          synchronization, visual effects, motion, and storytelling to
-          create videos that are designed to grab attention.
+          I'm a creative video editor focused on transforming
+          raw footage into engaging visual stories. I work
+          across anime edits, K-pop edits, cinematic short-form
+          content, and other social-media-focused videos.
+          My editing style combines smooth transitions,
+          beat synchronization, visual effects, motion,
+          and storytelling to create videos that are
+          designed to grab attention.
         </p>
 
 
@@ -1975,7 +2161,10 @@
        PORTFOLIO
   ========================================================== -->
 
-  <section class="section portfolio reveal" id="work">
+  <section
+    class="section reveal"
+    id="work"
+  >
 
     <div class="container">
 
@@ -1996,8 +2185,8 @@
           </h2>
 
           <p class="section-description">
-            A collection of edits created with rhythm, motion and
-            visual storytelling.
+            A collection of edits created with rhythm,
+            motion and visual storytelling.
           </p>
 
         </div>
@@ -2005,8 +2194,10 @@
       </div>
 
 
-      <div class="portfolio-grid" id="portfolioGrid">
-      </div>
+      <div
+        class="portfolio-grid"
+        id="portfolioGrid"
+      ></div>
 
     </div>
 
@@ -2017,7 +2208,10 @@
        SERVICES
   ========================================================== -->
 
-  <section class="section reveal" id="services">
+  <section
+    class="section reveal"
+    id="services"
+  >
 
     <div class="container">
 
@@ -2059,8 +2253,8 @@
           </h3>
 
           <p>
-            Cinematic anime edits, character edits, transitions,
-            effects and music-synced visuals.
+            Cinematic anime edits, character edits,
+            transitions, effects and music-synced visuals.
           </p>
 
         </div>
@@ -2081,8 +2275,8 @@
           </h3>
 
           <p>
-            Stylish idol edits with smooth transitions, beat
-            synchronization and aesthetic visual effects.
+            Stylish idol edits with smooth transitions,
+            beat synchronization and aesthetic effects.
           </p>
 
         </div>
@@ -2104,7 +2298,7 @@
 
           <p>
             Engaging videos designed for Instagram Reels,
-            YouTube Shorts and other short-form platforms.
+            YouTube Shorts and social platforms.
           </p>
 
         </div>
@@ -2125,8 +2319,8 @@
           </h3>
 
           <p>
-            Atmospheric edits focused on pacing, storytelling,
-            transitions and visual impact.
+            Atmospheric edits focused on pacing,
+            storytelling, transitions and impact.
           </p>
 
         </div>
@@ -2147,8 +2341,8 @@
           </h3>
 
           <p>
-            Creative video content designed to capture attention
-            and work effectively on modern social platforms.
+            Creative video content designed to capture
+            attention on modern social platforms.
           </p>
 
         </div>
@@ -2333,8 +2527,8 @@
           </h3>
 
           <p>
-            Refining pacing, visuals, synchronization and
-            overall atmosphere.
+            Refining pacing, visuals, synchronization
+            and overall atmosphere.
           </p>
 
         </div>
@@ -2355,8 +2549,8 @@
           </h3>
 
           <p>
-            Delivering a polished video ready for social
-            media or presentation.
+            Delivering a polished video ready for
+            social media or presentation.
           </p>
 
         </div>
@@ -2369,7 +2563,7 @@
 
 
   <!-- =========================================================
-       CLIENT CTA
+       CTA
   ========================================================== -->
 
   <section class="cta reveal">
@@ -2380,16 +2574,17 @@
 
     <h2>
       HAVE A VIDEO
-      <br />
+      <br>
+
       <span class="outline">
         IN MIND?
       </span>
     </h2>
 
     <p class="cta-description">
-      Need an editor for your next Reel, Short, K-pop edit,
-      anime edit, or cinematic video? Let's turn your footage
-      into something that stands out.
+      Need an editor for your next Reel, Short,
+      K-pop edit, anime edit, or cinematic video?
+      Let's turn your footage into something that stands out.
     </p>
 
     <div class="hero-buttons">
@@ -2419,7 +2614,10 @@
        CONTACT
   ========================================================== -->
 
-  <section class="section reveal" id="contact">
+  <section
+    class="section reveal"
+    id="contact"
+  >
 
     <div class="container">
 
@@ -2454,7 +2652,7 @@
         <div class="contact-left">
 
           <p class="contact-label">
-            CONTACT DETAILS
+            GET IN TOUCH
           </p>
 
           <h3>
@@ -2462,8 +2660,9 @@
           </h3>
 
           <p class="contact-note">
-            Replace the placeholders with your real contact
-            details before publishing the portfolio.
+            Whether it's a short-form edit, cinematic video,
+            anime edit, K-pop edit or a custom project,
+            feel free to reach out.
           </p>
 
         </div>
@@ -2473,18 +2672,23 @@
 
           <div class="contact-details">
 
+
+            <!-- PHONE -->
+
             <div class="contact-detail">
 
               <span>
-                EMAIL
+                PHONE
               </span>
 
               <strong>
-                your-email@example.com
+                9391192049
               </strong>
 
             </div>
 
+
+            <!-- INSTAGRAM -->
 
             <div class="contact-detail">
 
@@ -2493,23 +2697,26 @@
               </span>
 
               <strong>
-                @your_username
+                @the_magic_of_frames
               </strong>
 
             </div>
 
+
+            <!-- EMAIL -->
 
             <div class="contact-detail">
 
               <span>
-                WHATSAPP
+                EMAIL
               </span>
 
               <strong>
-                +91 939112049
+                lohithasai229@gmail.com
               </strong>
 
             </div>
+
 
           </div>
 
@@ -2537,11 +2744,11 @@
       <div class="footer-name">
 
         <strong>
-          LOHITHA SAI
+          LOHITHA
         </strong>
 
         <span>
-          VIDEO EDITOR
+          VISUAL STORIES / VIDEO EDITOR
         </span>
 
       </div>
@@ -2550,7 +2757,7 @@
 
 
     <p class="copyright">
-      © 2026 Lohitha Sai. All rights reserved.
+      © 2026 Lohitha. All rights reserved.
     </p>
 
   </footer>
@@ -2609,90 +2816,107 @@
   <script>
 
     /* =========================================================
-       PROJECT DATA
-    ========================================================= */
+       PROJECTS
+    ========================================================== */
 
     const projects = [
 
       {
         id: 1,
 
-        title: "Anime Character Intro — Part 1",
+        title:
+          "Anime Character Intro — Part 1",
 
-        category: "Anime / Character Edit",
+        category:
+          "Anime / Character Edit",
 
         description:
-          "An introduction to iconic anime characters built around cinematic visuals, smooth transitions, beat synchronization, and energetic editing. This edit focuses on creating a strong visual introduction while maintaining a fast and engaging rhythm.",
+          "An introduction to iconic anime characters built around cinematic visuals, smooth transitions, beat synchronization and energetic editing.",
 
         video:
           "videos/Anime_Char_intro_part1.mp4"
       },
 
+
       {
         id: 2,
 
-        title: "Anime Character Intro — Part 2",
+        title:
+          "Anime Character Intro — Part 2",
 
-        category: "Anime / Character Edit",
+        category:
+          "Anime / Character Edit",
 
         description:
-          "The continuation of the anime character introduction series, featuring more character moments, dynamic transitions, visual effects, and music synchronization. The edit continues the cinematic and energetic style of the series.",
+          "The continuation of the anime character introduction series, featuring character moments, dynamic transitions, visual effects and music synchronization.",
 
         video:
           "videos/Anime_Char_intro_part2.mp4"
       },
 
+
       {
         id: 3,
 
-        title: "Anime World",
+        title:
+          "Anime World",
 
-        category: "Anime Showcase",
+        category:
+          "Anime Showcase",
 
         description:
-          "A cinematic anime showcase featuring multiple iconic characters and a strong visual identity. The edit combines dramatic visuals, smooth transitions, music synchronization, and energetic pacing to create an engaging anime-focused experience.",
+          "A cinematic anime showcase combining dramatic visuals, smooth transitions, music synchronization and energetic pacing.",
 
         video:
           "videos/Anime_world.mp4"
       },
 
+
       {
         id: 4,
 
-        title: "Demon Slayer — The Beginning",
+        title:
+          "Demon Slayer — The Beginning",
 
-        category: "Anime / Cinematic Edit",
+        category:
+          "Anime / Cinematic Edit",
 
         description:
-          "A cinematic Demon Slayer edit built around dramatic anime moments, powerful transitions, visual effects, and music synchronization. The edit focuses on atmosphere, pacing, impact, and cinematic storytelling.",
+          "A cinematic Demon Slayer edit built around dramatic moments, powerful transitions, visual effects and music synchronization.",
 
         video:
           "videos/Demon_Slayer_The_Beginning.mp4"
       },
 
+
       {
         id: 5,
 
-        title: "Jisoo & Jennie",
+        title:
+          "Jisoo & Jennie",
 
-        category: "K-Pop / Visual Edit",
+        category:
+          "K-Pop / Visual Edit",
 
         description:
-          "A stylish K-pop visual edit featuring Jisoo and Jennie. The edit focuses on clean transitions, beat synchronization, smooth motion, aesthetic visuals, and precise timing to create a polished short-form video.",
+          "A stylish K-pop visual edit featuring Jisoo and Jennie with clean transitions, beat synchronization, smooth motion and aesthetic visuals.",
 
         video:
           "videos/Jisoo_Jennie_Edit.mp4"
       },
 
+
       {
         id: 6,
 
-        title: "V",
+        title:
+          "V",
 
-        category: "K-Pop / Cinematic Edit",
+        category:
+          "K-Pop / Cinematic Edit",
 
         description:
-          "A cinematic visual edit featuring V, focused on atmosphere, clean transitions, music synchronization, visual effects, and smooth pacing. The edit combines aesthetic visuals and timing to create an engaging short-form experience.",
+          "A cinematic visual edit featuring V, focused on atmosphere, clean transitions, music synchronization, visual effects and smooth pacing.",
 
         video:
           "videos/v-edit.mp4"
@@ -2702,87 +2926,101 @@
 
 
     /* =========================================================
-       CREATE PORTFOLIO
+       PORTFOLIO CARDS
     ========================================================== */
 
     const portfolioGrid =
-      document.getElementById("portfolioGrid");
+      document.getElementById(
+        "portfolioGrid"
+      );
 
 
-    projects.forEach((project) => {
+    projects.forEach(
+      function(project) {
 
-      const card =
-        document.createElement("article");
+        const card =
+          document.createElement("article");
 
-      card.className = "project reveal";
-
-
-      card.innerHTML = `
-
-        <div
-          class="video-container"
-          onclick="openModal(${project.id})"
-          role="button"
-          tabindex="0"
-          aria-label="Open ${project.title}"
-        >
-
-          <video
-            src="${project.video}"
-            muted
-            playsinline
-            preload="metadata"
-            onmouseenter="previewVideo(this)"
-            onmouseleave="stopPreview(this)"
-          ></video>
-
-          <div class="video-overlay"></div>
-
-          <span class="project-number">
-            0${project.id}
-          </span>
-
-          <span class="play">
-            ▶
-          </span>
-
-          <span class="view">
-            VIEW EDIT ↗
-          </span>
-
-        </div>
+        card.className =
+          "project reveal";
 
 
-        <div class="project-info">
+        card.innerHTML = `
 
-          <div class="project-category">
-            ${project.category}
+          <div
+            class="video-container"
+            onclick="openModal(${project.id})"
+            role="button"
+            tabindex="0"
+            aria-label="Open ${project.title}"
+          >
+
+            <video
+              src="${project.video}"
+              muted
+              playsinline
+              preload="metadata"
+              onmouseenter="previewVideo(this)"
+              onmouseleave="stopPreview(this)"
+            ></video>
+
+            <div class="video-overlay"></div>
+
+            <span class="project-number">
+              0${project.id}
+            </span>
+
+            <span class="play">
+              ▶
+            </span>
+
+            <span class="view">
+              VIEW EDIT ↗
+            </span>
+
           </div>
 
-          <h3 class="project-title">
-            ${project.title}
-          </h3>
 
-          <p class="project-description">
-            ${project.description}
-          </p>
+          <div class="project-info">
 
-          <button
-            class="open-project"
-            onclick="openModal(${project.id})"
-          >
-            OPEN PROJECT
-            <span>↗</span>
-          </button>
+            <div class="project-category">
+              ${project.category}
+            </div>
 
-        </div>
+            <h3 class="project-title">
+              ${project.title}
+            </h3>
 
-      `;
+            <p class="project-description">
+              ${project.description}
+            </p>
+
+            <button
+              class="open-project"
+              onclick="openModal(${project.id})"
+            >
+              OPEN PROJECT
+              <span>↗</span>
+            </button>
+
+          </div>
+
+        `;
 
 
-      portfolioGrid.appendChild(card);
+        portfolioGrid.appendChild(card);
 
-    });
+        setTimeout(
+          function() {
+
+            revealObserver.observe(card);
+
+          },
+          50
+        );
+
+      }
+    );
 
 
     /* =========================================================
@@ -2791,7 +3029,9 @@
 
     function previewVideo(video) {
 
-      video.play().catch(() => {});
+      video.play().catch(
+        function() {}
+      );
 
     }
 
@@ -2810,27 +3050,42 @@
     ========================================================== */
 
     const modal =
-      document.getElementById("videoModal");
+      document.getElementById(
+        "videoModal"
+      );
 
     const modalVideo =
-      document.getElementById("modalVideo");
+      document.getElementById(
+        "modalVideo"
+      );
 
     const modalTitle =
-      document.getElementById("modalTitle");
+      document.getElementById(
+        "modalTitle"
+      );
 
     const modalCategory =
-      document.getElementById("modalCategory");
+      document.getElementById(
+        "modalCategory"
+      );
 
     const modalDescription =
-      document.getElementById("modalDescription");
+      document.getElementById(
+        "modalDescription"
+      );
 
 
     function openModal(id) {
 
       const project =
         projects.find(
-          (item) => item.id === id
+          function(item) {
+
+            return item.id === id;
+
+          }
         );
+
 
       if (!project) return;
 
@@ -2848,7 +3103,9 @@
         project.description;
 
 
-      modal.classList.add("active");
+      modal.classList.add(
+        "active"
+      );
 
       document.body.style.overflow =
         "hidden";
@@ -2860,11 +3117,15 @@
 
       modalVideo.pause();
 
-      modalVideo.removeAttribute("src");
+      modalVideo.removeAttribute(
+        "src"
+      );
 
       modalVideo.load();
 
-      modal.classList.remove("active");
+      modal.classList.remove(
+        "active"
+      );
 
       document.body.style.overflow =
         "";
@@ -2872,9 +3133,13 @@
     }
 
 
-    function closeModalBackground(event) {
+    function closeModalBackground(
+      event
+    ) {
 
-      if (event.target === modal) {
+      if (
+        event.target === modal
+      ) {
 
         closeModal();
 
@@ -2885,11 +3150,13 @@
 
     document.addEventListener(
       "keydown",
-      function (event) {
+      function(event) {
 
         if (
           event.key === "Escape" &&
-          modal.classList.contains("active")
+          modal.classList.contains(
+            "active"
+          )
         ) {
 
           closeModal();
@@ -2901,13 +3168,14 @@
 
 
     /* =========================================================
-       SMOOTH NAVIGATION
+       NAVIGATION
     ========================================================== */
 
     function scrollToSection(id) {
 
       const section =
         document.getElementById(id);
+
 
       if (!section) return;
 
@@ -2927,22 +3195,25 @@
     ========================================================== */
 
     const navLinks =
-      document.getElementById("navLinks");
-
-    const menuButton =
-      document.getElementById("menuButton");
+      document.getElementById(
+        "navLinks"
+      );
 
 
     function toggleMenu() {
 
-      navLinks.classList.toggle("open");
+      navLinks.classList.toggle(
+        "open"
+      );
 
     }
 
 
     function closeMobileMenu() {
 
-      navLinks.classList.remove("open");
+      navLinks.classList.remove(
+        "open"
+      );
 
     }
 
@@ -2952,20 +3223,28 @@
     ========================================================== */
 
     const navbar =
-      document.getElementById("navbar");
+      document.getElementById(
+        "navbar"
+      );
 
 
     window.addEventListener(
       "scroll",
-      function () {
+      function() {
 
-        if (window.scrollY > 30) {
+        if (
+          window.scrollY > 30
+        ) {
 
-          navbar.classList.add("scrolled");
+          navbar.classList.add(
+            "scrolled"
+          );
 
         } else {
 
-          navbar.classList.remove("scrolled");
+          navbar.classList.remove(
+            "scrolled"
+          );
 
         }
 
@@ -2977,17 +3256,26 @@
 
 
     /* =========================================================
-       STAR GENERATOR
+       STARS
     ========================================================== */
 
     const stars =
-      document.getElementById("stars");
+      document.getElementById(
+        "stars"
+      );
 
 
-    for (let i = 0; i < 80; i++) {
+    for (
+      let i = 0;
+      i < 75;
+      i++
+    ) {
 
       const star =
-        document.createElement("div");
+        document.createElement(
+          "div"
+        );
+
 
       star.className =
         i % 10 === 0
@@ -2996,18 +3284,24 @@
 
 
       star.style.left =
-        Math.random() * 100 + "%";
+        Math.random() * 100 +
+        "%";
+
 
       star.style.top =
-        Math.random() * 100 + "%";
+        Math.random() * 100 +
+        "%";
 
 
       star.style.animationDelay =
-        Math.random() * 5 + "s";
+        Math.random() * 5 +
+        "s";
 
 
       star.style.animationDuration =
-        3 + Math.random() * 5 + "s";
+        3 +
+        Math.random() * 5 +
+        "s";
 
 
       stars.appendChild(star);
@@ -3021,12 +3315,14 @@
 
     const revealObserver =
       new IntersectionObserver(
-        function (entries) {
+        function(entries) {
 
           entries.forEach(
-            function (entry) {
+            function(entry) {
 
-              if (entry.isIntersecting) {
+              if (
+                entry.isIntersecting
+              ) {
 
                 entry.target.classList.add(
                   "visible"
@@ -3043,21 +3339,24 @@
 
         },
         {
-          threshold: 0.12
+          threshold: 0.08
         }
       );
 
 
     document
-      .querySelectorAll(".reveal")
+      .querySelectorAll(
+        ".reveal"
+      )
       .forEach(
-        function (element) {
+        function(element) {
 
-          revealObserver.observe(element);
+          revealObserver.observe(
+            element
+          );
 
         }
       );
-
 
   </script>
 
