@@ -1,3364 +1,2537 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="description"
-    content="Lohitha — Video Editor. Visual stories, cinematic edits, anime edits, K-pop edits and short-form content."
-  >
+<title>LS — Video Editor</title>
 
-  <meta name="theme-color" content="#050507">
+<style>
 
-  <title>LS — Visual Stories | Video Editor</title>
+/* =========================
+   FONT
+========================= */
 
-  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
 
-    /* =========================================================
-       RESET
-    ========================================================= */
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050507;
+    color:#f5f3f8;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    font-size:10px;
+}
+
+::selection{
+    background:#8d62d8;
+    color:white;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+}
+
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-5;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.glow{
+    position:absolute;
+    width:450px;
+    height:450px;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:.08;
+}
+
+.glow.one{
+    top:-200px;
+    right:-120px;
+    background:#9b68e8;
+}
+
+.glow.two{
+    bottom:-220px;
+    left:-180px;
+    background:#4258a5;
+}
+
+.stars{
+    position:absolute;
+    inset:0;
+}
+
+.star{
+    position:absolute;
+    width:1px;
+    height:1px;
+    border-radius:50%;
+    background:white;
+    opacity:.2;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:fixed;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:min(94%,1150px);
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    z-index:100;
+
+    transition:.3s ease;
+}
+
+.navbar.scrolled{
+    top:12px;
+    height:56px;
+
+    padding:0 15px;
+
+    background:rgba(8,8,11,.78);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+}
+
+.logo{
+    width:36px;
+    height:36px;
+
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:9px;
+
+    background:transparent;
+    color:white;
+
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:-1px;
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+}
+
+.nav-links button{
+    border:none;
+    background:none;
+
+    color:#77727d;
+
+    font-size:8px;
+    font-weight:500;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+
+    transition:.25s;
+}
+
+.nav-links button:hover{
+    color:white;
+}
+
+.menu{
+    display:none;
+
+    width:36px;
+    height:36px;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:9px;
+
+    background:transparent;
+}
+
+.menu span{
+    display:block;
+    width:15px;
+    height:1px;
+    margin:4px auto;
+    background:#ddd;
+}
+
+
+/* =========================
+   COMMON
+========================= */
+
+.container{
+    width:min(92%,1100px);
+    margin:auto;
+}
+
+.section{
+    padding:105px 0;
+}
+
+.section-head{
+    display:flex;
+    gap:15px;
+    margin-bottom:45px;
+}
+
+.section-number{
+    color:#8f67ca;
+    font-size:7px;
+    letter-spacing:.15em;
+    padding-top:5px;
+}
+
+.eyebrow{
+    color:#77717d;
+    font-size:7px;
+    font-weight:500;
+    letter-spacing:.22em;
+    margin-bottom:11px;
+}
+
+.section-head h2{
+    font-family:'Inter',sans-serif;
+    font-size:clamp(1.5rem,3.2vw,2.3rem);
+    font-weight:500;
+    letter-spacing:-.045em;
+}
+
+.section-description{
+    max-width:500px;
+    margin-top:12px;
+    color:#77727d;
+    font-size:9px;
+    line-height:1.8;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    padding-top:20px;
+}
+
+.hero-logo{
+    width:40px;
+    height:40px;
+
+    margin:0 auto 24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.17);
+    border-radius:10px;
+
+    transform:rotate(45deg);
+}
+
+.hero-logo span{
+    transform:rotate(-45deg);
+
+    font-size:11px;
+    font-weight:500;
+    letter-spacing:-2px;
+}
+
+.hero h1{
+    font-family:'Inter',sans-serif;
+
+    font-size:clamp(2rem,4.5vw,3.4rem);
+
+    line-height:1;
+
+    font-weight:500;
+
+    letter-spacing:-.055em;
+
+    text-transform:uppercase;
+}
+
+.hero h1 .outline{
+    display:block;
+
+    margin-top:7px;
+
+    color:transparent;
+
+    -webkit-text-stroke:.55px rgba(255,255,255,.40);
+
+    font-size:.48em;
+
+    font-weight:400;
+
+    letter-spacing:.045em;
+}
+
+.hero-role{
+    width:max-content;
+
+    margin:17px auto 0;
+
+    padding-bottom:8px;
+
+    position:relative;
+
+    color:#aaa5b0;
+
+    font-size:7px;
+
+    font-weight:500;
+
+    letter-spacing:.28em;
+}
+
+.hero-role::after{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:1px;
+
+    background:linear-gradient(
+        90deg,
+        transparent,
+        #8e62d1,
+        transparent
+    );
+}
+
+.hero-text{
+    max-width:370px;
+
+    margin:16px auto 0;
+
+    color:#77727d;
+
+    font-size:9px;
+
+    line-height:1.7;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+
+    margin-top:25px;
+}
+
+.btn{
+    min-height:40px;
+
+    padding:0 18px;
+
+    border-radius:999px;
+
+    font-size:7px;
+    font-weight:600;
+
+    letter-spacing:.13em;
+
+    transition:.3s;
+}
+
+.primary{
+    background:#f2eff5;
+    color:#09080b;
+
+    border:1px solid #f2eff5;
+}
+
+.secondary{
+    background:rgba(255,255,255,.025);
+    color:#ddd9e3;
+
+    border:1px solid rgba(255,255,255,.11);
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.hero-bottom{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:25px;
+
+    display:flex;
+    justify-content:space-between;
+
+    color:#55515a;
+
+    font-size:6px;
+    letter-spacing:.18em;
+}
+
+.hero-bottom span{
+    color:#8060b8;
+}
+
+
+/* =========================
+   ABOUT
+========================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:80px;
+    align-items:center;
+}
+
+.about-text{
+    color:#bcb7c2;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:clamp(1.05rem,2vw,1.4rem);
+
+    font-weight:400;
+
+    line-height:1.6;
+
+    letter-spacing:-.02em;
+}
+
+.about-visual{
+    width:270px;
+    aspect-ratio:1;
+
+    margin:auto;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.circle{
+    position:absolute;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.circle.one{
+    width:90%;
+    height:90%;
+    border-left-color:#875ac9;
+    animation:rotate 20s linear infinite;
+}
+
+.circle.two{
+    width:63%;
+    height:63%;
+    border-right-color:#5367a5;
+    animation:rotate 15s linear infinite reverse;
+}
+
+.circle.three{
+    width:36%;
+    height:36%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:radial-gradient(
+        circle,
+        rgba(135,86,210,.2),
+        #08070b 70%
+    );
+
+    font-size:17px;
+    font-weight:500;
+    letter-spacing:-3px;
+}
+
+@keyframes rotate{
+    to{
+        transform:rotate(360deg);
     }
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
 
-    body {
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
+/* =========================
+   PORTFOLIO
+========================= */
 
-      background: #050507;
-      color: #f4f2f7;
-      overflow-x: hidden;
-    }
+.portfolio-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:55px 25px;
+}
 
-    body::selection {
-      background: rgba(155, 114, 255, 0.4);
-      color: white;
-    }
+.project-video{
+    position:relative;
 
-    button {
-      font: inherit;
-      cursor: pointer;
-    }
+    aspect-ratio:16/9;
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    overflow:hidden;
 
-    /* =========================================================
-       VARIABLES
-    ========================================================= */
+    background:#08070b;
 
-    :root {
-      --bg: #050507;
-      --bg-soft: #08070c;
+    border:1px solid rgba(255,255,255,.09);
 
-      --white: #f5f3f8;
-      --text: #d9d5df;
+    cursor:pointer;
+}
 
-      --muted: #918b98;
-      --muted-dark: #69636f;
+.project-video video{
+    width:100%;
+    height:100%;
 
-      --purple: #9b72ff;
-      --purple-dark: #65449e;
+    object-fit:cover;
 
-      --border: rgba(255, 255, 255, 0.10);
-      --border-light: rgba(255, 255, 255, 0.18);
+    display:block;
 
-      --max-width: 1180px;
-    }
+    transition:.6s;
+}
 
-    /* =========================================================
-       BACKGROUND
-    ========================================================= */
+.project-video:hover video{
+    transform:scale(1.04);
+    filter:brightness(.62);
+}
 
-    body::before {
-      content: "";
+.video-shade{
+    position:absolute;
+    inset:0;
 
-      position: fixed;
-      inset: 0;
+    background:linear-gradient(
+        180deg,
+        transparent 45%,
+        rgba(0,0,0,.7)
+    );
 
-      pointer-events: none;
-      z-index: -5;
+    pointer-events:none;
+}
 
-      background:
+.project-number{
+    position:absolute;
+    top:13px;
+    left:13px;
+
+    font-size:7px;
+    letter-spacing:.15em;
+}
+
+.play{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    width:48px;
+    height:48px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.35);
+    border-radius:50%;
+
+    background:rgba(0,0,0,.25);
+
+    font-size:9px;
+
+    transition:.3s;
+}
+
+.project-video:hover .play{
+    background:white;
+    color:#08070b;
+}
+
+.project-info{
+    padding-top:15px;
+}
+
+.project-category{
+    color:#8e69c7;
+
+    font-size:6px;
+    font-weight:600;
+    letter-spacing:.18em;
+
+    text-transform:uppercase;
+}
+
+.project-title{
+    margin-top:7px;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    letter-spacing:-.025em;
+}
+
+.project-description{
+    margin-top:8px;
+
+    color:#716c76;
+
+    font-size:8px;
+
+    line-height:1.75;
+}
+
+
+/* =========================
+   SERVICES
+========================= */
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.service{
+    min-height:235px;
+
+    padding:19px;
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+}
+
+.service:first-child{
+    border-left:1px solid rgba(255,255,255,.08);
+}
+
+.service:hover{
+    background:rgba(142,98,209,.035);
+}
+
+.service-number{
+    color:#6f6876;
+
+    font-size:7px;
+}
+
+.service h3{
+    margin-top:75px;
+
+    font-family:'Inter',sans-serif;
+
+    font-size:12px;
+    font-weight:500;
+}
+
+.service p{
+    margin-top:9px;
+
+    color:#706b75;
+
+    font-size:8px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   STYLE TAGS
+========================= */
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+
+.tag{
+    padding:11px 14px;
+
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:999px;
+
+    color:#aaa4af;
+
+    font-size:8px;
+
+    transition:.25s;
+}
+
+.tag:hover{
+    border-color:#7652a8;
+    color:white;
+}
+
+
+/* =========================
+   WORKFLOW
+========================= */
+
+.workflow{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:30px;
+}
+
+.step-number{
+    width:36px;
+    height:36px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid rgba(255,255,255,.09);
+    border-radius:50%;
+
+    color:#8b65c3;
+
+    font-size:7px;
+}
+
+.step h3{
+    margin-top:17px;
+
+    font-size:8px;
+
+    letter-spacing:.18em;
+}
+
+.step p{
+    margin-top:8px;
+
+    color:#706b75;
+
+    font-size:8px;
+
+    line-height:1.7;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+    width:min(94%,1250px);
+
+    min-height:430px;
+
+    margin:20px auto 95px;
+
+    position:relative;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:
         radial-gradient(
-          circle at 75% 5%,
-          rgba(130, 80, 215, 0.11),
-          transparent 30%
+            circle at center,
+            rgba(137,85,215,.10),
+            transparent 38%
         ),
-        radial-gradient(
-          circle at 5% 75%,
-          rgba(65, 80, 150, 0.06),
-          transparent 30%
-        ),
-        #050507;
-    }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-
-      pointer-events: none;
-      z-index: 1000;
-
-      opacity: 0.018;
-
-      background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='.35'/%3E%3C/svg%3E");
-    }
-
-    .ambient {
-      position: fixed;
-
-      width: 480px;
-      height: 480px;
-
-      border-radius: 50%;
-
-      filter: blur(120px);
-
-      opacity: 0.06;
-
-      pointer-events: none;
-
-      z-index: -2;
-    }
-
-    .ambient-one {
-      top: 0;
-      right: -250px;
-
-      background: #8d5ce5;
-    }
-
-    .ambient-two {
-      bottom: -220px;
-      left: -260px;
-
-      background: #4054a0;
-    }
-
-    /* =========================================================
-       STARS
-    ========================================================= */
-
-    .stars {
-      position: fixed;
-      inset: 0;
-
-      overflow: hidden;
-
-      pointer-events: none;
-
-      z-index: -1;
-    }
-
-    .star {
-      position: absolute;
-
-      width: 1px;
-      height: 1px;
-
-      border-radius: 50%;
-
-      background: white;
-
-      opacity: 0.2;
-
-      animation:
-        twinkle 4s ease-in-out infinite;
-    }
-
-    .star.big {
-      width: 2px;
-      height: 2px;
-    }
-
-    @keyframes twinkle {
-      0%,
-      100% {
-        opacity: 0.1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.6;
-        transform: scale(1.8);
-      }
-    }
-
-    /* =========================================================
-       NAVBAR
-    ========================================================= */
-
-    .navbar {
-      position: fixed;
-
-      top: 0;
-      left: 50%;
-
-      transform: translateX(-50%);
-
-      width: min(
-        calc(100% - 50px),
-        var(--max-width)
-      );
-
-      height: 76px;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      z-index: 100;
-
-      transition: 0.3s ease;
-    }
-
-    .navbar.scrolled {
-      top: 12px;
-
-      height: 62px;
-
-      padding: 0 15px;
-
-      background: rgba(8, 8, 11, 0.74);
-
-      backdrop-filter: blur(22px);
-
-      border: 1px solid var(--border);
-
-      border-radius: 17px;
-
-      box-shadow:
-        0 20px 70px rgba(0, 0, 0, 0.3);
-    }
-
-    /* =========================================================
-       LOGO
-    ========================================================= */
-
-    .logo {
-      width: 44px;
-      height: 44px;
-
-      position: relative;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: none;
-
-      background: transparent;
-
-      color: white;
-
-      font-size: 15px;
-
-      font-weight: 800;
-
-      letter-spacing: -5px;
-
-      padding-right: 5px;
-    }
-
-    .logo::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 4px;
-
-      border: 1px solid rgba(255, 255, 255, 0.22);
-
-      border-radius: 11px;
-
-      transform: rotate(45deg);
-
-      transition: 0.3s ease;
-    }
-
-    .logo:hover::before {
-      border-color: rgba(155, 114, 255, 0.8);
-
-      box-shadow:
-        0 0 20px rgba(155, 114, 255, 0.2);
-    }
-
-    /* =========================================================
-       NAV LINKS
-    ========================================================= */
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-
-      gap: 32px;
-    }
-
-    .nav-links button {
-      border: none;
-
-      background: transparent;
-
-      color: #9e98a5;
-
-      font-size: 10px;
-
-      font-weight: 600;
-
-      letter-spacing: 0.13em;
-
-      text-transform: uppercase;
-
-      transition: 0.25s ease;
-    }
-
-    .nav-links button:hover {
-      color: white;
-    }
-
-    /* MOBILE MENU */
-
-    .menu {
-      display: none;
-
-      width: 40px;
-      height: 40px;
-
-      border: 1px solid var(--border);
-
-      border-radius: 11px;
-
-      background: rgba(255, 255, 255, 0.03);
-    }
-
-    .menu span {
-      display: block;
-
-      width: 18px;
-      height: 1px;
-
-      margin: 4px auto;
-
-      background: white;
-    }
-
-    /* =========================================================
-       COMMON
-    ========================================================= */
-
-    .container {
-      width: min(
-        calc(100% - 50px),
-        var(--max-width)
-      );
-
-      margin: auto;
-    }
-
-    .section {
-      padding: 125px 0;
-    }
-
-    .section-title {
-      display: grid;
-
-      grid-template-columns: 40px 1fr;
-
-      gap: 14px;
-
-      margin-bottom: 52px;
-    }
-
-    .section-number {
-      padding-top: 5px;
-
-      color: #8f6bd0;
-
-      font-size: 9px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.18em;
-    }
-
-    .eyebrow {
-      margin-bottom: 13px;
-
-      color: #817b88;
-
-      font-size: 9px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.24em;
-    }
-
-    .section-title h2 {
-      font-size: clamp(2rem, 4.5vw, 3.5rem);
-
-      line-height: 0.95;
-
-      font-weight: 700;
-
-      letter-spacing: -0.055em;
-    }
-
-    .section-description {
-      max-width: 580px;
-
-      margin-top: 17px;
-
-      color: var(--muted);
-
-      font-size: 13px;
-
-      line-height: 1.8;
-    }
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-
-    .hero {
-      min-height: 100vh;
-
-      position: relative;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      text-align: center;
-
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-
-      width: 620px;
-      height: 620px;
-
-      border-radius: 50%;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(142, 88, 226, 0.12),
-          transparent 67%
-        );
-    }
-
-    .hero-content {
-      position: relative;
-
-      z-index: 2;
-
-      padding-top: 35px;
-    }
-
-    .hero-logo {
-      width: 56px;
-      height: 56px;
-
-      margin: 0 auto 30px;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      border: 1px solid rgba(255, 255, 255, 0.2);
-
-      border-radius: 15px;
-
-      transform: rotate(45deg);
-    }
-
-    .hero-logo span {
-      transform: rotate(-45deg);
-
-      font-size: 17px;
-
-      font-weight: 800;
-
-      letter-spacing: -6px;
-
-      padding-right: 6px;
-    }
-
-    .hero h1 {
-      font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-
-      font-size: clamp(3.5rem, 8vw, 7.2rem);
-
-      line-height: 0.9;
-
-      letter-spacing: -0.075em;
-
-      font-weight: 750;
-
-      animation:
-        heroText 0.9s 0.1s both;
-    }
-
-    .hero h1 .outline {
-      display: block;
-
-      margin-top: 10px;
-
-      color: transparent;
-
-      -webkit-text-stroke:
-        1px rgba(255, 255, 255, 0.46);
-
-      font-size: 0.58em;
-
-      letter-spacing: -0.045em;
-    }
-
-    @keyframes heroText {
-      from {
-        opacity: 0;
-
-        transform:
-          translateY(20px);
-      }
-
-      to {
-        opacity: 1;
-
-        transform:
-          translateY(0);
-      }
-    }
+        #08070b;
+}
 
-    .hero-role {
-      position: relative;
+.cta h2{
+    font-family:'Inter',sans-serif;
 
-      width: fit-content;
+    font-size:clamp(2.2rem,5.5vw,4.2rem);
 
-      margin: 25px auto 0;
+    font-weight:400;
 
-      padding-bottom: 11px;
+    line-height:.95;
 
-      color: #d8d3df;
+    letter-spacing:-.06em;
+}
 
-      font-size: 10px;
+.cta .outline{
+    color:transparent;
+    -webkit-text-stroke:.6px rgba(255,255,255,.38);
+}
 
-      font-weight: 600;
+.cta-text{
+    max-width:480px;
 
-      letter-spacing: 0.34em;
+    margin-top:17px;
 
-      animation:
-        heroText 0.9s 0.25s both;
-    }
-
-    .hero-role::after {
-      content: "";
-
-      position: absolute;
-
-      left: 0;
-      right: 0;
-
-      bottom: 0;
-
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          var(--purple),
-          transparent
-        );
-    }
-
-    .hero-text {
-      max-width: 490px;
-
-      margin: 24px auto 0;
-
-      color: var(--muted);
-
-      font-size: 14px;
-
-      line-height: 1.8;
-
-      animation:
-        heroText 0.9s 0.4s both;
-    }
-
-    .hero-buttons {
-      display: flex;
-
-      justify-content: center;
-
-      gap: 10px;
-
-      margin-top: 30px;
-
-      animation:
-        heroText 0.9s 0.55s both;
-    }
-
-    .btn {
-      min-height: 47px;
-
-      padding: 0 21px;
-
-      border-radius: 999px;
-
-      border: 1px solid var(--border);
-
-      font-size: 9px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.12em;
-
-      transition: 0.3s ease;
-    }
-
-    .btn-primary {
-      background: #f4f1f7;
-
-      color: #08070a;
-
-      border-color: #f4f1f7;
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-2px);
-
-      box-shadow:
-        0 15px 35px rgba(255, 255, 255, 0.1);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.025);
-
-      color: white;
-    }
-
-    .btn-secondary:hover {
-      transform: translateY(-2px);
-
-      border-color:
-        rgba(155, 114, 255, 0.6);
-
-      background:
-        rgba(155, 114, 255, 0.07);
-    }
-
-    .btn span {
-      margin-left: 9px;
-    }
-
-    .hero-categories {
-      position: absolute;
-
-      left: 0;
-      bottom: 25px;
-
-      display: flex;
-
-      gap: 14px;
-
-      color: #625d68;
-
-      font-size: 7px;
-
-      letter-spacing: 0.19em;
-    }
-
-    .hero-categories span:not(:last-child)::after {
-      content: "•";
-
-      margin-left: 14px;
-
-      color: var(--purple);
-    }
-
-    .scroll {
-      position: absolute;
-
-      right: 0;
-      bottom: 25px;
-
-      color: #625d68;
-
-      font-size: 7px;
-
-      letter-spacing: 0.18em;
-    }
-
-    .scroll span {
-      color: #9a76d7;
-
-      margin-left: 7px;
-    }
-
-    /* =========================================================
-       ABOUT
-    ========================================================= */
-
-    .about-grid {
-      display: grid;
-
-      grid-template-columns:
-        1.15fr
-        0.85fr;
-
-      align-items: center;
-
-      gap: 8vw;
-    }
-
-    .about-text {
-      color: #d2ced8;
-
-      font-size:
-        clamp(1.25rem, 2.25vw, 1.9rem);
-
-      line-height: 1.55;
-
-      letter-spacing: -0.03em;
-    }
-
-    .about-visual {
-      width: min(100%, 390px);
-
-      aspect-ratio: 1;
-
-      position: relative;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      margin-left: auto;
-    }
-
-    .circle {
-      position: absolute;
-
-      border: 1px solid
-        rgba(255, 255, 255, 0.09);
-
-      border-radius: 50%;
-    }
-
-    .circle.one {
-      width: 82%;
-      height: 82%;
-
-      border-left-color:
-        var(--purple);
-
-      animation:
-        rotate 22s linear infinite;
-    }
-
-    .circle.two {
-      width: 58%;
-      height: 58%;
-
-      border-right-color:
-        #5369b0;
+    color:#77717d;
 
-      animation:
-        rotate 15s linear infinite reverse;
-    }
-
-    .circle.three {
-      width: 35%;
-      height: 35%;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(151, 105, 255, 0.23),
-          rgba(10, 9, 14, 0.95) 70%
-        );
-
-      border-color:
-        rgba(255, 255, 255, 0.15);
-
-      font-size: 25px;
-
-      font-weight: 800;
-
-      letter-spacing: -6px;
-
-      padding-right: 6px;
-    }
+    font-size:8px;
 
-    @keyframes rotate {
-      to {
-        transform: rotate(360deg);
-      }
-    }
+    line-height:1.8;
+}
 
-    .about-label {
-      position: absolute;
 
-      bottom: 4%;
+/* =========================
+   CONTACT
+========================= */
 
-      color: #716b78;
+.contact-box{
+    display:grid;
+    grid-template-columns:1fr 1fr;
 
-      font-size: 7px;
+    border:1px solid rgba(255,255,255,.08);
+}
 
-      letter-spacing: 0.18em;
-    }
+.contact-left,
+.contact-right{
+    padding:36px;
+}
 
-    /* =========================================================
-       PORTFOLIO
-    ========================================================= */
+.contact-right{
+    border-left:1px solid rgba(255,255,255,.08);
+}
 
-    .portfolio-grid {
-      display: grid;
+.contact-label{
+    color:#8d66c6;
 
-      grid-template-columns:
-        repeat(2, 1fr);
+    font-size:7px;
+    letter-spacing:.2em;
+}
 
-      gap: 75px 26px;
-    }
+.contact-left h3{
+    margin-top:32px;
 
-    .project {
-      min-width: 0;
-    }
+    font-family:'Inter',sans-serif;
 
-    .video-container {
-      position: relative;
+    font-size:23px;
 
-      width: 100%;
+    font-weight:400;
 
-      aspect-ratio: 16 / 9;
+    letter-spacing:-.04em;
+}
 
-      overflow: hidden;
+.contact-note{
+    max-width:380px;
 
-      background: #09080d;
+    margin-top:10px;
 
-      border:
-        1px solid var(--border);
+    color:#746e79;
 
-      cursor: pointer;
-    }
+    font-size:8px;
 
-    .video-container video {
-      width: 100%;
-      height: 100%;
+    line-height:1.8;
+}
 
-      display: block;
+.contact-details{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 
-      object-fit: cover;
+    height:100%;
+}
 
-      transition:
-        transform 0.7s ease,
-        filter 0.7s ease;
-    }
+.contact-detail{
+    padding:13px 0;
 
-    .video-container:hover video {
-      transform: scale(1.045);
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
 
-      filter: brightness(0.68);
-    }
+.contact-detail:last-child{
+    border-bottom:none;
+}
 
-    .video-overlay {
-      position: absolute;
+.contact-detail span{
+    display:block;
 
-      inset: 0;
+    margin-bottom:6px;
 
-      background:
-        linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0.2),
-          transparent 45%,
-          rgba(0, 0, 0, 0.7)
-        );
+    color:#625d67;
 
-      pointer-events: none;
-    }
+    font-size:6px;
 
-    .project-number {
-      position: absolute;
+    letter-spacing:.18em;
+}
 
-      top: 16px;
-      left: 16px;
+.contact-detail a,
+.contact-detail strong{
+    color:#c5c0cb;
 
-      font-size: 9px;
+    font-size:10px;
 
-      font-weight: 700;
+    font-weight:400;
 
-      letter-spacing: 0.18em;
-    }
+    transition:.25s;
+}
 
-    .play {
-      position: absolute;
+.contact-detail a:hover{
+    color:#a47be2;
+}
 
-      top: 50%;
-      left: 50%;
 
-      width: 58px;
-      height: 58px;
+/* =========================
+   FOOTER
+========================= */
 
-      display: flex;
+footer{
+    width:min(92%,1100px);
 
-      align-items: center;
-      justify-content: center;
+    margin:auto;
 
-      padding-left: 3px;
+    padding:28px 0 38px;
 
-      border-radius: 50%;
+    border-top:1px solid rgba(255,255,255,.07);
 
-      border:
-        1px solid rgba(255, 255, 255, 0.42);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
 
-      background:
-        rgba(5, 5, 8, 0.3);
+.footer-logo{
+    width:32px;
+    height:32px;
 
-      backdrop-filter: blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-      transform:
-        translate(-50%, -50%);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;
 
-      font-size: 12px;
+    font-size:9px;
+    letter-spacing:-1px;
+}
 
-      transition: 0.3s ease;
-    }
+.footer-text{
+    margin-left:10px;
+}
 
-    .video-container:hover .play {
-      background: white;
+.footer-text strong{
+    display:block;
 
-      color: black;
+    font-size:8px;
+    font-weight:500;
+}
 
-      transform:
-        translate(-50%, -50%)
-        scale(1.08);
-    }
+.footer-text span{
+    display:block;
 
-    .view {
-      position: absolute;
+    margin-top:3px;
 
-      right: 16px;
-      bottom: 15px;
+    color:#625d67;
 
-      font-size: 8px;
+    font-size:6px;
+    letter-spacing:.12em;
+}
 
-      letter-spacing: 0.14em;
-    }
+.footer-left{
+    display:flex;
+    align-items:center;
+}
 
-    .project-info {
-      padding-top: 19px;
-    }
+.copyright{
+    color:#5f5964;
+    font-size:6px;
+}
 
-    .project-category {
-      margin-bottom: 7px;
 
-      color: #9270c9;
+/* =========================
+   MODAL
+========================= */
 
-      font-size: 8px;
+.modal{
+    position:fixed;
+    inset:0;
 
-      font-weight: 700;
+    z-index:500;
 
-      letter-spacing: 0.16em;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 
-      text-transform: uppercase;
-    }
+    padding:20px;
 
-    .project-title {
-      font-size: 20px;
+    background:rgba(0,0,0,.88);
 
-      font-weight: 650;
+    backdrop-filter:blur(15px);
 
-      letter-spacing: -0.04em;
-    }
+    opacity:0;
+    visibility:hidden;
 
-    .project-description {
-      max-width: 680px;
+    transition:.3s;
+}
 
-      margin-top: 11px;
+.modal.active{
+    opacity:1;
+    visibility:visible;
+}
 
-      color: #85808c;
+.modal-content{
+    width:min(950px,100%);
 
-      font-size: 11px;
+    background:#09080d;
 
-      line-height: 1.75;
-    }
+    border:1px solid rgba(255,255,255,.09);
+}
 
-    .open-project {
-      margin-top: 13px;
+.modal video{
+    width:100%;
+    display:block;
+    max-height:70vh;
+    background:black;
+}
 
-      border: none;
+.modal-info{
+    padding:20px;
+}
 
-      background: transparent;
+.modal-info h2{
+    margin-top:5px;
 
-      color: #d5d0dc;
+    font-family:'Inter',sans-serif;
 
-      font-size: 8px;
+    font-size:20px;
+    font-weight:500;
+}
 
-      font-weight: 700;
+.modal-info p{
+    margin-top:8px;
 
-      letter-spacing: 0.14em;
-    }
+    color:#77717d;
 
-    .open-project span {
-      color: var(--purple);
+    font-size:8px;
+    line-height:1.7;
+}
 
-      margin-left: 6px;
-    }
+.close{
+    position:absolute;
 
-    /* =========================================================
-       SERVICES
-    ========================================================= */
+    top:25px;
+    right:25px;
 
-    .services-grid {
-      display: grid;
+    width:36px;
+    height:36px;
 
-      grid-template-columns:
-        repeat(5, 1fr);
+    border-radius:50%;
 
-      border-top:
-        1px solid var(--border);
+    border:1px solid rgba(255,255,255,.18);
 
-      border-bottom:
-        1px solid var(--border);
-    }
+    background:#111014;
 
-    .service {
-      min-height: 295px;
+    color:white;
 
-      padding: 20px;
+    font-size:19px;
 
-      position: relative;
+    z-index:10;
+}
 
-      border-right:
-        1px solid var(--border);
 
-      transition: 0.3s ease;
-    }
+/* =========================
+   RESPONSIVE
+========================= */
 
-    .service:first-child {
-      border-left:
-        1px solid var(--border);
-    }
+@media(max-width:900px){
 
-    .service:hover {
-      background:
-        linear-gradient(
-          180deg,
-          rgba(155, 114, 255, 0.06),
-          transparent
-        );
+    .services{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .service-number {
-      color: #716b78;
-
-      font-size: 8px;
-
-      letter-spacing: 0.18em;
+    .service{
+        border-bottom:1px solid rgba(255,255,255,.08);
     }
-
-    .service-arrow {
-      position: absolute;
 
-      top: 19px;
-      right: 19px;
-
-      color: #8d6bc7;
+    .workflow{
+        grid-template-columns:repeat(2,1fr);
+        gap:40px;
     }
-
-    .service h3 {
-      margin-top: 92px;
-
-      font-size: 15px;
 
-      font-weight: 650;
+}
 
-      letter-spacing: -0.02em;
-    }
 
-    .service p {
-      margin-top: 13px;
+@media(max-width:700px){
 
-      color: #85808c;
+    .nav-links{
+        position:absolute;
 
-      font-size: 10px;
+        top:62px;
+        left:0;
+        right:0;
 
-      line-height: 1.75;
-    }
+        display:none;
 
-    /* =========================================================
-       STYLE
-    ========================================================= */
+        flex-direction:column;
 
-    .style-tags {
-      display: flex;
+        padding:10px;
 
-      flex-wrap: wrap;
+        background:#0a090d;
 
-      gap: 10px;
+        border:1px solid rgba(255,255,255,.09);
+        border-radius:14px;
     }
-
-    .tag {
-      padding: 15px 18px;
 
-      border:
-        1px solid var(--border);
-
-      border-radius: 999px;
-
-      background:
-        rgba(255, 255, 255, 0.015);
-
-      color: #d3ced9;
-
-      font-size: 11px;
-
-      transition: 0.3s ease;
+    .nav-links.open{
+        display:flex;
     }
-
-    .tag span {
-      color: #8d6bc8;
 
-      margin-right: 11px;
-
-      font-size: 7px;
+    .nav-links button{
+        padding:12px;
+        text-align:left;
     }
-
-    .tag:hover {
-      transform: translateY(-2px);
-
-      border-color:
-        rgba(155, 114, 255, 0.5);
 
-      background:
-        rgba(155, 114, 255, 0.05);
+    .menu{
+        display:block;
     }
 
-    /* =========================================================
-       WORKFLOW
-    ========================================================= */
-
-    .workflow {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
+    .hero h1{
+        font-size:2.35rem;
     }
 
-    .step {
-      padding-right: 25px;
+    .hero h1 .outline{
+        font-size:.46em;
     }
-
-    .step-top {
-      display: flex;
 
-      align-items: center;
-
-      gap: 13px;
+    .hero-text{
+        max-width:290px;
     }
-
-    .step-number {
-      width: 42px;
-      height: 42px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 50%;
 
-      color: #9c78d9;
-
-      font-size: 8px;
+    .hero-buttons{
+        flex-direction:column;
+        width:270px;
+        margin-left:auto;
+        margin-right:auto;
     }
-
-    .step-line {
-      flex: 1;
-
-      height: 1px;
 
-      background:
-        var(--border);
+    .hero-bottom{
+        padding:0 15px;
     }
 
-    .step h3 {
-      margin-top: 22px;
-
-      font-size: 10px;
-
-      letter-spacing: 0.16em;
+    .about-grid{
+        grid-template-columns:1fr;
+        gap:50px;
     }
-
-    .step p {
-      max-width: 220px;
 
-      margin-top: 9px;
-
-      color: #85808c;
-
-      font-size: 10px;
-
-      line-height: 1.75;
+    .about-visual{
+        width:230px;
     }
-
-    /* =========================================================
-       CTA
-    ========================================================= */
-
-    .cta {
-      width: min(
-        calc(100% - 50px),
-        1380px
-      );
-
-      min-height: 560px;
 
-      margin: 25px auto 110px;
-
-      position: relative;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      flex-direction: column;
-
-      text-align: center;
-
-      overflow: hidden;
-
-      border:
-        1px solid var(--border);
-
-      background:
-        radial-gradient(
-          circle at 50% 45%,
-          rgba(130, 80, 215, 0.14),
-          transparent 33%
-        ),
-        #08070c;
+    .portfolio-grid{
+        grid-template-columns:1fr;
+        gap:45px;
     }
-
-    .cta::before {
-      content: "";
 
-      position: absolute;
-
-      inset: 0;
-
-      background:
-        repeating-radial-gradient(
-          circle at 50% 50%,
-          transparent 0 110px,
-          rgba(255, 255, 255, 0.018) 111px 112px
-        );
+    .services{
+        grid-template-columns:1fr;
     }
-
-    .cta > * {
-      position: relative;
 
-      z-index: 2;
+    .service{
+        min-height:200px;
+        border-left:1px solid rgba(255,255,255,.08);
     }
 
-    .cta h2 {
-      font-size:
-        clamp(3.2rem, 7vw, 7rem);
-
-      line-height: 0.85;
-
-      letter-spacing: -0.075em;
-
-      font-weight: 750;
+    .service h3{
+        margin-top:50px;
     }
 
-    .cta h2 .outline {
-      color: transparent;
-
-      -webkit-text-stroke:
-        1px rgba(255, 255, 255, 0.48);
+    .workflow{
+        grid-template-columns:1fr;
     }
-
-    .cta-description {
-      max-width: 570px;
-
-      margin-top: 25px;
 
-      color: #918b97;
-
-      font-size: 12px;
-
-      line-height: 1.8;
+    .contact-box{
+        grid-template-columns:1fr;
     }
-
-    /* =========================================================
-       CONTACT
-    ========================================================= */
-
-    .contact-box {
-      display: grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      border:
-        1px solid var(--border);
 
-      background:
-        rgba(255, 255, 255, 0.015);
+    .contact-right{
+        border-left:none;
+        border-top:1px solid rgba(255,255,255,.08);
     }
 
     .contact-left,
-    .contact-right {
-      padding: 42px;
+    .contact-right{
+        padding:25px 21px;
     }
 
-    .contact-right {
-      border-left:
-        1px solid var(--border);
+    .cta{
+        width:calc(100% - 30px);
+        min-height:410px;
     }
 
-    .contact-label {
-      color: #9270cc;
-
-      font-size: 8px;
-
-      font-weight: 700;
-
-      letter-spacing: 0.19em;
+    footer{
+        width:calc(100% - 30px);
+        flex-direction:column;
+        align-items:flex-start;
+        gap:20px;
     }
 
-    .contact-left h3 {
-      margin-top: 40px;
+}
 
-      font-size: 28px;
 
-      font-weight: 650;
+/* =========================
+   REVEAL
+========================= */
 
-      letter-spacing: -0.045em;
-    }
+.reveal{
+    opacity:0;
+    transform:translateY(20px);
 
-    .contact-note {
-      max-width: 390px;
+    transition:
+        opacity .7s ease,
+        transform .7s ease;
+}
 
-      margin-top: 11px;
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
 
-      color: #85808c;
-
-      font-size: 11px;
-
-      line-height: 1.8;
-    }
-
-    .contact-details {
-      display: grid;
-
-      gap: 4px;
-
-      align-content: center;
-
-      height: 100%;
-    }
-
-    .contact-detail {
-      padding: 15px 0;
-
-      border-bottom:
-        1px solid rgba(255, 255, 255, 0.07);
-    }
-
-    .contact-detail:last-child {
-      border-bottom: none;
-    }
-
-    .contact-detail span {
-      display: block;
-
-      margin-bottom: 7px;
-
-      color: #77717f;
-
-      font-size: 7px;
-
-      font-weight: 600;
-
-      letter-spacing: 0.18em;
-    }
-
-    .contact-detail strong {
-      color: #ddd9e5;
-
-      font-size: 13px;
-
-      font-weight: 450;
-
-      letter-spacing: 0.01em;
-    }
-
-    .contact-detail strong:hover {
-      color: #a783e7;
-    }
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-
-    footer {
-      width: min(
-        calc(100% - 50px),
-        var(--max-width)
-      );
-
-      margin: auto;
-
-      padding: 35px 0 45px;
-
-      border-top:
-        1px solid var(--border);
-
-      display: flex;
-
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 25px;
-    }
-
-    .footer-brand {
-      display: flex;
-
-      align-items: center;
-
-      gap: 13px;
-    }
-
-    .footer-logo {
-      width: 38px;
-      height: 38px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border:
-        1px solid var(--border);
-
-      border-radius: 10px;
-
-      font-size: 12px;
-
-      font-weight: 800;
-
-      letter-spacing: -5px;
-
-      padding-right: 5px;
-    }
-
-    .footer-name strong {
-      display: block;
-
-      font-size: 10px;
-
-      font-weight: 650;
-
-      letter-spacing: 0.07em;
-    }
-
-    .footer-name span {
-      display: block;
-
-      margin-top: 4px;
-
-      color: #716b78;
-
-      font-size: 7px;
-
-      letter-spacing: 0.17em;
-    }
-
-    .copyright {
-      color: #625d68;
-
-      font-size: 8px;
-    }
-
-    /* =========================================================
-       MODAL
-    ========================================================= */
-
-    .modal {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 500;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 18px;
-
-      background:
-        rgba(2, 2, 4, 0.88);
-
-      backdrop-filter: blur(17px);
-
-      opacity: 0;
-
-      visibility: hidden;
-
-      transition: 0.3s ease;
-    }
-
-    .modal.active {
-      opacity: 1;
-
-      visibility: visible;
-    }
-
-    .modal-content {
-      width: min(
-        1000px,
-        100%
-      );
-
-      max-height:
-        calc(100vh - 36px);
-
-      overflow-y: auto;
-
-      position: relative;
-
-      background: #09080d;
-
-      border:
-        1px solid var(--border);
-
-      box-shadow:
-        0 40px 120px rgba(0, 0, 0, 0.7);
-    }
-
-    .modal-video {
-      width: 100%;
-
-      max-height: 65vh;
-
-      display: block;
-
-      background: black;
-    }
-
-    .close-modal {
-      position: absolute;
-
-      top: 11px;
-      right: 11px;
-
-      z-index: 5;
-
-      width: 40px;
-      height: 40px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      border-radius: 50%;
-
-      border:
-        1px solid rgba(255, 255, 255, 0.22);
-
-      background:
-        rgba(0, 0, 0, 0.55);
-
-      color: white;
-
-      font-size: 22px;
-    }
-
-    .modal-info {
-      padding: 25px 30px 30px;
-    }
-
-    .modal-info h2 {
-      margin-top: 3px;
-
-      font-size: 27px;
-
-      font-weight: 650;
-
-      letter-spacing: -0.04em;
-    }
-
-    .modal-info p:last-child {
-      max-width: 780px;
-
-      margin-top: 11px;
-
-      color: #918b97;
-
-      font-size: 11px;
-
-      line-height: 1.8;
-    }
-
-    /* =========================================================
-       REVEAL
-    ========================================================= */
-
-    .reveal {
-      opacity: 0;
-
-      transform:
-        translateY(25px);
-
-      transition:
-        opacity 0.8s ease,
-        transform 0.8s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-
-      transform:
-        translateY(0);
-    }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media (max-width: 1050px) {
-
-      .services-grid {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-      .service {
-        border-bottom:
-          1px solid var(--border);
-      }
-
-      .service:nth-child(odd) {
-        border-left:
-          1px solid var(--border);
-      }
-
-      .workflow {
-        grid-template-columns:
-          repeat(2, 1fr);
-
-        gap: 45px 0;
-      }
-
-    }
-
-    @media (max-width: 760px) {
-
-      .container {
-        width:
-          calc(100% - 30px);
-      }
-
-      .navbar {
-        width:
-          calc(100% - 30px);
-      }
-
-      .navbar.scrolled {
-        top: 8px;
-      }
-
-      .nav-links {
-        position: absolute;
-
-        left: 0;
-        right: 0;
-
-        top:
-          calc(100% + 8px);
-
-        padding: 8px;
-
-        display: grid;
-
-        gap: 2px;
-
-        background:
-          rgba(8, 8, 11, 0.96);
-
-        border:
-          1px solid var(--border);
-
-        border-radius: 16px;
-
-        backdrop-filter: blur(20px);
-
-        opacity: 0;
-
-        pointer-events: none;
-
-        transform:
-          translateY(-8px);
-
-        transition: 0.25s ease;
-      }
-
-      .nav-links.open {
-        opacity: 1;
-
-        pointer-events: auto;
-
-        transform:
-          translateY(0);
-      }
-
-      .nav-links button {
-        width: 100%;
-
-        padding: 14px;
-
-        text-align: left;
-
-        border-radius: 9px;
-      }
-
-      .nav-links button:hover {
-        background:
-          rgba(255, 255, 255, 0.04);
-      }
-
-      .menu {
-        display: block;
-      }
-
-      .hero h1 {
-        font-size:
-          clamp(3.3rem, 16vw, 5.5rem);
-      }
-
-      .hero h1 .outline {
-        font-size: 0.5em;
-      }
-
-      .hero-role {
-        font-size: 9px;
-
-        letter-spacing: 0.27em;
-      }
-
-      .hero-text {
-        max-width: 320px;
-
-        font-size: 12px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-
-        width:
-          min(320px, 100%);
-
-        margin-inline: auto;
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .hero-categories {
-        display: none;
-      }
-
-      .scroll {
-        right: 0;
-        bottom: 18px;
-      }
-
-      .section {
-        padding: 90px 0;
-      }
-
-      .section-title {
-        grid-template-columns:
-          32px 1fr;
-      }
-
-      .about-grid {
-        grid-template-columns: 1fr;
-
-        gap: 50px;
-      }
-
-      .about-visual {
-        width:
-          min(290px, 100%);
-
-        margin: auto;
-      }
-
-      .portfolio-grid {
-        grid-template-columns: 1fr;
-
-        gap: 58px;
-      }
-
-      .services-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service,
-      .service:first-child,
-      .service:nth-child(odd) {
-        border-left:
-          1px solid var(--border);
-
-        border-right:
-          1px solid var(--border);
-      }
-
-      .workflow {
-        grid-template-columns: 1fr;
-
-        gap: 38px;
-      }
-
-      .step {
-        padding-right: 0;
-      }
-
-      .step-line {
-        display: none;
-      }
-
-      .cta {
-        width:
-          calc(100% - 30px);
-
-        min-height: 500px;
-
-        margin-bottom: 80px;
-
-        padding: 25px;
-      }
-
-      .cta h2 {
-        font-size:
-          clamp(3rem, 15vw, 5rem);
-      }
-
-      .contact-box {
-        grid-template-columns: 1fr;
-      }
-
-      .contact-left,
-      .contact-right {
-        padding: 28px 22px;
-      }
-
-      .contact-right {
-        border-left: none;
-
-        border-top:
-          1px solid var(--border);
-      }
-
-      footer {
-        width:
-          calc(100% - 30px);
-
-        flex-direction: column;
-
-        align-items: flex-start;
-      }
-
-      .copyright {
-        margin-left: 51px;
-      }
-
-      .modal {
-        padding: 8px;
-      }
-
-      .modal-info {
-        padding: 20px;
-      }
-
-      .modal-info h2 {
-        font-size: 22px;
-      }
-
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-      *,
-      *::before,
-      *::after {
-        animation-duration:
-          0.01ms !important;
-
-        animation-iteration-count:
-          1 !important;
-
-        transition-duration:
-          0.01ms !important;
-
-        scroll-behavior:
-          auto !important;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
+
 
 <body>
 
-  <div class="noise"></div>
 
-  <div class="ambient ambient-one"></div>
-  <div class="ambient ambient-two"></div>
+<!-- =========================
+     BACKGROUND
+========================= -->
 
-  <div class="stars" id="stars"></div>
+<div class="background">
+
+    <div class="glow one"></div>
+    <div class="glow two"></div>
+
+    <div class="stars" id="stars"></div>
+
+</div>
 
 
-  <!-- =========================================================
-       NAVIGATION
-  ========================================================== -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
-  <header class="navbar" id="navbar">
+<header class="navbar" id="navbar">
 
     <button
-      class="logo"
-      onclick="scrollToSection('home')"
-      aria-label="Home"
+        class="logo"
+        onclick="goTo('home')"
     >
-      <span>LS</span>
+        LS
     </button>
 
-    <nav class="nav-links" id="navLinks">
 
-      <button onclick="scrollToSection('home')">
-        Home
-      </button>
+    <nav
+        class="nav-links"
+        id="navLinks"
+    >
 
-      <button onclick="scrollToSection('about')">
-        About
-      </button>
+        <button onclick="goTo('home')">
+            Home
+        </button>
 
-      <button onclick="scrollToSection('work')">
-        Work
-      </button>
+        <button onclick="goTo('about')">
+            About
+        </button>
 
-      <button onclick="scrollToSection('services')">
-        Services
-      </button>
+        <button onclick="goTo('work')">
+            Work
+        </button>
 
-      <button onclick="scrollToSection('contact')">
-        Contact
-      </button>
+        <button onclick="goTo('services')">
+            Services
+        </button>
+
+        <button onclick="goTo('contact')">
+            Contact
+        </button>
 
     </nav>
 
+
     <button
-      class="menu"
-      onclick="toggleMenu()"
-      aria-label="Open menu"
+        class="menu"
+        onclick="toggleMenu()"
     >
-      <span></span>
-      <span></span>
-      <span></span>
+
+        <span></span>
+        <span></span>
+        <span></span>
+
     </button>
 
-  </header>
+</header>
 
 
-  <!-- =========================================================
-       HERO
-  ========================================================== -->
+<!-- =========================
+     HERO
+========================= -->
 
-  <section class="hero" id="home">
-
-    <div class="hero-glow"></div>
+<section
+    class="hero"
+    id="home"
+>
 
     <div class="hero-content">
 
-      <div class="hero-logo">
-        <span>LS</span>
-      </div>
 
-      <p class="eyebrow">
-        CREATIVE VISUALS / 2026
-      </p>
-
-      <h1>
-        LOHITHA
-
-        <span class="outline">
-          VISUAL STORIES
-        </span>
-      </h1>
-
-      <div class="hero-role">
-        VIDEO EDITOR
-      </div>
-
-      <p class="hero-text">
-        Turning footage into visuals that capture attention.
-      </p>
-
-      <div class="hero-buttons">
-
-        <button
-          class="btn btn-primary"
-          onclick="scrollToSection('work')"
-        >
-          VIEW MY WORK
-          <span>↗</span>
-        </button>
-
-        <button
-          class="btn btn-secondary"
-          onclick="scrollToSection('contact')"
-        >
-          LET'S CREATE TOGETHER
-          <span>↗</span>
-        </button>
-
-      </div>
-
-    </div>
-
-    <div class="hero-categories">
-
-      <span>ANIME</span>
-      <span>K-POP</span>
-      <span>CINEMATIC</span>
-      <span>SHORT-FORM</span>
-
-    </div>
-
-    <div class="scroll">
-      SCROLL <span>↓</span>
-    </div>
-
-  </section>
-
-
-  <!-- =========================================================
-       ABOUT
-  ========================================================== -->
-
-  <section
-    class="section reveal"
-    id="about"
-  >
-
-    <div class="container">
-
-      <div class="section-title">
-
-        <span class="section-number">
-          01
-        </span>
-
-        <div>
-
-          <p class="eyebrow">
-            THE EDITOR
-          </p>
-
-          <h2>
-            ABOUT ME
-          </h2>
-
+        <div class="hero-logo">
+            <span>LS</span>
         </div>
 
-      </div>
 
-
-      <div class="about-grid">
-
-        <p class="about-text">
-          I'm a creative video editor focused on transforming
-          raw footage into engaging visual stories. I work
-          across anime edits, K-pop edits, cinematic short-form
-          content, and other social-media-focused videos.
-          My editing style combines smooth transitions,
-          beat synchronization, visual effects, motion,
-          and storytelling to create videos that are
-          designed to grab attention.
+        <p class="eyebrow">
+            CREATIVE VISUALS / 2026
         </p>
 
 
-        <div class="about-visual">
+        <h1>
 
-          <div class="circle one"></div>
+            LOHITHA
 
-          <div class="circle two"></div>
+            <span class="outline">
+                VISUAL STORIES
+            </span>
 
-          <div class="circle three">
-            LS
-          </div>
+        </h1>
 
-          <span class="about-label">
-            FRAME / MOTION / STORY
-          </span>
+
+        <div class="hero-role">
+            VIDEO EDITOR
+        </div>
+
+
+        <p class="hero-text">
+            Turning footage into visuals that capture attention.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <button
+                class="btn primary"
+                onclick="goTo('work')"
+            >
+                VIEW MY WORK ↗
+            </button>
+
+
+            <button
+                class="btn secondary"
+                onclick="goTo('contact')"
+            >
+                LET'S CREATE ↗
+            </button>
 
         </div>
 
-      </div>
+    </div>
+
+
+    <div class="hero-bottom">
+
+        <div>
+
+            ANIME
+            <span>•</span>
+            K-POP
+            <span>•</span>
+            CINEMATIC
+            <span>•</span>
+            SHORT-FORM
+
+        </div>
+
+
+        <div>
+            SCROLL ↓
+        </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       PORTFOLIO
-  ========================================================== -->
+<!-- =========================
+     ABOUT
+========================= -->
 
-  <section
+<section
+    class="section reveal"
+    id="about"
+>
+
+    <div class="container">
+
+
+        <div class="section-head">
+
+            <div class="section-number">
+                01
+            </div>
+
+            <div>
+
+                <p class="eyebrow">
+                    THE EDITOR
+                </p>
+
+                <h2>
+                    ABOUT ME
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="about-grid">
+
+
+            <p class="about-text">
+
+                I'm a creative video editor focused on
+                turning raw footage into engaging visual
+                stories. I create anime edits, K-pop edits,
+                cinematic visuals and short-form content.
+
+            </p>
+
+
+            <div class="about-visual">
+
+                <div class="circle one"></div>
+
+                <div class="circle two"></div>
+
+                <div class="circle three">
+                    LS
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WORK
+========================= -->
+
+<section
     class="section reveal"
     id="work"
-  >
+>
 
     <div class="container">
 
-      <div class="section-title">
 
-        <span class="section-number">
-          02
-        </span>
+        <div class="section-head">
 
-        <div>
+            <div class="section-number">
+                02
+            </div>
 
-          <p class="eyebrow">
-            SELECTED WORK
-          </p>
 
-          <h2>
-            SELECTED EDITS
-          </h2>
+            <div>
 
-          <p class="section-description">
-            A collection of edits created with rhythm,
-            motion and visual storytelling.
-          </p>
+                <p class="eyebrow">
+                    SELECTED WORK
+                </p>
+
+                <h2>
+                    MY EDITS
+                </h2>
+
+                <p class="section-description">
+                    A collection of edits created with
+                    rhythm, motion and visual storytelling.
+                </p>
+
+            </div>
 
         </div>
 
-      </div>
 
+        <div
+            class="portfolio-grid"
+            id="portfolioGrid"
+        ></div>
 
-      <div
-        class="portfolio-grid"
-        id="portfolioGrid"
-      ></div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       SERVICES
-  ========================================================== -->
+<!-- =========================
+     SERVICES
+========================= -->
 
-  <section
+<section
     class="section reveal"
     id="services"
-  >
+>
 
     <div class="container">
 
-      <div class="section-title">
 
-        <span class="section-number">
-          03
-        </span>
+        <div class="section-head">
 
-        <div>
-
-          <p class="eyebrow">
-            SERVICES
-          </p>
-
-          <h2>
-            WHAT I EDIT
-          </h2>
-
-        </div>
-
-      </div>
+            <div class="section-number">
+                03
+            </div>
 
 
-      <div class="services-grid">
+            <div>
 
-        <div class="service">
+                <p class="eyebrow">
+                    SERVICES
+                </p>
 
-          <span class="service-number">
-            01
-          </span>
+                <h2>
+                    WHAT I EDIT
+                </h2>
 
-          <span class="service-arrow">
-            ↗
-          </span>
-
-          <h3>
-            Anime Edits
-          </h3>
-
-          <p>
-            Cinematic anime edits, character edits,
-            transitions, effects and music-synced visuals.
-          </p>
+            </div>
 
         </div>
 
 
-        <div class="service">
+        <div class="services">
 
-          <span class="service-number">
-            02
-          </span>
 
-          <span class="service-arrow">
-            ↗
-          </span>
+            <div class="service">
 
-          <h3>
-            K-Pop Edits
-          </h3>
+                <span class="service-number">
+                    01
+                </span>
 
-          <p>
-            Stylish idol edits with smooth transitions,
-            beat synchronization and aesthetic effects.
-          </p>
+                <h3>
+                    Anime Edits
+                </h3>
+
+                <p>
+                    Cinematic character edits,
+                    transitions, effects and
+                    music-synced visuals.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <span class="service-number">
+                    02
+                </span>
+
+                <h3>
+                    K-Pop Edits
+                </h3>
+
+                <p>
+                    Stylish idol edits with
+                    smooth transitions and
+                    aesthetic visuals.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <span class="service-number">
+                    03
+                </span>
+
+                <h3>
+                    Short-Form
+                </h3>
+
+                <p>
+                    Engaging content for
+                    Instagram Reels and
+                    YouTube Shorts.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <span class="service-number">
+                    04
+                </span>
+
+                <h3>
+                    Cinematic
+                </h3>
+
+                <p>
+                    Atmospheric videos focused
+                    on pacing, storytelling
+                    and impact.
+                </p>
+
+            </div>
+
+
+            <div class="service">
+
+                <span class="service-number">
+                    05
+                </span>
+
+                <h3>
+                    Social Media
+                </h3>
+
+                <p>
+                    Creative video content
+                    designed to capture
+                    attention.
+                </p>
+
+            </div>
+
 
         </div>
-
-
-        <div class="service">
-
-          <span class="service-number">
-            03
-          </span>
-
-          <span class="service-arrow">
-            ↗
-          </span>
-
-          <h3>
-            Short-Form Content
-          </h3>
-
-          <p>
-            Engaging videos designed for Instagram Reels,
-            YouTube Shorts and social platforms.
-          </p>
-
-        </div>
-
-
-        <div class="service">
-
-          <span class="service-number">
-            04
-          </span>
-
-          <span class="service-arrow">
-            ↗
-          </span>
-
-          <h3>
-            Cinematic Edits
-          </h3>
-
-          <p>
-            Atmospheric edits focused on pacing,
-            storytelling, transitions and impact.
-          </p>
-
-        </div>
-
-
-        <div class="service">
-
-          <span class="service-number">
-            05
-          </span>
-
-          <span class="service-arrow">
-            ↗
-          </span>
-
-          <h3>
-            Social Media Videos
-          </h3>
-
-          <p>
-            Creative video content designed to capture
-            attention on modern social platforms.
-          </p>
-
-        </div>
-
-      </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       EDITING STYLE
-  ========================================================== -->
+<!-- =========================
+     STYLE
+========================= -->
 
-  <section class="section reveal">
+<section class="section reveal">
 
     <div class="container">
 
-      <div class="section-title">
 
-        <span class="section-number">
-          04
-        </span>
+        <div class="section-head">
 
-        <div>
+            <div class="section-number">
+                04
+            </div>
 
-          <p class="eyebrow">
-            THE APPROACH
-          </p>
 
-          <h2>
-            MY EDITING STYLE
-          </h2>
+            <div>
+
+                <p class="eyebrow">
+                    THE APPROACH
+                </p>
+
+                <h2>
+                    EDITING STYLE
+                </h2>
+
+            </div>
 
         </div>
 
-      </div>
 
+        <div class="tags">
 
-      <div class="style-tags">
+            <div class="tag">
+                Beat Synchronization
+            </div>
 
-        <div class="tag">
-          <span>01</span>
-          Beat Synchronization
+            <div class="tag">
+                Smooth Transitions
+            </div>
+
+            <div class="tag">
+                Velocity Effects
+            </div>
+
+            <div class="tag">
+                Motion Effects
+            </div>
+
+            <div class="tag">
+                Cinematic Pacing
+            </div>
+
+            <div class="tag">
+                Visual Effects
+            </div>
+
+            <div class="tag">
+                Color & Atmosphere
+            </div>
+
+            <div class="tag">
+                Storytelling
+            </div>
+
         </div>
-
-        <div class="tag">
-          <span>02</span>
-          Smooth Transitions
-        </div>
-
-        <div class="tag">
-          <span>03</span>
-          Velocity Effects
-        </div>
-
-        <div class="tag">
-          <span>04</span>
-          Motion Effects
-        </div>
-
-        <div class="tag">
-          <span>05</span>
-          Cinematic Pacing
-        </div>
-
-        <div class="tag">
-          <span>06</span>
-          Visual Effects
-        </div>
-
-        <div class="tag">
-          <span>07</span>
-          Color & Atmosphere
-        </div>
-
-        <div class="tag">
-          <span>08</span>
-          Short-Form Storytelling
-        </div>
-
-      </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       WORKFLOW
-  ========================================================== -->
+<!-- =========================
+     WORKFLOW
+========================= -->
 
-  <section class="section reveal">
+<section class="section reveal">
 
     <div class="container">
 
-      <div class="section-title">
 
-        <span class="section-number">
-          05
-        </span>
+        <div class="section-head">
 
-        <div>
-
-          <p class="eyebrow">
-            FROM FOOTAGE TO FINAL
-          </p>
-
-          <h2>
-            WORKFLOW
-          </h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="workflow">
-
-        <div class="step">
-
-          <div class="step-top">
-
-            <div class="step-number">
-              01
+            <div class="section-number">
+                05
             </div>
 
-            <div class="step-line"></div>
 
-          </div>
+            <div>
 
-          <h3>
-            IDEA
-          </h3>
+                <p class="eyebrow">
+                    FROM FOOTAGE TO FINAL
+                </p>
 
-          <p>
-            Understanding the concept and visual direction.
-          </p>
+                <h2>
+                    WORKFLOW
+                </h2>
 
-        </div>
-
-
-        <div class="step">
-
-          <div class="step-top">
-
-            <div class="step-number">
-              02
             </div>
 
-            <div class="step-line"></div>
-
-          </div>
-
-          <h3>
-            EDIT
-          </h3>
-
-          <p>
-            Building the video with timing, transitions,
-            effects and motion.
-          </p>
-
         </div>
 
 
-        <div class="step">
+        <div class="workflow">
 
-          <div class="step-top">
 
-            <div class="step-number">
-              03
+            <div class="step">
+
+                <div class="step-number">
+                    01
+                </div>
+
+                <h3>
+                    IDEA
+                </h3>
+
+                <p>
+                    Understanding the concept
+                    and visual direction.
+                </p>
+
             </div>
 
-            <div class="step-line"></div>
 
-          </div>
+            <div class="step">
 
-          <h3>
-            POLISH
-          </h3>
+                <div class="step-number">
+                    02
+                </div>
 
-          <p>
-            Refining pacing, visuals, synchronization
-            and overall atmosphere.
-          </p>
+                <h3>
+                    EDIT
+                </h3>
 
-        </div>
+                <p>
+                    Building the video with
+                    timing, transitions and effects.
+                </p>
 
-
-        <div class="step">
-
-          <div class="step-top">
-
-            <div class="step-number">
-              04
             </div>
 
-          </div>
 
-          <h3>
-            FINAL
-          </h3>
+            <div class="step">
 
-          <p>
-            Delivering a polished video ready for
-            social media or presentation.
-          </p>
+                <div class="step-number">
+                    03
+                </div>
+
+                <h3>
+                    POLISH
+                </h3>
+
+                <p>
+                    Refining pacing, visuals
+                    and synchronization.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    04
+                </div>
+
+                <h3>
+                    FINAL
+                </h3>
+
+                <p>
+                    Delivering a polished video
+                    ready for social media.
+                </p>
+
+            </div>
+
 
         </div>
-
-      </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       CTA
-  ========================================================== -->
+<!-- =========================
+     CTA
+========================= -->
 
-  <section class="cta reveal">
+<section class="cta reveal">
 
     <p class="eyebrow">
-      LET'S MAKE SOMETHING
+        HAVE A PROJECT?
     </p>
+
 
     <h2>
-      HAVE A VIDEO
-      <br>
 
-      <span class="outline">
-        IN MIND?
-      </span>
+        LET'S CREATE
+
+        <br>
+
+        <span class="outline">
+            SOMETHING
+        </span>
+
     </h2>
 
-    <p class="cta-description">
-      Need an editor for your next Reel, Short,
-      K-pop edit, anime edit, or cinematic video?
-      Let's turn your footage into something that stands out.
+
+    <p class="cta-text">
+        Have footage that needs an edit?
+        Let's turn it into something worth watching.
     </p>
+
 
     <div class="hero-buttons">
 
-      <button
-        class="btn btn-primary"
-        onclick="scrollToSection('contact')"
-      >
-        LET'S CREATE TOGETHER
-        <span>↗</span>
-      </button>
+        <button
+            class="btn primary"
+            onclick="goTo('contact')"
+        >
+            CONTACT ME ↗
+        </button>
 
-      <button
-        class="btn btn-secondary"
-        onclick="scrollToSection('work')"
-      >
-        VIEW MY WORK
-        <span>↗</span>
-      </button>
+
+        <button
+            class="btn secondary"
+            onclick="goTo('work')"
+        >
+            VIEW WORK ↗
+        </button>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       CONTACT
-  ========================================================== -->
+<!-- =========================
+     CONTACT
+========================= -->
 
-  <section
+<section
     class="section reveal"
     id="contact"
-  >
+>
 
     <div class="container">
 
-      <div class="section-title">
 
-        <span class="section-number">
-          06
-        </span>
+        <div class="section-head">
 
-        <div>
-
-          <p class="eyebrow">
-            START A PROJECT
-          </p>
-
-          <h2>
-            LET'S WORK TOGETHER
-          </h2>
-
-          <p class="section-description">
-            Have a project in mind? Let's create something
-            that stands out.
-          </p>
-
-        </div>
-
-      </div>
+            <div class="section-number">
+                06
+            </div>
 
 
-      <div class="contact-box">
+            <div>
 
-        <div class="contact-left">
+                <p class="eyebrow">
+                    START A PROJECT
+                </p>
 
-          <p class="contact-label">
-            GET IN TOUCH
-          </p>
+                <h2>
+                    LET'S WORK TOGETHER
+                </h2>
 
-          <h3>
-            Ready when you are.
-          </h3>
-
-          <p class="contact-note">
-            Whether it's a short-form edit, cinematic video,
-            anime edit, K-pop edit or a custom project,
-            feel free to reach out.
-          </p>
+            </div>
 
         </div>
 
 
-        <div class="contact-right">
-
-          <div class="contact-details">
+        <div class="contact-box">
 
 
-            <!-- PHONE -->
+            <div class="contact-left">
 
-            <div class="contact-detail">
-
-              <span>
-                PHONE
-              </span>
-
-              <strong>
-                9391192049
-              </strong>
-
-            </div>
+                <p class="contact-label">
+                    GET IN TOUCH
+                </p>
 
 
-            <!-- INSTAGRAM -->
+                <h3>
+                    Ready when you are.
+                </h3>
 
-            <div class="contact-detail">
 
-              <span>
-                INSTAGRAM
-              </span>
+                <p class="contact-note">
 
-              <strong>
-                @the_magic_of_frames
-              </strong>
+                    Whether it's a short-form edit,
+                    cinematic video, anime edit or
+                    K-pop edit, feel free to reach out.
+
+                </p>
 
             </div>
 
 
-            <!-- EMAIL -->
+            <div class="contact-right">
 
-            <div class="contact-detail">
+                <div class="contact-details">
 
-              <span>
-                EMAIL
-              </span>
 
-              <strong>
-                lohithasai229@gmail.com
-              </strong>
+                    <div class="contact-detail">
+
+                        <span>
+                            PHONE
+                        </span>
+
+                        <a href="tel:9391192049">
+                            9391192049
+                        </a>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <span>
+                            INSTAGRAM
+                        </span>
+
+                        <a
+                            href="https://instagram.com/the_magic_of_frames"
+                            target="_blank"
+                        >
+                            @the_magic_of_frames
+                        </a>
+
+                    </div>
+
+
+                    <div class="contact-detail">
+
+                        <span>
+                            EMAIL
+                        </span>
+
+                        <a
+                            href="mailto:lohithasai229@gmail.com"
+                        >
+                            lohithasai229@gmail.com
+                        </a>
+
+                    </div>
+
+
+                </div>
 
             </div>
-
-
-          </div>
 
         </div>
-
-      </div>
 
     </div>
 
-  </section>
+</section>
 
 
-  <!-- =========================================================
-       FOOTER
-  ========================================================== -->
+<!-- =========================
+     FOOTER
+========================= -->
 
-  <footer>
+<footer>
 
-    <div class="footer-brand">
 
-      <div class="footer-logo">
-        LS
-      </div>
+    <div class="footer-left">
 
-      <div class="footer-name">
 
-        <strong>
-          LOHITHA
-        </strong>
+        <div class="footer-logo">
+            LS
+        </div>
 
-        <span>
-          VISUAL STORIES / VIDEO EDITOR
-        </span>
 
-      </div>
+        <div class="footer-text">
+
+            <strong>
+                LOHITHA
+            </strong>
+
+            <span>
+                VIDEO EDITOR / VISUAL STORIES
+            </span>
+
+        </div>
+
 
     </div>
 
 
-    <p class="copyright">
-      © 2026 Lohitha. All rights reserved.
-    </p>
-
-  </footer>
+    <div class="copyright">
+        © 2026 Lohitha
+    </div>
 
 
-  <!-- =========================================================
-       VIDEO MODAL
-  ========================================================== -->
+</footer>
 
-  <div
+
+<!-- =========================
+     VIDEO MODAL
+========================= -->
+
+<div
     class="modal"
-    id="videoModal"
-    onclick="closeModalBackground(event)"
-  >
+    id="modal"
+    onclick="closeOutside(event)"
+>
+
+
+    <button
+        class="close"
+        onclick="closeModal()"
+    >
+        ×
+    </button>
+
 
     <div class="modal-content">
 
-      <button
-        class="close-modal"
-        onclick="closeModal()"
-        aria-label="Close video"
-      >
-        ×
-      </button>
 
-      <video
-        class="modal-video"
-        id="modalVideo"
-        controls
-        playsinline
-        preload="metadata"
-      ></video>
+        <video
+            id="modalVideo"
+            controls
+            playsinline
+        ></video>
 
-      <div class="modal-info">
 
-        <div
-          class="project-category"
-          id="modalCategory"
-        ></div>
+        <div class="modal-info">
 
-        <h2 id="modalTitle"></h2>
 
-        <p id="modalDescription"></p>
+            <div
+                class="project-category"
+                id="modalCategory"
+            ></div>
 
-      </div>
+
+            <h2 id="modalTitle"></h2>
+
+
+            <p id="modalDescription"></p>
+
+
+        </div>
 
     </div>
 
-  </div>
+</div>
 
 
-  <!-- =========================================================
-       JAVASCRIPT
-  ========================================================== -->
+<script>
 
-  <script>
 
-    /* =========================================================
-       PROJECTS
-    ========================================================== */
+/* =========================
+   PROJECT DATA
+========================= */
 
-    const projects = [
+const projects = [
 
-      {
-        id: 1,
+    {
+        title:"Anime Character Intro — Part 1",
 
-        title:
-          "Anime Character Intro — Part 1",
-
-        category:
-          "Anime / Character Edit",
+        category:"Anime / Character Edit",
 
         description:
-          "An introduction to iconic anime characters built around cinematic visuals, smooth transitions, beat synchronization and energetic editing.",
+        "An anime character introduction edit with cinematic visuals, smooth transitions and music synchronization.",
 
-        video:
-          "videos/Anime_Char_intro_part1.mp4"
-      },
+        video:"videos/Anime_Char_intro_part1.mp4"
+    },
 
 
-      {
-        id: 2,
+    {
+        title:"Anime Character Intro — Part 2",
 
-        title:
-          "Anime Character Intro — Part 2",
-
-        category:
-          "Anime / Character Edit",
+        category:"Anime / Character Edit",
 
         description:
-          "The continuation of the anime character introduction series, featuring character moments, dynamic transitions, visual effects and music synchronization.",
+        "A continuation of the anime character edit series with dynamic transitions, effects and energetic pacing.",
 
-        video:
-          "videos/Anime_Char_intro_part2.mp4"
-      },
+        video:"videos/Anime_Char_intro_part2.mp4"
+    },
 
 
-      {
-        id: 3,
+    {
+        title:"Anime World",
 
-        title:
-          "Anime World",
-
-        category:
-          "Anime Showcase",
+        category:"Anime Showcase",
 
         description:
-          "A cinematic anime showcase combining dramatic visuals, smooth transitions, music synchronization and energetic pacing.",
+        "A cinematic anime showcase combining dramatic visuals, smooth transitions and music synchronization.",
 
-        video:
-          "videos/Anime_world.mp4"
-      },
+        video:"videos/Anime_world.mp4"
+    },
 
 
-      {
-        id: 4,
+    {
+        title:"Demon Slayer — The Beginning",
 
-        title:
-          "Demon Slayer — The Beginning",
-
-        category:
-          "Anime / Cinematic Edit",
+        category:"Anime / Cinematic Edit",
 
         description:
-          "A cinematic Demon Slayer edit built around dramatic moments, powerful transitions, visual effects and music synchronization.",
+        "A cinematic Demon Slayer edit focused on atmosphere, transitions, effects and storytelling.",
 
-        video:
-          "videos/Demon_Slayer_The_Beginning.mp4"
-      },
+        video:"videos/Demon_Slayer_The_Beginning.mp4"
+    },
 
 
-      {
-        id: 5,
+    {
+        title:"Jisoo & Jennie",
 
-        title:
-          "Jisoo & Jennie",
-
-        category:
-          "K-Pop / Visual Edit",
+        category:"K-Pop / Visual Edit",
 
         description:
-          "A stylish K-pop visual edit featuring Jisoo and Jennie with clean transitions, beat synchronization, smooth motion and aesthetic visuals.",
+        "A stylish K-pop visual edit featuring Jisoo and Jennie with smooth transitions and aesthetic visuals.",
 
-        video:
-          "videos/Jisoo_Jennie_Edit.mp4"
-      },
+        video:"videos/Jisoo_Jennie_Edit.mp4"
+    },
 
 
-      {
-        id: 6,
+    {
+        title:"V",
 
-        title:
-          "V",
-
-        category:
-          "K-Pop / Cinematic Edit",
+        category:"K-Pop / Cinematic Edit",
 
         description:
-          "A cinematic visual edit featuring V, focused on atmosphere, clean transitions, music synchronization, visual effects and smooth pacing.",
+        "A cinematic visual edit featuring V with music synchronization, motion and atmospheric visuals.",
 
-        video:
-          "videos/v-edit.mp4"
-      }
+        video:"videos/v-edit.mp4"
+    }
 
-    ];
-
-
-    /* =========================================================
-       PORTFOLIO CARDS
-    ========================================================== */
-
-    const portfolioGrid =
-      document.getElementById(
-        "portfolioGrid"
-      );
+];
 
 
-    projects.forEach(
-      function(project) {
+/* =========================
+   CREATE PORTFOLIO
+========================= */
 
-        const card =
-          document.createElement("article");
-
-        card.className =
-          "project reveal";
+const grid =
+document.getElementById("portfolioGrid");
 
 
-        card.innerHTML = `
+projects.forEach((project,index)=>{
 
-          <div
-            class="video-container"
-            onclick="openModal(${project.id})"
-            role="button"
-            tabindex="0"
-            aria-label="Open ${project.title}"
-          >
+
+    const card =
+    document.createElement("article");
+
+
+    card.className="project";
+
+
+    card.innerHTML=`
+
+        <div
+            class="project-video"
+            onclick="openModal(${index})"
+        >
 
             <video
-              src="${project.video}"
-              muted
-              playsinline
-              preload="metadata"
-              onmouseenter="previewVideo(this)"
-              onmouseleave="stopPreview(this)"
+                src="${project.video}"
+                muted
+                playsinline
+                preload="metadata"
+                onmouseenter="preview(this)"
+                onmouseleave="stopPreview(this)"
             ></video>
 
-            <div class="video-overlay"></div>
 
-            <span class="project-number">
-              0${project.id}
-            </span>
-
-            <span class="play">
-              ▶
-            </span>
-
-            <span class="view">
-              VIEW EDIT ↗
-            </span>
-
-          </div>
+            <div class="video-shade"></div>
 
 
-          <div class="project-info">
-
-            <div class="project-category">
-              ${project.category}
+            <div class="project-number">
+                ${String(index+1).padStart(2,"0")}
             </div>
 
+
+            <div class="play">
+                ▶
+            </div>
+
+        </div>
+
+
+        <div class="project-info">
+
+            <div class="project-category">
+                ${project.category}
+            </div>
+
+
             <h3 class="project-title">
-              ${project.title}
+                ${project.title}
             </h3>
 
+
             <p class="project-description">
-              ${project.description}
+                ${project.description}
             </p>
 
-            <button
-              class="open-project"
-              onclick="openModal(${project.id})"
-            >
-              OPEN PROJECT
-              <span>↗</span>
-            </button>
+        </div>
 
-          </div>
-
-        `;
+    `;
 
 
-        portfolioGrid.appendChild(card);
+    grid.appendChild(card);
 
-        setTimeout(
-          function() {
-
-            revealObserver.observe(card);
-
-          },
-          50
-        );
-
-      }
-    );
+});
 
 
-    /* =========================================================
-       VIDEO PREVIEW
-    ========================================================== */
+/* =========================
+   VIDEO PREVIEW
+========================= */
 
-    function previewVideo(video) {
+function preview(video){
 
-      video.play().catch(
-        function() {}
-      );
+    video.play().catch(()=>{});
 
-    }
+}
 
 
-    function stopPreview(video) {
+function stopPreview(video){
 
-      video.pause();
+    video.pause();
 
-      video.currentTime = 0;
+    video.currentTime=0;
 
-    }
-
-
-    /* =========================================================
-       MODAL
-    ========================================================== */
-
-    const modal =
-      document.getElementById(
-        "videoModal"
-      );
-
-    const modalVideo =
-      document.getElementById(
-        "modalVideo"
-      );
-
-    const modalTitle =
-      document.getElementById(
-        "modalTitle"
-      );
-
-    const modalCategory =
-      document.getElementById(
-        "modalCategory"
-      );
-
-    const modalDescription =
-      document.getElementById(
-        "modalDescription"
-      );
+}
 
 
-    function openModal(id) {
+/* =========================
+   MODAL
+========================= */
 
-      const project =
-        projects.find(
-          function(item) {
+const modal =
+document.getElementById("modal");
 
-            return item.id === id;
+const modalVideo =
+document.getElementById("modalVideo");
 
-          }
-        );
+const modalTitle =
+document.getElementById("modalTitle");
 
+const modalCategory =
+document.getElementById("modalCategory");
 
-      if (!project) return;
-
-
-      modalVideo.src =
-        project.video;
-
-      modalTitle.textContent =
-        project.title;
-
-      modalCategory.textContent =
-        project.category;
-
-      modalDescription.textContent =
-        project.description;
+const modalDescription =
+document.getElementById("modalDescription");
 
 
-      modal.classList.add(
-        "active"
-      );
-
-      document.body.style.overflow =
-        "hidden";
-
-    }
+function openModal(index){
 
 
-    function closeModal() {
-
-      modalVideo.pause();
-
-      modalVideo.removeAttribute(
-        "src"
-      );
-
-      modalVideo.load();
-
-      modal.classList.remove(
-        "active"
-      );
-
-      document.body.style.overflow =
-        "";
-
-    }
+    const project =
+    projects[index];
 
 
-    function closeModalBackground(
-      event
-    ) {
+    modalVideo.src =
+    project.video;
 
-      if (
-        event.target === modal
-      ) {
+
+    modalTitle.textContent =
+    project.title;
+
+
+    modalCategory.textContent =
+    project.category;
+
+
+    modalDescription.textContent =
+    project.description;
+
+
+    modal.classList.add("active");
+
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeModal(){
+
+
+    modalVideo.pause();
+
+
+    modalVideo.removeAttribute("src");
+
+
+    modalVideo.load();
+
+
+    modal.classList.remove("active");
+
+
+    document.body.style.overflow="";
+
+}
+
+
+function closeOutside(event){
+
+    if(event.target===modal){
 
         closeModal();
 
-      }
-
     }
 
+}
 
-    document.addEventListener(
-      "keydown",
-      function(event) {
 
-        if (
-          event.key === "Escape" &&
-          modal.classList.contains(
-            "active"
-          )
-        ) {
+document.addEventListener(
+    "keydown",
+    event=>{
 
-          closeModal();
+        if(
+            event.key==="Escape" &&
+            modal.classList.contains("active")
+        ){
+
+            closeModal();
 
         }
 
-      }
-    );
+    }
+);
 
 
-    /* =========================================================
-       NAVIGATION
-    ========================================================== */
+/* =========================
+   NAVIGATION
+========================= */
 
-    function scrollToSection(id) {
-
-      const section =
-        document.getElementById(id);
+function goTo(id){
 
 
-      if (!section) return;
+    const section =
+    document.getElementById(id);
 
 
-      section.scrollIntoView({
-        behavior: "smooth"
-      });
+    if(section){
 
-
-      closeMobileMenu();
+        section.scrollIntoView({
+            behavior:"smooth"
+        });
 
     }
-
-
-    /* =========================================================
-       MOBILE MENU
-    ========================================================== */
-
-    const navLinks =
-      document.getElementById(
-        "navLinks"
-      );
-
-
-    function toggleMenu() {
-
-      navLinks.classList.toggle(
-        "open"
-      );
-
-    }
-
-
-    function closeMobileMenu() {
-
-      navLinks.classList.remove(
-        "open"
-      );
-
-    }
-
-
-    /* =========================================================
-       NAVBAR SCROLL
-    ========================================================== */
-
-    const navbar =
-      document.getElementById(
-        "navbar"
-      );
-
-
-    window.addEventListener(
-      "scroll",
-      function() {
-
-        if (
-          window.scrollY > 30
-        ) {
-
-          navbar.classList.add(
-            "scrolled"
-          );
-
-        } else {
-
-          navbar.classList.remove(
-            "scrolled"
-          );
-
-        }
-
-      },
-      {
-        passive: true
-      }
-    );
-
-
-    /* =========================================================
-       STARS
-    ========================================================== */
-
-    const stars =
-      document.getElementById(
-        "stars"
-      );
-
-
-    for (
-      let i = 0;
-      i < 75;
-      i++
-    ) {
-
-      const star =
-        document.createElement(
-          "div"
-        );
-
-
-      star.className =
-        i % 10 === 0
-          ? "star big"
-          : "star";
-
-
-      star.style.left =
-        Math.random() * 100 +
-        "%";
-
-
-      star.style.top =
-        Math.random() * 100 +
-        "%";
-
-
-      star.style.animationDelay =
-        Math.random() * 5 +
-        "s";
-
-
-      star.style.animationDuration =
-        3 +
-        Math.random() * 5 +
-        "s";
-
-
-      stars.appendChild(star);
-
-    }
-
-
-    /* =========================================================
-       SCROLL REVEAL
-    ========================================================== */
-
-    const revealObserver =
-      new IntersectionObserver(
-        function(entries) {
-
-          entries.forEach(
-            function(entry) {
-
-              if (
-                entry.isIntersecting
-              ) {
-
-                entry.target.classList.add(
-                  "visible"
-                );
-
-                revealObserver.unobserve(
-                  entry.target
-                );
-
-              }
-
-            }
-          );
-
-        },
-        {
-          threshold: 0.08
-        }
-      );
 
 
     document
-      .querySelectorAll(
-        ".reveal"
-      )
-      .forEach(
-        function(element) {
+    .getElementById("navLinks")
+    .classList.remove("open");
 
-          revealObserver.observe(
-            element
-          );
+}
+
+
+function toggleMenu(){
+
+    document
+    .getElementById("navLinks")
+    .classList.toggle("open");
+
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+window.addEventListener(
+    "scroll",
+    ()=>{
+
+
+        const navbar =
+        document.getElementById("navbar");
+
+
+        if(window.scrollY>30){
+
+            navbar.classList.add("scrolled");
+
+        }else{
+
+            navbar.classList.remove("scrolled");
 
         }
-      );
 
-  </script>
+
+    },
+    {passive:true}
+);
+
+
+/* =========================
+   STARS
+========================= */
+
+const stars =
+document.getElementById("stars");
+
+
+for(let i=0;i<65;i++){
+
+
+    const star =
+    document.createElement("div");
+
+
+    star.className="star";
+
+
+    star.style.left =
+    Math.random()*100+"%";
+
+
+    star.style.top =
+    Math.random()*100+"%";
+
+
+    star.style.opacity =
+    .08+Math.random()*.35;
+
+
+    stars.appendChild(star);
+
+}
+
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const observer =
+new IntersectionObserver(
+
+    entries=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+                observer.unobserve(entry.target);
+
+            }
+
+        });
+
+    },
+
+    {
+        threshold:.08
+    }
+
+);
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(element=>{
+
+    observer.observe(element);
+
+});
+
+</script>
 
 </body>
 </html>
