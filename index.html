@@ -3,2535 +3,1059 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LS — Video Editor</title>
 
 <style>
-
 /* =========================
    FONT
 ========================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-
 
 /* =========================
    RESET
 ========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    background:#050507;
-    color:#f5f3f8;
-    font-family:'Inter',sans-serif;
-    overflow-x:hidden;
-    font-size:10px;
+body {
+    background: #050507;
+    color: #f5f3f8;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    font-size: 10px;
 }
 
-::selection{
-    background:#8d62d8;
-    color:white;
+::selection {
+    background: #8d62d8;
+    color: white;
 }
 
-a{
-    text-decoration:none;
-    color:inherit;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-button{
-    font-family:inherit;
-    cursor:pointer;
+button {
+    font-family: inherit;
+    cursor: pointer;
 }
-
 
 /* =========================
    BACKGROUND
 ========================= */
-
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-5;
-    overflow:hidden;
-    pointer-events:none;
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+    overflow: hidden;
+    pointer-events: none;
 }
 
-.glow{
-    position:absolute;
-    width:450px;
-    height:450px;
-    border-radius:50%;
-    filter:blur(120px);
-    opacity:.08;
+.glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .08;
 }
 
-.glow.one{
-    top:-200px;
-    right:-120px;
-    background:#9b68e8;
+.glow.one {
+    top: -200px;
+    right: -120px;
+    background: #9b68e8;
 }
 
-.glow.two{
-    bottom:-220px;
-    left:-180px;
-    background:#4258a5;
+.glow.two {
+    bottom: -220px;
+    left: -180px;
+    background: #4258a5;
 }
 
-.stars{
-    position:absolute;
-    inset:0;
+.stars {
+    position: absolute;
+    inset: 0;
 }
 
-.star{
-    position:absolute;
-    width:1px;
-    height:1px;
-    border-radius:50%;
-    background:white;
-    opacity:.2;
+.star {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    border-radius: 50%;
+    background: white;
+    opacity: .2;
 }
-
 
 /* =========================
    NAVBAR
 ========================= */
-
-.navbar{
-    position:fixed;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
-
-    width:min(94%,1150px);
-    height:70px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-
-    z-index:100;
-
-    transition:.3s ease;
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(94%, 1150px);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 100;
+    transition: .3s ease;
 }
 
-.navbar.scrolled{
-    top:12px;
-    height:56px;
-
-    padding:0 15px;
-
-    background:rgba(8,8,11,.78);
-    backdrop-filter:blur(20px);
-
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:15px;
+.navbar.scrolled {
+    top: 12px;
+    height: 56px;
+    padding: 0 15px;
+    background: rgba(8, 8, 11, .78);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 15px;
 }
 
-.logo{
-    width:36px;
-    height:36px;
-
-    border:1px solid rgba(255,255,255,.16);
-    border-radius:9px;
-
-    background:transparent;
-    color:white;
-
-    font-size:10px;
-    font-weight:500;
-    letter-spacing:-1px;
+.logo {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 9px;
+    background: transparent;
+    color: white;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: -1px;
 }
 
-.nav-links{
-    display:flex;
-    gap:28px;
+.nav-links {
+    display: flex;
+    gap: 28px;
 }
 
-.nav-links button{
-    border:none;
-    background:none;
-
-    color:#77727d;
-
-    font-size:8px;
-    font-weight:500;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-
-    transition:.25s;
+.nav-links button {
+    border: none;
+    background: none;
+    color: #77727d;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    transition: .25s;
 }
 
-.nav-links button:hover{
-    color:white;
+.nav-links button:hover {
+    color: white;
 }
 
-.menu{
-    display:none;
-
-    width:36px;
-    height:36px;
-
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:9px;
-
-    background:transparent;
+.menu {
+    display: none;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 9px;
+    background: transparent;
 }
 
-.menu span{
-    display:block;
-    width:15px;
-    height:1px;
-    margin:4px auto;
-    background:#ddd;
+.menu span {
+    display: block;
+    width: 15px;
+    height: 1px;
+    margin: 4px auto;
+    background: #ddd;
 }
-
 
 /* =========================
    COMMON
 ========================= */
-
-.container{
-    width:min(92%,1100px);
-    margin:auto;
+.container {
+    width: min(92%, 1100px);
+    margin: auto;
 }
 
-.section{
-    padding:105px 0;
+.section {
+    padding: 105px 0;
 }
 
-.section-head{
-    display:flex;
-    gap:15px;
-    margin-bottom:45px;
+.section-head {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 45px;
 }
 
-.section-number{
-    color:#8f67ca;
-    font-size:7px;
-    letter-spacing:.15em;
-    padding-top:5px;
+.section-number {
+    color: #8f67ca;
+    font-size: 7px;
+    letter-spacing: .15em;
+    padding-top: 5px;
 }
 
-.eyebrow{
-    color:#77717d;
-    font-size:7px;
-    font-weight:500;
-    letter-spacing:.22em;
-    margin-bottom:11px;
+.eyebrow {
+    color: #77717d;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: .22em;
+    margin-bottom: 11px;
 }
 
-.section-head h2{
-    font-family:'Inter',sans-serif;
-    font-size:clamp(1.5rem,3.2vw,2.3rem);
-    font-weight:500;
-    letter-spacing:-.045em;
+.section-head h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+    font-weight: 500;
+    letter-spacing: -.045em;
 }
 
-.section-description{
-    max-width:500px;
-    margin-top:12px;
-    color:#77727d;
-    font-size:9px;
-    line-height:1.8;
+.section-description {
+    max-width: 500px;
+    margin-top: 12px;
+    color: #77727d;
+    font-size: 9px;
+    line-height: 1.8;
 }
-
 
 /* =========================
    HERO
 ========================= */
-
-.hero{
-    min-height:100vh;
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
+.hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.hero-content{
-    position:relative;
-    z-index:2;
-    padding-top:20px;
+.hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 20px;
 }
 
-.hero-logo{
-    width:40px;
-    height:40px;
-
-    margin:0 auto 24px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.17);
-    border-radius:10px;
-
-    transform:rotate(45deg);
+.hero-logo {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .17);
+    border-radius: 10px;
+    transform: rotate(45deg);
 }
 
-.hero-logo span{
-    transform:rotate(-45deg);
-
-    font-size:11px;
-    font-weight:500;
-    letter-spacing:-2px;
+.hero-logo span {
+    transform: rotate(-45deg);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: -2px;
 }
 
-.hero h1{
-    font-family:'Inter',sans-serif;
-
-    font-size:clamp(2rem,4.5vw,3.4rem);
-
-    line-height:1;
-
-    font-weight:500;
-
-    letter-spacing:-.055em;
-
-    text-transform:uppercase;
+.hero h1 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -.055em;
+    text-transform: uppercase;
 }
 
-.hero h1 .outline{
-    display:block;
-
-    margin-top:7px;
-
-    color:transparent;
-
-    -webkit-text-stroke:.55px rgba(255,255,255,.40);
-
-    font-size:.48em;
-
-    font-weight:400;
-
-    letter-spacing:.045em;
+.hero h1 .outline {
+    display: block;
+    margin-top: 7px;
+    color: transparent;
+    -webkit-text-stroke: .55px rgba(255, 255, 255, .40);
+    font-size: .48em;
+    font-weight: 400;
+    letter-spacing: .045em;
 }
 
-.hero-role{
-    width:max-content;
-
-    margin:17px auto 0;
-
-    padding-bottom:8px;
-
-    position:relative;
-
-    color:#aaa5b0;
-
-    font-size:7px;
-
-    font-weight:500;
-
-    letter-spacing:.28em;
+.hero-role {
+    width: max-content;
+    margin: 17px auto 0;
+    padding-bottom: 8px;
+    position: relative;
+    color: #aaa5b0;
+    font-size: 7px;
+    font-weight: 500;
+    letter-spacing: .28em;
 }
 
-.hero-role::after{
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:0;
-
-    height:1px;
-
-    background:linear-gradient(
-        90deg,
-        transparent,
-        #8e62d1,
-        transparent
-    );
+.hero-role::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #8e62d1, transparent);
 }
 
-.hero-text{
-    max-width:370px;
-
-    margin:16px auto 0;
-
-    color:#77727d;
-
-    font-size:9px;
-
-    line-height:1.7;
+.hero-text {
+    max-width: 370px;
+    margin: 16px auto 0;
+    color: #77727d;
+    font-size: 9px;
+    line-height: 1.7;
 }
 
-.hero-buttons{
-    display:flex;
-    justify-content:center;
-    gap:8px;
-
-    margin-top:25px;
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 25px;
 }
 
-.btn{
-    min-height:40px;
-
-    padding:0 18px;
-
-    border-radius:999px;
-
-    font-size:7px;
-    font-weight:600;
-
-    letter-spacing:.13em;
-
-    transition:.3s;
+.btn {
+    min-height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: .13em;
+    transition: .3s;
 }
 
-.primary{
-    background:#f2eff5;
-    color:#09080b;
-
-    border:1px solid #f2eff5;
+.primary {
+    background: #f2eff5;
+    color: #09080b;
+    border: 1px solid #f2eff5;
 }
 
-.secondary{
-    background:rgba(255,255,255,.025);
-    color:#ddd9e3;
-
-    border:1px solid rgba(255,255,255,.11);
+.secondary {
+    background: rgba(255, 255, 255, .025);
+    color: #ddd9e3;
+    border: 1px solid rgba(255, 255, 255, .11);
 }
 
-.btn:hover{
-    transform:translateY(-2px);
+.btn:hover {
+    transform: translateY(-2px);
 }
 
-.hero-bottom{
-    position:absolute;
-
-    left:0;
-    right:0;
-    bottom:25px;
-
-    display:flex;
-    justify-content:space-between;
-
-    color:#55515a;
-
-    font-size:6px;
-    letter-spacing:.18em;
+.hero-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    color: #55515a;
+    font-size: 6px;
+    letter-spacing: .18em;
 }
 
-.hero-bottom span{
-    color:#8060b8;
+.hero-bottom span {
+    color: #8060b8;
 }
-
 
 /* =========================
    ABOUT
 ========================= */
-
-.about-grid{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:80px;
-    align-items:center;
+.about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: 80px;
+    align-items: center;
 }
 
-.about-text{
-    color:#bcb7c2;
-
-    font-family:'Inter',sans-serif;
-
-    font-size:clamp(1.05rem,2vw,1.4rem);
-
-    font-weight:400;
-
-    line-height:1.6;
-
-    letter-spacing:-.02em;
+.about-text {
+    color: #bcb7c2;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.05rem, 2vw, 1.4rem);
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -.02em;
 }
 
-.about-visual{
-    width:270px;
-    aspect-ratio:1;
-
-    margin:auto;
-
-    position:relative;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
+.about-visual {
+    width: 270px;
+    aspect-ratio: 1;
+    margin: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.circle{
-    position:absolute;
-    border-radius:50%;
-    border:1px solid rgba(255,255,255,.08);
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, .08);
 }
 
-.circle.one{
-    width:90%;
-    height:90%;
-    border-left-color:#875ac9;
-    animation:rotate 20s linear infinite;
+.circle.one {
+    width: 90%;
+    height: 90%;
+    border-left-color: #875ac9;
+    animation: rotate 20s linear infinite;
 }
 
-.circle.two{
-    width:63%;
-    height:63%;
-    border-right-color:#5367a5;
-    animation:rotate 15s linear infinite reverse;
+.circle.two {
+    width: 63%;
+    height: 63%;
+    border-right-color: #5367a5;
+    animation: rotate 15s linear infinite reverse;
 }
 
-.circle.three{
-    width:36%;
-    height:36%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:radial-gradient(
-        circle,
-        rgba(135,86,210,.2),
-        #08070b 70%
-    );
-
-    font-size:17px;
-    font-weight:500;
-    letter-spacing:-3px;
+.circle.three {
+    width: 36%;
+    height: 36%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, rgba(135, 86, 210, .2), #08070b 70%);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: -3px;
 }
 
-@keyframes rotate{
-    to{
-        transform:rotate(360deg);
-    }
+@keyframes rotate {
+    to { transform: rotate(360deg); }
 }
-
 
 /* =========================
-   PORTFOLIO
+   PORTFOLIO (WORK)
 ========================= */
-
-.portfolio-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:55px 25px;
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 55px 25px;
 }
 
-.project-video{
-    position:relative;
-
-    aspect-ratio:16/9;
-
-    overflow:hidden;
-
-    background:#08070b;
-
-    border:1px solid rgba(255,255,255,.09);
-
-    cursor:pointer;
+.project-card {
+    display: flex;
+    flex-direction: column;
 }
 
-.project-video video{
-    width:100%;
-    height:100%;
-
-    object-fit:cover;
-
-    display:block;
-
-    transition:.6s;
+.project-video {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #08070b;
+    border: 1px solid rgba(255, 255, 255, .09);
+    cursor: pointer;
+    border-radius: 8px;
 }
 
-.project-video:hover video{
-    transform:scale(1.04);
-    filter:brightness(.62);
+.project-video video, .project-video img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: .6s;
 }
 
-.video-shade{
-    position:absolute;
-    inset:0;
-
-    background:linear-gradient(
-        180deg,
-        transparent 45%,
-        rgba(0,0,0,.7)
-    );
-
-    pointer-events:none;
+.project-video:hover video, .project-video:hover img {
+    transform: scale(1.04);
+    filter: brightness(.62);
 }
 
-.project-number{
-    position:absolute;
-    top:13px;
-    left:13px;
-
-    font-size:7px;
-    letter-spacing:.15em;
+.video-shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .7));
+    pointer-events: none;
 }
 
-.play{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%,-50%);
-
-    width:48px;
-    height:48px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.35);
-    border-radius:50%;
-
-    background:rgba(0,0,0,.25);
-
-    font-size:9px;
-
-    transition:.3s;
+.project-number {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    font-size: 7px;
+    letter-spacing: .15em;
+    z-index: 2;
 }
 
-.project-video:hover .play{
-    background:white;
-    color:#08070b;
+.play {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .35);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .25);
+    font-size: 9px;
+    transition: .3s;
+    z-index: 2;
 }
 
-.project-info{
-    padding-top:15px;
+.project-video:hover .play {
+    background: white;
+    color: #08070b;
 }
 
-.project-category{
-    color:#8e69c7;
-
-    font-size:6px;
-    font-weight:600;
-    letter-spacing:.18em;
-
-    text-transform:uppercase;
+.project-info {
+    padding-top: 15px;
 }
 
-.project-title{
-    margin-top:7px;
-
-    font-family:'Inter',sans-serif;
-
-    font-size:15px;
-
-    font-weight:500;
-
-    letter-spacing:-.025em;
+.project-category {
+    color: #8e69c7;
+    font-size: 6px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
 }
 
-.project-description{
-    margin-top:8px;
-
-    color:#716c76;
-
-    font-size:8px;
-
-    line-height:1.75;
+.project-title {
+    margin-top: 7px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -.025em;
 }
 
+.project-description {
+    margin-top: 8px;
+    color: #716c76;
+    font-size: 8px;
+    line-height: 1.75;
+}
 
 /* =========================
    SERVICES
 ========================= */
-
-.services{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-
-    border-top:1px solid rgba(255,255,255,.08);
-    border-bottom:1px solid rgba(255,255,255,.08);
+.services {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    margin-bottom: 45px;
 }
 
-.service{
-    min-height:235px;
-
-    padding:19px;
-
-    border-right:1px solid rgba(255,255,255,.08);
-
-    transition:.3s;
+.service {
+    min-height: 235px;
+    padding: 19px;
+    border-right: 1px solid rgba(255, 255, 255, .08);
+    transition: .3s;
 }
 
-.service:first-child{
-    border-left:1px solid rgba(255,255,255,.08);
+.service:first-child {
+    border-left: 1px solid rgba(255, 255, 255, .08);
 }
 
-.service:hover{
-    background:rgba(142,98,209,.035);
+.service:hover {
+    background: rgba(142, 98, 209, .035);
 }
 
-.service-number{
-    color:#6f6876;
-
-    font-size:7px;
+.service-number {
+    color: #6f6876;
+    font-size: 7px;
 }
 
-.service h3{
-    margin-top:75px;
-
-    font-family:'Inter',sans-serif;
-
-    font-size:12px;
-    font-weight:500;
+.service h3 {
+    margin-top: 75px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
 }
 
-.service p{
-    margin-top:9px;
-
-    color:#706b75;
-
-    font-size:8px;
-
-    line-height:1.7;
+.service p {
+    margin-top: 9px;
+    color: #706b75;
+    font-size: 8px;
+    line-height: 1.7;
 }
-
 
 /* =========================
    STYLE TAGS
 ========================= */
-
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.tag{
-    padding:11px 14px;
-
-    border:1px solid rgba(255,255,255,.09);
-    border-radius:999px;
-
-    color:#aaa4af;
-
-    font-size:8px;
-
-    transition:.25s;
+.tag {
+    padding: 11px 14px;
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 999px;
+    color: #aaa4af;
+    font-size: 8px;
+    transition: .25s;
+    cursor: default;
 }
 
-.tag:hover{
-    border-color:#7652a8;
-    color:white;
+.tag:hover {
+    border-color: #7652a8;
+    color: white;
 }
-
 
 /* =========================
    WORKFLOW
 ========================= */
-
-.workflow{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:30px;
+.workflow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 60px;
 }
 
-.step-number{
-    width:36px;
-    height:36px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.09);
-    border-radius:50%;
-
-    color:#8b65c3;
-
-    font-size:7px;
+.step-number {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 50%;
+    color: #8b65c3;
+    font-size: 7px;
 }
 
-.step h3{
-    margin-top:17px;
-
-    font-size:8px;
-
-    letter-spacing:.18em;
+.step h3 {
+    margin-top: 17px;
+    font-size: 8px;
+    letter-spacing: .18em;
 }
 
-.step p{
-    margin-top:8px;
-
-    color:#706b75;
-
-    font-size:8px;
-
-    line-height:1.7;
+.step p {
+    margin-top: 8px;
+    color: #706b75;
+    font-size: 8px;
+    line-height: 1.7;
 }
-
 
 /* =========================
    CTA
 ========================= */
-
-.cta{
-    width:min(94%,1250px);
-
-    min-height:430px;
-
-    margin:20px auto 95px;
-
-    position:relative;
-
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-
-    text-align:center;
-
-    overflow:hidden;
-
-    border:1px solid rgba(255,255,255,.08);
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(137,85,215,.10),
-            transparent 38%
-        ),
-        #08070b;
+.cta {
+    width: min(94%, 1250px);
+    min-height: 430px;
+    margin: 20px auto 95px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 15px;
+    background: radial-gradient(circle at center, rgba(137, 85, 215, .10), transparent 38%), #08070b;
 }
 
-.cta h2{
-    font-family:'Inter',sans-serif;
-
-    font-size:clamp(2.2rem,5.5vw,4.2rem);
-
-    font-weight:400;
-
-    line-height:.95;
-
-    letter-spacing:-.06em;
+.cta h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: -.06em;
 }
 
-.cta .outline{
-    color:transparent;
-    -webkit-text-stroke:.6px rgba(255,255,255,.38);
+.cta .outline {
+    color: transparent;
+    -webkit-text-stroke: .6px rgba(255, 255, 255, .38);
 }
 
-.cta-text{
-    max-width:480px;
-
-    margin-top:17px;
-
-    color:#77717d;
-
-    font-size:8px;
-
-    line-height:1.8;
+.cta-text {
+    max-width: 480px;
+    margin: 17px auto 30px auto;
+    color: #77717d;
+    font-size: 8px;
+    line-height: 1.8;
 }
-
 
 /* =========================
    CONTACT
 ========================= */
-
-.contact-box{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-
-    border:1px solid rgba(255,255,255,.08);
+.contact-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 12px;
 }
 
-.contact-left,
-.contact-right{
-    padding:36px;
+.contact-left, .contact-right {
+    padding: 36px;
 }
 
-.contact-right{
-    border-left:1px solid rgba(255,255,255,.08);
+.contact-right {
+    border-left: 1px solid rgba(255, 255, 255, .08);
 }
 
-.contact-label{
-    color:#8d66c6;
-
-    font-size:7px;
-    letter-spacing:.2em;
+.contact-label {
+    color: #8d66c6;
+    font-size: 7px;
+    letter-spacing: .2em;
 }
 
-.contact-left h3{
-    margin-top:32px;
-
-    font-family:'Inter',sans-serif;
-
-    font-size:23px;
-
-    font-weight:400;
-
-    letter-spacing:-.04em;
+.contact-left h3 {
+    margin-top: 32px;
+    font-family: 'Inter', sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    letter-spacing: -.04em;
 }
 
-.contact-note{
-    max-width:380px;
-
-    margin-top:10px;
-
-    color:#746e79;
-
-    font-size:8px;
-
-    line-height:1.8;
+.contact-note {
+    max-width: 380px;
+    margin-top: 10px;
+    color: #746e79;
+    font-size: 8px;
+    line-height: 1.8;
 }
 
-.contact-details{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-
-    height:100%;
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 
-.contact-detail{
-    padding:13px 0;
-
-    border-bottom:1px solid rgba(255,255,255,.06);
+.contact-detail {
+    padding: 13px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
 }
 
-.contact-detail:last-child{
-    border-bottom:none;
+.contact-detail:last-child {
+    border-bottom: none;
 }
 
-.contact-detail span{
-    display:block;
-
-    margin-bottom:6px;
-
-    color:#625d67;
-
-    font-size:6px;
-
-    letter-spacing:.18em;
+.contact-detail span {
+    display: block;
+    margin-bottom: 6px;
+    color: #625d67;
+    font-size: 6px;
+    letter-spacing: .18em;
 }
 
-.contact-detail a,
-.contact-detail strong{
-    color:#c5c0cb;
-
-    font-size:10px;
-
-    font-weight:400;
-
-    transition:.25s;
+.contact-detail a, .contact-detail strong {
+    color: #c5c0cb;
+    font-size: 10px;
+    font-weight: 400;
+    transition: .25s;
 }
 
-.contact-detail a:hover{
-    color:#a47be2;
+.contact-detail a:hover {
+    color: #a47be2;
 }
-
 
 /* =========================
    FOOTER
 ========================= */
-
-footer{
-    width:min(92%,1100px);
-
-    margin:auto;
-
-    padding:28px 0 38px;
-
-    border-top:1px solid rgba(255,255,255,.07);
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+footer {
+    width: min(92%, 1100px);
+    margin: auto;
+    padding: 28px 0 38px;
+    border-top: 1px solid rgba(255, 255, 255, .07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.footer-logo{
-    width:32px;
-    height:32px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:8px;
-
-    font-size:9px;
-    letter-spacing:-1px;
+.footer-logo {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 8px;
+    font-size: 9px;
+    letter-spacing: -1px;
 }
 
-.footer-text{
-    margin-left:10px;
+.footer-text {
+    margin-left: 10px;
 }
 
-.footer-text strong{
-    display:block;
-
-    font-size:8px;
-    font-weight:500;
+.footer-text strong {
+    display: block;
+    font-size: 8px;
+    font-weight: 500;
 }
 
-.footer-text span{
-    display:block;
-
-    margin-top:3px;
-
-    color:#625d67;
-
-    font-size:6px;
-    letter-spacing:.12em;
+.footer-text span {
+    display: block;
+    margin-top: 3px;
+    color: #625d67;
+    font-size: 6px;
+    letter-spacing: .12em;
 }
 
-.footer-left{
-    display:flex;
-    align-items:center;
+.footer-left {
+    display: flex;
+    align-items: center;
 }
 
-.copyright{
-    color:#5f5964;
-    font-size:6px;
+.copyright {
+    color: #5f5964;
+    font-size: 6px;
 }
-
 
 /* =========================
    MODAL
 ========================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-
-    z-index:500;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:20px;
-
-    background:rgba(0,0,0,.88);
-
-    backdrop-filter:blur(15px);
-
-    opacity:0;
-    visibility:hidden;
-
-    transition:.3s;
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, .88);
+    backdrop-filter: blur(15px);
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
 }
 
-.modal.active{
-    opacity:1;
-    visibility:visible;
+.modal.active {
+    opacity: 1;
+    visibility: visible;
 }
 
-.modal-content{
-    width:min(950px,100%);
-
-    background:#09080d;
-
-    border:1px solid rgba(255,255,255,.09);
+.modal-content {
+    width: min(950px, 100%);
+    background: #09080d;
+    border: 1px solid rgba(255, 255, 255, .09);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
 }
 
-.modal video{
-    width:100%;
-    display:block;
-    max-height:70vh;
-    background:black;
+.modal video {
+    width: 100%;
+    display: block;
+    max-height: 70vh;
+    background: black;
 }
 
-.modal-info{
-    padding:20px;
+.modal-info {
+    padding: 20px;
 }
 
-.modal-info h2{
-    margin-top:5px;
-
-    font-family:'Inter',sans-serif;
-
-    font-size:20px;
-    font-weight:500;
+.modal-info h2 {
+    margin-top: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
 }
 
-.modal-info p{
-    margin-top:8px;
-
-    color:#77717d;
-
-    font-size:8px;
-    line-height:1.7;
+.modal-info p {
+    margin-top: 8px;
+    color: #77717d;
+    font-size: 8px;
+    line-height: 1.7;
 }
 
-.close{
-    position:absolute;
-
-    top:25px;
-    right:25px;
-
-    width:36px;
-    height:36px;
-
-    border-radius:50%;
-
-    border:1px solid rgba(255,255,255,.18);
-
-    background:#111014;
-
-    color:white;
-
-    font-size:19px;
-
-    z-index:10;
+.close {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, .18);
+    background: #111014;
+    color: white;
+    font-size: 19px;
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
 }
 
+.close:hover {
+    background: #fff;
+    color: #000;
+}
 
 /* =========================
    RESPONSIVE
 ========================= */
-
-@media(max-width:900px){
-
-    .services{
-        grid-template-columns:repeat(2,1fr);
+@media(max-width: 900px) {
+    .services {
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .service{
-        border-bottom:1px solid rgba(255,255,255,.08);
+    .service {
+        border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
-
-    .workflow{
-        grid-template-columns:repeat(2,1fr);
-        gap:40px;
+    .workflow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
     }
-
 }
 
-
-@media(max-width:700px){
-
-    .nav-links{
-        position:absolute;
-
-        top:62px;
-        left:0;
-        right:0;
-
-        display:none;
-
-        flex-direction:column;
-
-        padding:10px;
-
-        background:#0a090d;
-
-        border:1px solid rgba(255,255,255,.09);
-        border-radius:14px;
+@media(max-width: 700px) {
+    .nav-links {
+        position: absolute;
+        top: 62px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        padding: 10px;
+        background: #0a090d;
+        border: 1px solid rgba(255, 255, 255, .09);
+        border-radius: 14px;
     }
-
-    .nav-links.open{
-        display:flex;
+    .nav-links.open {
+        display: flex;
     }
-
-    .nav-links button{
-        padding:12px;
-        text-align:left;
+    .nav-links button {
+        padding: 12px;
+        text-align: left;
     }
-
-    .menu{
-        display:block;
+    .menu {
+        display: block;
     }
-
-    .hero h1{
-        font-size:2.35rem;
+    .hero h1 {
+        font-size: 2.35rem;
     }
-
-    .hero h1 .outline{
-        font-size:.46em;
+    .hero h1 .outline {
+        font-size: .46em;
     }
-
-    .hero-text{
-        max-width:290px;
+    .hero-text {
+        max-width: 290px;
     }
-
-    .hero-buttons{
-        flex-direction:column;
-        width:270px;
-        margin-left:auto;
-        margin-right:auto;
+    .hero-buttons {
+        flex-direction: column;
+        width: 270px;
+        margin-left: auto;
+        margin-right: auto;
     }
-
-    .hero-bottom{
-        padding:0 15px;
+    .hero-bottom {
+        padding: 0 15px;
     }
-
-    .about-grid{
-        grid-template-columns:1fr;
-        gap:50px;
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
     }
-
-    .about-visual{
-        width:230px;
+    .about-visual {
+        width: 230px;
     }
-
-    .portfolio-grid{
-        grid-template-columns:1fr;
-        gap:45px;
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 45px;
     }
-
-    .services{
-        grid-template-columns:1fr;
+    .services {
+        grid-template-columns: 1fr;
     }
-
-    .service{
-        min-height:200px;
-        border-left:1px solid rgba(255,255,255,.08);
+    .service {
+        min-height: 200px;
+        border-left: 1px solid rgba(255, 255, 255, .08);
     }
-
-    .service h3{
-        margin-top:50px;
+    .service h3 {
+        margin-top: 50px;
     }
-
-    .workflow{
-        grid-template-columns:1fr;
+    .workflow {
+        grid-template-columns: 1fr;
     }
-
-    .contact-box{
-        grid-template-columns:1fr;
+    .contact-box {
+        grid-template-columns: 1fr;
     }
-
-    .contact-right{
-        border-left:none;
-        border-top:1px solid rgba(255,255,255,.08);
+    .contact-right {
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, .08);
     }
-
-    .contact-left,
-    .contact-right{
-        padding:25px 21px;
+    .contact-left, .contact-right {
+        padding: 25px 21px;
     }
-
-    .cta{
-        width:calc(100% - 30px);
-        min-height:410px;
+    .cta {
+        width: calc(100% - 30px);
+        min-height: 410px;
     }
-
-    footer{
-        width:calc(100% - 30px);
-        flex-direction:column;
-        align-items:flex-start;
-        gap:20px;
+    footer {
+        width: calc(100% - 30px);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
     }
-
 }
-
 
 /* =========================
-   REVEAL
+   REVEAL ANIMATION
 ========================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(20px);
-
-    transition:
-        opacity .7s ease,
-        transform .7s ease;
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .7s ease, transform .7s ease;
 }
-
-.reveal.show{
-    opacity:1;
-    transform:translateY(0);
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
 }
-
 </style>
 </head>
 
-
 <body>
-
 
 <!-- =========================
      BACKGROUND
 ========================= -->
-
 <div class="background">
-
     <div class="glow one"></div>
     <div class="glow two"></div>
-
     <div class="stars" id="stars"></div>
-
 </div>
-
 
 <!-- =========================
      NAVBAR
 ========================= -->
-
 <header class="navbar" id="navbar">
-
-    <button
-        class="logo"
-        onclick="goTo('home')"
-    >
-        LS
-    </button>
-
-
-    <nav
-        class="nav-links"
-        id="navLinks"
-    >
-
-        <button onclick="goTo('home')">
-            Home
-        </button>
-
-        <button onclick="goTo('about')">
-            About
-        </button>
-
-        <button onclick="goTo('work')">
-            Work
-        </button>
-
-        <button onclick="goTo('services')">
-            Services
-        </button>
-
-        <button onclick="goTo('contact')">
-            Contact
-        </button>
-
+    <button class="logo" onclick="goTo('home')">LS</button>
+    <nav class="nav-links" id="navLinks">
+        <button onclick="goTo('home')">Home</button>
+        <button onclick="goTo('about')">About</button>
+        <button onclick="goTo('work')">Work</button>
+        <button onclick="goTo('services')">Services</button>
+        <button onclick="goTo('contact')">Contact</button>
     </nav>
-
-
-    <button
-        class="menu"
-        onclick="toggleMenu()"
-    >
-
+    <button class="menu" onclick="toggleMenu()">
         <span></span>
         <span></span>
         <span></span>
-
     </button>
-
 </header>
-
 
 <!-- =========================
      HERO
 ========================= -->
-
-<section
-    class="hero"
-    id="home"
->
-
+<section class="hero" id="home">
     <div class="hero-content">
-
-
         <div class="hero-logo">
             <span>LS</span>
         </div>
-
-
-        <p class="eyebrow">
-            CREATIVE VISUALS / 2026
-        </p>
-
-
+        <p class="eyebrow">CREATIVE VISUALS / 2026</p>
         <h1>
-
             LOHITHA
-
-            <span class="outline">
-                VISUAL STORIES
-            </span>
-
+            <span class="outline">VISUAL STORIES</span>
         </h1>
-
-
-        <div class="hero-role">
-            VIDEO EDITOR
-        </div>
-
-
+        <div class="hero-role">VIDEO EDITOR</div>
         <p class="hero-text">
             Turning footage into visuals that capture attention.
         </p>
-
-
         <div class="hero-buttons">
-
-            <button
-                class="btn primary"
-                onclick="goTo('work')"
-            >
-                VIEW MY WORK ↗
-            </button>
-
-
-            <button
-                class="btn secondary"
-                onclick="goTo('contact')"
-            >
-                LET'S CREATE ↗
-            </button>
-
+            <button class="btn primary" onclick="goTo('work')">VIEW MY WORK ↗</button>
+            <button class="btn secondary" onclick="goTo('contact')">LET'S CREATE ↗</button>
         </div>
-
     </div>
-
-
     <div class="hero-bottom">
-
         <div>
-
-            ANIME
-            <span>•</span>
-            K-POP
-            <span>•</span>
-            CINEMATIC
-            <span>•</span>
-            SHORT-FORM
-
+            ANIME <span>•</span> K-POP <span>•</span> CINEMATIC <span>•</span> SHORT-FORM
         </div>
-
-
-        <div>
-            SCROLL ↓
-        </div>
-
+        <div>SCROLL ↓</div>
     </div>
-
 </section>
-
 
 <!-- =========================
      ABOUT
 ========================= -->
-
-<section
-    class="section reveal"
-    id="about"
->
-
+<section class="section reveal" id="about">
     <div class="container">
-
-
         <div class="section-head">
-
-            <div class="section-number">
-                01
-            </div>
-
+            <div class="section-number">01</div>
             <div>
-
-                <p class="eyebrow">
-                    THE EDITOR
-                </p>
-
-                <h2>
-                    ABOUT ME
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="about-grid">
-
-
-            <p class="about-text">
-
-                I'm a creative video editor focused on
-                turning raw footage into engaging visual
-                stories. I create anime edits, K-pop edits,
-                cinematic visuals and short-form content.
-
-            </p>
-
-
-            <div class="about-visual">
-
-                <div class="circle one"></div>
-
-                <div class="circle two"></div>
-
-                <div class="circle three">
-                    LS
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     WORK
-========================= -->
-
-<section
-    class="section reveal"
-    id="work"
->
-
-    <div class="container">
-
-
-        <div class="section-head">
-
-            <div class="section-number">
-                02
-            </div>
-
-
-            <div>
-
-                <p class="eyebrow">
-                    SELECTED WORK
-                </p>
-
-                <h2>
-                    MY EDITS
-                </h2>
-
-                <p class="section-description">
-                    A collection of edits created with
-                    rhythm, motion and visual storytelling.
-                </p>
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="portfolio-grid"
-            id="portfolioGrid"
-        ></div>
-
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     SERVICES
-========================= -->
-
-<section
-    class="section reveal"
-    id="services"
->
-
-    <div class="container">
-
-
-        <div class="section-head">
-
-            <div class="section-number">
-                03
-            </div>
-
-
-            <div>
-
-                <p class="eyebrow">
-                    SERVICES
-                </p>
-
-                <h2>
-                    WHAT I EDIT
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="services">
-
-
-            <div class="service">
-
-                <span class="service-number">
-                    01
-                </span>
-
-                <h3>
-                    Anime Edits
-                </h3>
-
-                <p>
-                    Cinematic character edits,
-                    transitions, effects and
-                    music-synced visuals.
-                </p>
-
-            </div>
-
-
-            <div class="service">
-
-                <span class="service-number">
-                    02
-                </span>
-
-                <h3>
-                    K-Pop Edits
-                </h3>
-
-                <p>
-                    Stylish idol edits with
-                    smooth transitions and
-                    aesthetic visuals.
-                </p>
-
-            </div>
-
-
-            <div class="service">
-
-                <span class="service-number">
-                    03
-                </span>
-
-                <h3>
-                    Short-Form
-                </h3>
-
-                <p>
-                    Engaging content for
-                    Instagram Reels and
-                    YouTube Shorts.
-                </p>
-
-            </div>
-
-
-            <div class="service">
-
-                <span class="service-number">
-                    04
-                </span>
-
-                <h3>
-                    Cinematic
-                </h3>
-
-                <p>
-                    Atmospheric videos focused
-                    on pacing, storytelling
-                    and impact.
-                </p>
-
-            </div>
-
-
-            <div class="service">
-
-                <span class="service-number">
-                    05
-                </span>
-
-                <h3>
-                    Social Media
-                </h3>
-
-                <p>
-                    Creative video content
-                    designed to capture
-                    attention.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     STYLE
-========================= -->
-
-<section class="section reveal">
-
-    <div class="container">
-
-
-        <div class="section-head">
-
-            <div class="section-number">
-                04
-            </div>
-
-
-            <div>
-
-                <p class="eyebrow">
-                    THE APPROACH
-                </p>
-
-                <h2>
-                    EDITING STYLE
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="tags">
-
-            <div class="tag">
-                Beat Synchronization
-            </div>
-
-            <div class="tag">
-                Smooth Transitions
-            </div>
-
-            <div class="tag">
-                Velocity Effects
-            </div>
-
-            <div class="tag">
-                Motion Effects
-            </div>
-
-            <div class="tag">
-                Cinematic Pacing
-            </div>
-
-            <div class="tag">
-                Visual Effects
-            </div>
-
-            <div class="tag">
-                Color & Atmosphere
-            </div>
-
-            <div class="tag">
-                Storytelling
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     WORKFLOW
-========================= -->
-
-<section class="section reveal">
-
-    <div class="container">
-
-
-        <div class="section-head">
-
-            <div class="section-number">
-                05
-            </div>
-
-
-            <div>
-
-                <p class="eyebrow">
-                    FROM FOOTAGE TO FINAL
-                </p>
-
-                <h2>
-                    WORKFLOW
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="workflow">
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    01
-                </div>
-
-                <h3>
-                    IDEA
-                </h3>
-
-                <p>
-                    Understanding the concept
-                    and visual direction.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    02
-                </div>
-
-                <h3>
-                    EDIT
-                </h3>
-
-                <p>
-                    Building the video with
-                    timing, transitions and effects.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    03
-                </div>
-
-                <h3>
-                    POLISH
-                </h3>
-
-                <p>
-                    Refining pacing, visuals
-                    and synchronization.
-                </p>
-
-            </div>
-
-
-            <div class="step">
-
-                <div class="step-number">
-                    04
-                </div>
-
-                <h3>
-                    FINAL
-                </h3>
-
-                <p>
-                    Delivering a polished video
-                    ready for social media.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CTA
-========================= -->
-
-<section class="cta reveal">
-
-    <p class="eyebrow">
-        HAVE A PROJECT?
-    </p>
-
-
-    <h2>
-
-        LET'S CREATE
-
-        <br>
-
-        <span class="outline">
-            SOMETHING
-        </span>
-
-    </h2>
-
-
-    <p class="cta-text">
-        Have footage that needs an edit?
-        Let's turn it into something worth watching.
-    </p>
-
-
-    <div class="hero-buttons">
-
-        <button
-            class="btn primary"
-            onclick="goTo('contact')"
-        >
-            CONTACT ME ↗
-        </button>
-
-
-        <button
-            class="btn secondary"
-            onclick="goTo('work')"
-        >
-            VIEW WORK ↗
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     CONTACT
-========================= -->
-
-<section
-    class="section reveal"
-    id="contact"
->
-
-    <div class="container">
-
-
-        <div class="section-head">
-
-            <div class="section-number">
-                06
-            </div>
-
-
-            <div>
-
-                <p class="eyebrow">
-                    START A PROJECT
-                </p>
-
-                <h2>
-                    LET'S WORK TOGETHER
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <div class="contact-box">
-
-
-            <div class="contact-left">
-
-                <p class="contact-label">
-                    GET IN TOUCH
-                </p>
-
-
-                <h3>
-                    Ready when you are.
-                </h3>
-
-
-                <p class="contact-note">
-
-                    Whether it's a short-form edit,
-                    cinematic video, anime edit or
-                    K-pop edit, feel free to reach out.
-
-                </p>
-
-            </div>
-
-
-            <div class="contact-right">
-
-                <div class="contact-details">
-
-
-                    <div class="contact-detail">
-
-                        <span>
-                            PHONE
-                        </span>
-
-                        <a href="tel:9391192049">
-                            9391192049
-                        </a>
-
-                    </div>
-
-
-                    <div class="contact-detail">
-
-                        <span>
-                            INSTAGRAM
-                        </span>
-
-                        <a
-                            href="https://instagram.com/the_magic_of_frames"
-                            target="_blank"
-                        >
-                            @the_magic_of_frames
-                        </a>
-
-                    </div>
-
-
-                    <div class="contact-detail">
-
-                        <span>
-                            EMAIL
-                        </span>
-
-                        <a
-                            href="mailto:lohithasai229@gmail.com"
-                        >
-                            lohithasai229@gmail.com
-                        </a>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-
-    <div class="footer-left">
-
-
-        <div class="footer-logo">
-            LS
-        </div>
-
-
-        <div class="footer-text">
-
-            <strong>
-                LOHITHA
-            </strong>
-
-            <span>
-                VIDEO EDITOR / VISUAL STORIES
-            </span>
-
-        </div>
-
-
-    </div>
-
-
-    <div class="copyright">
-        © 2026 Lohitha
-    </div>
-
-
-</footer>
-
-
-<!-- =========================
-     VIDEO MODAL
-========================= -->
-
-<div
-    class="modal"
-    id="modal"
-    onclick="closeOutside(event)"
->
-
-
-    <button
-        class="close"
-        onclick="closeModal()"
-    >
-        ×
-    </button>
-
-
-    <div class="modal-content">
-
-
-        <video
-            id="modalVideo"
-            controls
-            playsinline
-        ></video>
-
-
-        <div class="modal-info">
-
-
-            <div
-                class="project-category"
-                id="modalCategory"
-            ></div>
-
-
-            <h2 id="modalTitle"></h2>
-
-
-            <p id="modalDescription"></p>
-
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<script>
-
-
-/* =========================
-   PROJECT DATA
-========================= */
-
-const projects = [
-
-    {
-        title:"Anime Character Intro — Part 1",
-
-        category:"Anime / Character Edit",
-
-        description:
-        "An anime character introduction edit with cinematic visuals, smooth transitions and music synchronization.",
-
-        video:"videos/Anime_Char_intro_part1.mp4"
-    },
-
-
-    {
-        title:"Anime Character Intro — Part 2",
-
-        category:"Anime / Character Edit",
-
-        description:
-        "A continuation of the anime character edit series with dynamic transitions, effects and energetic pacing.",
-
-        video:"videos/Anime_Char_intro_part2.mp4"
-    },
-
-
-    {
-        title:"Anime World",
-
-        category:"Anime Showcase",
-
-        description:
-        "A cinematic anime showcase combining dramatic visuals, smooth transitions and music synchronization.",
-
-        video:"videos/Anime_world.mp4"
-    },
-
-
-    {
-        title:"Demon Slayer — The Beginning",
-
-        category:"Anime / Cinematic Edit",
-
-        description:
-        "A cinematic Demon Slayer edit focused on atmosphere, transitions, effects and storytelling.",
-
-        video:"videos/Demon_Slayer_The_Beginning.mp4"
-    },
-
-
-    {
-        title:"Jisoo & Jennie",
-
-        category:"K-Pop / Visual Edit",
-
-        description:
-        "A stylish K-pop visual edit featuring Jisoo and Jennie with smooth transitions and aesthetic visuals.",
-
-        video:"videos/Jisoo_Jennie_Edit.mp4"
-    },
-
-
-    {
-        title:"V",
-
-        category:"K-Pop / Cinematic Edit",
-
-        description:
-        "A cinematic visual edit featuring V with music synchronization, motion and atmospheric visuals.",
-
-        video:"videos/v-edit.mp4"
-    }
-
-];
-
-
-/* =========================
-   CREATE PORTFOLIO
-========================= */
-
-const grid =
-document.getElementById("portfolioGrid");
-
-
-projects.forEach((project,index)=>{
-
-
-    const card =
-    document.createElement("article");
-
-
-    card.className="project";
-
-
-    card.innerHTML=`
-
-        <div
-            class="project-video"
-            onclick="openModal(${index})"
-        >
-
-            <video
-                src="${project.video}"
-                muted
-                playsinline
-                preload="metadata"
-                onmouseenter="preview(this)"
-                onmouseleave="stopPreview(this)"
-            ></video>
-
-
-            <div class="video-shade"></div>
-
-
-            <div class="project-number">
-                ${String(index+1).padStart(2,"0")}
-            </div>
-
-
-            <div class="play">
-                ▶
-            </div>
-
-        </div>
-
-
-        <div class="project-info">
-
-            <div class="project-category">
-                ${project.category}
-            </div>
-
-
-            <h3 class="project-title">
-                ${project.title}
-            </h3>
-
-
-            <p class="project-description">
-                ${project.description}
-            </p>
-
-        </div>
-
-    `;
-
-
-    grid.appendChild(card);
-
-});
-
-
-/* =========================
-   VIDEO PREVIEW
-========================= */
-
-function preview(video){
-
-    video.play().catch(()=>{});
-
-}
-
-
-function stopPreview(video){
-
-    video.pause();
-
-    video.currentTime=0;
-
-}
-
-
-/* =========================
-   MODAL
-========================= */
-
-const modal =
-document.getElementById("modal");
-
-const modalVideo =
-document.getElementById("modalVideo");
-
-const modalTitle =
-document.getElementById("modalTitle");
-
-const modalCategory =
-document.getElementById("modalCategory");
-
-const modalDescription =
-document.getElementById("modalDescription");
-
-
-function openModal(index){
-
-
-    const project =
-    projects[index];
-
-
-    modalVideo.src =
-    project.video;
-
-
-    modalTitle.textContent =
-    project.title;
-
-
-    modalCategory.textContent =
-    project.category;
-
-
-    modalDescription.textContent =
-    project.description;
-
-
-    modal.classList.add("active");
-
-
-    document.body.style.overflow="hidden";
-
-}
-
-
-function closeModal(){
-
-
-    modalVideo.pause();
-
-
-    modalVideo.removeAttribute("src");
-
-
-    modalVideo.load();
-
-
-    modal.classList.remove("active");
-
-
-    document.body.style.overflow="";
-
-}
-
-
-function closeOutside(event){
-
-    if(event.target===modal){
-
-        closeModal();
-
-    }
-
-}
-
-
-document.addEventListener(
-    "keydown",
-    event=>{
-
-        if(
-            event.key==="Escape" &&
-            modal.classList.contains("active")
-        ){
-
-            closeModal();
-
-        }
-
-    }
-);
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function goTo(id){
-
-
-    const section =
-    document.getElementById(id);
-
-
-    if(section){
-
-        section.scrollIntoView({
-            behavior:"smooth"
-        });
-
-    }
-
-
-    document
-    .getElementById("navLinks")
-    .classList.remove("open");
-
-}
-
-
-function toggleMenu(){
-
-    document
-    .getElementById("navLinks")
-    .classList.toggle("open");
-
-}
-
-
-/* =========================
-   NAVBAR
-========================= */
-
-window.addEventListener(
-    "scroll",
-    ()=>{
-
-
-        const navbar =
-        document.getElementById("navbar");
-
-
-        if(window.scrollY>30){
-
-            navbar.classList.add("scrolled");
-
-        }else{
-
-            navbar.classList.remove("scrolled");
-
-        }
-
-
-    },
-    {passive:true}
-);
-
-
-/* =========================
-   STARS
-========================= */
-
-const stars =
-document.getElementById("stars");
-
-
-for(let i=0;i<65;i++){
-
-
-    const star =
-    document.createElement("div");
-
-
-    star.className="star";
-
-
-    star.style.left =
-    Math.random()*100+"%";
-
-
-    star.style.top =
-    Math.random()*100+"%";
-
-
-    star.style.opacity =
-    .08+Math.random()*.35;
-
-
-    stars.appendChild(star);
-
-}
-
-
-/* =========================
-   SCROLL REVEAL
-========================= */
-
-const observer =
-new IntersectionObserver(
-
-    entries=>{
-
-        entries.forEach(entry=>{
-
-            if(entry.isIntersecting){
-
-                entry.target.classList.add("show");
-
-                observer.unobserve(entry.target);
-
-            }
-
-        });
-
-    },
-
-    {
-        threshold:.08
-    }
-
-);
-
-
-document
-.querySelectorAll(".reveal")
-.forEach(element=>{
-
-    observer.observe(element);
-
-});
-
-</script>
-
-</body>
-</html>
+                <p class="eyebrow">T
