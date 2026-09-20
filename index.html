@@ -1049,10 +1049,392 @@ footer {
             Turning footage into visuals that capture attention.
         </p>
         <div class="hero-buttons">
-            <button class="btn primary" onclick="goTo('work')">VIEW MY WORK ↗️</button>
-            <button class="btn secondary" onclick="goTo('contact')">LET'S CREATE ↗️</button>
+            <button class="btn primary" onclick="goTo('work')">VIEW MY WORK ↗</button>
+            <button class="btn secondary" onclick="goTo('contact')">LET'S CREATE ↗</button>
         </div>
     </div>
     <div class="hero-bottom">
         <div>
-            ANIME <span>•</span> K-POP <span>•</span> CINEMATIC <
+            ANIME <span>•</span> K-POP <span>•</span> CINEMATIC <span>•</span> SHORT-FORM
+        </div>
+        <div>SCROLL ↓</div>
+    </div>
+</section>
+
+<!-- =========================
+     ABOUT
+========================= -->
+<section class="section reveal" id="about">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-number">01</div>
+            <div>
+                <p class="eyebrow">THE EDITOR</p>
+                <h2>ABOUT ME</h2>
+            </div>
+        </div>
+        <div class="about-grid">
+            <p class="about-text">
+                I'm a creative video editor focused on turning raw footage into compelling visual stories. With a keen eye for pacing, rhythm, and color, I specialize in crafting everything from high-energy anime and K-pop edits to cinematic narratives and highly engaging short-form content. My goal is to make every frame count.
+            </p>
+            <div class="about-visual">
+                <div class="circle one"></div>
+                <div class="circle two"></div>
+                <div class="circle three">LS</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     PORTFOLIO (WORK)
+========================= -->
+<section class="section reveal" id="work">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-number">02</div>
+            <div>
+                <p class="eyebrow">SELECTED WORKS</p>
+                <h2>PORTFOLIO</h2>
+            </div>
+        </div>
+        
+        <div class="portfolio-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div class="project-video" onclick="openModal('Neon Impact', 'High-energy anime combat sequence synchronization.', 'Neon-impact.mp4')">
+                    <video src="Anime_world.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="video-shade"></div>
+                    <div class="project-number">01</div>
+                    <div class="play">▶</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-category">ANIME AMV</p>
+                    <h3 class="project-title">Neon Impact</h3>
+                    <p class="project-description">A cinematic anime edit showcasing iconic characters, powerful moments, smooth transitions, and beat-synced visual effects</p>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div class="project-video" onclick="openModal('Midnight Echoes', 'Cinematic short film emphasizing emotional pacing.', 'midnight-echoes.mp4')">
+                    <video src="Anime_Char_intro_part1.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="video-shade"></div>
+                    <div class="project-number">02</div>
+                    <div class="play">▶</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-category">CINEMATIC</p>
+                    <h3 class="project-title">Midnight Echoes</h3>
+                    <p class="project-description">A character-driven edit featuring powerful moments, smooth transitions, motion effects, and music-synced visuals designed for short-form content.</p>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div class="project-video" onclick="openModal('Rhythm Surge', 'K-Pop rhythm editing with advanced transitions.', 'rhythm-surge.mp4')">
+                    <video src="Anime_Char_intro_part2.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="video-shade"></div>
+                    <div class="project-number">03</div>
+                    <div class="play">▶</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-category">K-POP EDIT</p>
+                    <h3 class="project-title">Rhythm Surge</h3>
+                    <p class="project-description">A character-driven edit featuring powerful moments, smooth transitions, motion effects, and music-synced visuals designed for short-form content.</p>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div class="project-video" onclick="openModal('Viral Hooks', 'Optimized short-form content for high audience retention.', 'viral-hooks.mp4')">
+                    <video src="Demon_Slayer_The_Beginning.mp4 muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="video-shade"></div>
+                    <div class="project-number">04</div>
+                    <div class="play">▶</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-category">SHORT-FORM</p>
+                    <h3 class="project-title">Viral Hooks</h3>
+                    <p class="project-description">An energetic Demon Slayer edit built around cinematic pacing, character moments, dramatic transitions, and beat-synced effects to introduce the story.</p>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card featured-full">
+                <div class="project-video" onclick="openModal('Visual Flow', 'Advanced motion graphics and color grading showcase.', 'visual-flow.mp4')">
+                    <video src="Jisoo_Jennie_Edit.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="video-shade"></div>
+                    <div class="project-number">05</div>
+                    <div class="play">▶</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-category">MOTION GRAPHICS</p>
+                    <h3 class="project-title">Visual Flow</h3>
+                    <p class="project-description">A stylish K-POP edit featuring Jisoo and Jennie with beat-synced cuts, smooth transitions, motion effects, and aesthetic visual treatment.</p>
+                </div>
+            </div>
+
+            <!-- Project 6 (Featured / Span 2 Columns) -->
+            <div class="project-card featured-full">
+                <div class="project-video" onclick="openModal('Visual Flow', 'Advanced motion graphics and color grading showcase.', 'visual-flow.mp4')">
+                    <video src="V_Edit.mp4" muted loop onmouseover="this.play()" onmouseout="this.pause()"></video>
+                    <div class="video-shade"></div>
+                    <div class="project-number">05</div>
+                    <div class="play">▶</div>
+                </div>
+                <div class="project-info">
+                    <p class="project-category">MOTION GRAPHICS</p>
+                    <h3 class="project-title">Visual Flow</h3>
+                    <p class="project-description">A sleek visual edit featuring BTS V, combining rhythmic cuts, cinematic effects, smooth transitions, and a polished aesthetic for short-form content.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     SERVICES & WORKFLOW
+========================= -->
+<section class="section reveal" id="services">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-number">03</div>
+            <div>
+                <p class="eyebrow">WHAT I DO</p>
+                <h2>MY SERVICES</h2>
+            </div>
+        </div>
+
+        <div class="services">
+            <div class="service">
+                <div class="service-number">01</div>
+                <h3>ANIME EDITS</h3>
+                <p>Highly dynamic, beat-synced AMVs with striking visual effects.</p>
+            </div>
+            <div class="service">
+                <div class="service-number">02</div>
+                <h3>K-POP EDITS</h3>
+                <p>Smooth transitions and rhythm-focused cuts that highlight choreography.</p>
+            </div>
+            <div class="service">
+                <div class="service-number">03</div>
+                <h3>CINEMATIC</h3>
+                <p>Narrative-driven pacing, color grading, and emotional storytelling.</p>
+            </div>
+            <div class="service">
+                <div class="service-number">04</div>
+                <h3>SHORT-FORM</h3>
+                <p>High-retention Reels, TikToks, and Shorts with engaging subtitles.</p>
+            </div>
+            <div class="service">
+                <div class="service-number">05</div>
+                <h3>COLOR GRADING</h3>
+                <p>Enhancing mood and aesthetics to give raw footage a professional look.</p>
+            </div>
+        </div>
+
+        <div class="tags">
+            <div class="tag">Premiere Pro</div>
+            <div class="tag">After Effects</div>
+            <div class="tag">DaVinci Resolve</div>
+            <div class="tag">Motion Graphics</div>
+            <div class="tag">Sound Design</div>
+        </div>
+
+        <div class="workflow">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>DISCOVERY</h3>
+                <p>Understanding your vision, style, and the core message of the video.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>ASSEMBLY</h3>
+                <p>Sorting footage and laying out the baseline pacing and rhythm.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>REFINEMENT</h3>
+                <p>Adding transitions, effects, sound design, and syncing visuals perfectly.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>DELIVERY</h3>
+                <p>Final color grade, rendering, and delivering the polished masterpiece.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     CTA
+========================= -->
+<div class="cta reveal">
+    <h2>READY TO <span class="outline">CREATE?</span></h2>
+    <p class="cta-text">
+        Whether it's a cinematic project, an intense anime edit, or viral short-form content, let's collaborate and bring your ideas to life.
+    </p>
+    <button class="btn primary" onclick="goTo('contact')">START A PROJECT</button>
+</div>
+
+<!-- =========================
+     CONTACT
+========================= -->
+<section class="section reveal" id="contact">
+    <div class="container">
+        <div class="section-head">
+            <div class="section-number">04</div>
+            <div>
+                <p class="eyebrow">REACH OUT</p>
+                <h2>CONTACT</h2>
+            </div>
+        </div>
+
+        <div class="contact-box">
+            <div class="contact-left">
+                <div class="contact-label">LET'S CONNECT</div>
+                <h3>Got an idea? Let's make it happen.</h3>
+                <p class="contact-note">
+                    I'm currently available for freelance projects. Drop me an email or reach out on socials.
+                </p>
+            </div>
+            <div class="contact-right">
+                <div class="contact-details">
+                    <div class="contact-detail">
+                        <span>EMAIL</span>
+                        <a href="mailto:hello@lohitha.com">hello@lohitha.com</a>
+                    </div>
+                    <div class="contact-detail">
+                        <span>SOCIALS</span>
+                        <a href="#">Instagram</a> • <a href="#">YouTube</a> • <a href="#">Twitter</a>
+                    </div>
+                    <div class="contact-detail">
+                        <span>LOCATION</span>
+                        <strong>Remote / Worldwide</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =========================
+     FOOTER
+========================= -->
+<footer>
+    <div class="footer-left">
+        <div class="footer-logo">LS</div>
+        <div class="footer-text">
+            <strong>LOHITHA</strong>
+            <span>VIDEO EDITOR</span>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 LOHITHA. ALL RIGHTS RESERVED.
+    </div>
+</footer>
+
+<!-- =========================
+     MODAL
+========================= -->
+<div class="modal" id="videoModal">
+    <button class="close" onclick="closeModal()">×</button>
+    <div class="modal-content">
+        <video id="modalVideo" controls></video>
+        <div class="modal-info">
+            <h2 id="modalTitle">Project Title</h2>
+            <p id="modalDesc">Project description goes here.</p>
+        </div>
+    </div>
+</div>
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+<script>
+    // --- Generate Background Stars ---
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        const starCount = 150;
+        
+        for (let i = 0; i < starCount; i++) {
+            let star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.opacity = Math.random() * 0.5;
+            star.style.transform = `scale(${Math.random() * 1.5})`;
+            starsContainer.appendChild(star);
+        }
+    }
+    createStars();
+
+    // --- Navigation Scroll Effect ---
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+
+    // --- Smooth Scroll to Sections ---
+    function goTo(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.classList.contains('open')) {
+            navLinks.classList.remove('open');
+        }
+    }
+
+    // --- Mobile Menu Toggle ---
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('open');
+    }
+
+    // --- Reveal Animations on Scroll ---
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // --- Video Modal Functions ---
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+
+    function openModal(title, desc, videoSrc) {
+        modalTitle.innerText = title;
+        modalDesc.innerText = desc;
+        modalVideo.src = videoSrc;
+        modal.classList.add('active');
+        modalVideo.play();
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        modalVideo.pause();
+        modalVideo.currentTime = 0;
+    }
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+</script>
+
+</body>
+</html>
